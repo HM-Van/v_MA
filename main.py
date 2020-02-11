@@ -115,6 +115,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 	if not infeasibleSkeletons==[]:
 		print("Next try")
+		#print(infeasibleSkeletons)
 
 	envState=rai_net.encodeState()
 	if cheat_goalstate or rai_net.numGoal_orig>2:
@@ -138,14 +139,21 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 		tmpDes=[]
 		outEncoded = rai_net.processPrediction(inputState)
 		outDecoded = rai_net.decodeAction1(outEncoded)
-		if skeleton + " " +outDecoded in infeasibleSkeletons or cheat_tree or (outDecoded not in rai_net.lgp.getDecisions() and not rai_net.lgp.getDecisions() == [])or rai_net.checkPlaceSame(outDecoded):
+		if skeleton + " " +outDecoded in infeasibleSkeletons or (outDecoded in infeasibleSkeletons and depth==0) or cheat_tree or (outDecoded not in rai_net.lgp.getDecisions() and not rai_net.lgp.getDecisions() == [])or rai_net.checkPlaceSame(outDecoded):
 			old=outDecoded
 			infeasibleSke=[]
-
-			for tmpske in infeasibleSkeletons:
-				tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
-				if skeleton == ' '.join(tmpskeStep[:-1]):
-					infeasibleSke.append(tmpskeStep[-1])
+			if depth==0:
+				for tmpske in infeasibleSkeletons:
+					tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
+					#print(tmpskeStep)
+					if len(tmpskeStep)==1:
+						infeasibleSke.append(tmpskeStep[-1])
+					#input(infeasibleSke)
+			else:
+				for tmpske in infeasibleSkeletons:
+					tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
+					if skeleton == ' '.join(tmpskeStep[:-1]):
+						infeasibleSke.append(tmpskeStep[-1])
 
 
 			outDecoded, prob = rai_net.evalPredictions(inputState, infeasible=infeasibleSke, prevSke=outDecoded, depth=depth+1)
@@ -287,7 +295,7 @@ def main():
 	parser.add_argument('--lr', type=float, default=0.001)
 	parser.add_argument('--lr_drop', type=float, default=1.0)
 	parser.add_argument('--epoch_drop', type=int, default=100)
-	parser.add_argument('--clipnorm', type=float, default=1.)
+	parser.add_argument('--clipnorm', type=float, default=10.)
 	parser.add_argument('--val_split', type=float, default=0.0)
 	parser.add_argument('--reg_l2', type=float, default=0.0)
 	parser.add_argument('--reg0_l2', type=float, default=0.0)
@@ -295,10 +303,6 @@ def main():
 
 	parser.add_argument('--train_only', dest='train_only', action='store_true')
 	parser.set_defaults(train_only=False)
-	parser.add_argument('--feas_only', dest='feas_only', action='store_true')
-	parser.set_defaults(feas_only=False)
-	parser.add_argument('--feas2_only', dest='feas2_only', action='store_true')
-	parser.set_defaults(feas2_only=False)
 	parser.add_argument('--saveModel', dest='saveModel', action='store_true')
 	parser.set_defaults(saveModel=False)
 	parser.add_argument('--model_dir', type=str, default='')
@@ -310,6 +314,8 @@ def main():
 	parser.set_defaults(cheat_goalstate=False)
 	parser.add_argument('--completeTesting', dest='completeTesting', action='store_true')
 	parser.set_defaults(completeTesting=False)
+	parser.add_argument('--completeTraining', dest='completeTraining', action='store_true')
+	parser.set_defaults(completeTraining=False)
 	parser.add_argument('--allEnv', dest='allEnv', action='store_true')
 	parser.set_defaults(allEnv=False)
 	parser.add_argument('--showFinal', dest='showFinal', action='store_true')
@@ -334,15 +340,13 @@ def main():
 	waitTime= args.waitTime
 
 	train_only = args.train_only
-	feas_only = args.feas_only
-	feas2_only = args.feas2_only
-
 
 	saveModel = args.saveModel
 	cheat_goalstate= args.cheat_goalstate
 	cheat_tree=args.cheat_tree
 
 	completeTesting=args.completeTesting
+	completeTraining=args.completeTraining
 	allEnv=args.allEnv
 	showFinal=args.showFinal
 	viewConfig=args.viewConfig
@@ -392,7 +396,7 @@ def main():
 	rai=rai_world.RaiWorld(path_rai, nenv, setup, goalString, verbose, maxDepth=maxDepth, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
 
 	print("\nModel and dataset")
-	if saveModel and not (feas_only or feas2_only):
+	if saveModel:
 		rai.saveFit(model_dir_data,epochs_inst, n_layers_inst, n_size_inst, epochs_grasp, n_layers_grasp, n_size_grasp, epochs_place, n_layers_place, n_size_place,
 					lr, lr_drop, epoch_drop, clipnorm, val_split, reg, reg0, num_batch_it, n_layers_inst2=n_layers_inst2)
 		print("Model trained: "+rai.rai_net.timestamp)
@@ -400,17 +404,29 @@ def main():
 		rai.loadFit(model_dir)
 		print("Model loaded")
 
-	if not train_only and not feas_only and not feas2_only and not model_dir=="":
+	if not train_only and not model_dir=="":
 		if planOnly:
 			append_test="_plan"
 		else:
 			append_test=""
 
-		if completeTesting:
-			if allEnv:
-				rangeEnv=range(nenv,104)
+		if completeTesting or completeTraining:
+			if completeTraining:
+				if allEnv:
+					rangeEnv=[29,38,46,56,64,73,82,91,
+								32,39,48,57,65,75,83,93]#,
+								#33,40,50,58,66,78,88,94,
+								#35,42,51,59,68,80,89,97,
+								#43,54,63,72,81,90]
+					rangeEnv=rangeEnv[rangeEnv.index(nenv):]
+				else:
+					rangeEnv=range(nenv,nenv+1)
 			else:
-				rangeEnv=range(nenv,nenv+1)
+				if allEnv:
+					rangeEnv=range(nenv,104)
+				else:
+					rangeEnv=range(nenv,nenv+1)
+
 
 			for nenv in rangeEnv:
 				summary=[[],[],[],[],[]] #optimal feasible infeasible-op infeasible no
@@ -435,13 +451,13 @@ def main():
 						rai.redefine(goal, nenv=nenv)
 
 						for tries in range(4):
-							rai.resetFit()
+							rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
 							print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 							skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal, waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons)
 							infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 							writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string=strgoal, planOnly=planOnly, feasible=feasible, tries=tries)
 
-							if feasible:
+							if feasible or skeleton=="":
 								break
 						printResult(rai, skeleton)
 
@@ -500,12 +516,13 @@ def main():
 
 					goal= minimal_experiment.test[i]+" "+minimal_experiment.test[i]
 					infeasibleSkeletons=[]
+					rai.redefine(goal, nenv=nenv)
+
 					for tries in range(4):
-						rai.redefine(goal, nenv=nenv)
-						rai.resetFit()
+						rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
 						print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 
-						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly)
+						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons)
 						infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 						writeResults(rai,skeleton,typeDecision,successmsg,path, goalnumber_string=strgoal, planOnly=planOnly, feasible=feasible)
 						if feasible:
@@ -559,7 +576,7 @@ def main():
 				with open(path_rai+'/logs/toTest.txt', 'a+') as f:
 					f.write(rai.model_dir+'\n')
 
-	if not completeTesting and not (train_only or feas_only):
+	if not completeTesting and not train_only and not completeTraining:
 		input("Press Enter to end Program...")
 
 

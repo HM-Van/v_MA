@@ -446,8 +446,9 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         arrSets=arrSets+arrSets0[:15]
         envSets=[17,18,19,25,28,40,46,56,64,76,84,93]
     elif mixData:
-        #arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71,4,51,54,6,1,1]
-        arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71,7,21,52,6]
+        arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71,4,51,54,1,
+                13,55,28]
+        #arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71]#,7,21,52,6]
         if rand2>0 and not rand2==len(arrSets):
             if rand2>len(arrSets):
                 arrSets0=[x for x in list(range(1,numSets+1)) if x not in arrSets]
@@ -459,7 +460,10 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
             input(arrSets)
         
         #envSets=[7, 30, 31, 37, 39, 46, 48, 55, 58, 66, 70, 76, 67, 83, 85, 92, 94]
-        envSets=[30, 35, 38, 41, 48, 49, 57, 58, 65, 70, 76, 79, 82, 83, 92, 94, 31, 91, 29, 93]#, 22, 25]
+        #envSets=[30, 35, 38, 41, 48, 49, 57, 58, 65, 70, 76, 79, 82, 83, 92, 94, 31, 91, 29, 93]#, 22, 25]
+        envSets=[5,7,9,11,15,17,21,23,26,30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
+                6,14,27,28,44,49,60,71,77,84,95,
+                34,96]
     else:
         arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,54,31,16,56,71,21,45,34,49,4,17,22,26,38,29,10,68,62,27,41,9,70]
         envSets=list(range(1,numEnv+1)) + EnvAppend
@@ -595,18 +599,18 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                             new2= np.tile(new2,(6,1))
                             #new4= np.tile(new4,(6,1,1))
                             new7= np.tile(new7,(6,1))
-                            if new2.shape[0]<50*6 and not feasible:
+                            if new2.shape[0]<48*6 and not feasible:
                                 new2=np.concatenate((new2,new2), axis=0)
                                 #new4=np.concatenate((new4,new4), axis=0)
                                 new7=np.concatenate((new7,new7), axis=0)
                         if NNmode in ["final"]:
-                            assert old1.shape[0] == old2.shape[0], "Inconsistent dimensions InstructionPrev"+str(old1.shape)[0]+" != "+str(old4.shape[0])
-                            assert old1.shape[0] == old3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(old1.shape)[0]+" != "+str(old5.shape[0])
-                            assert old1.shape[0] == old6.shape[0], "Inconsistent dimensions InputPrev"+str(old1.shape)[0]+" != "+str(old6.shape[0])
-                            assert old1.shape[0] == old7.shape[0], "Inconsistent dimensions Feasible"+str(old1.shape)[0]+" != "+str(old7.shape[0])
+                            assert old1.shape[0] == old2.shape[0], "Inconsistent dimensions InstructionPrev"+str(old1.shape[0])+" != "+str(old2.shape[0])
+                            assert old1.shape[0] == old3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(old1.shape[0])+" != "+str(old3.shape[0])
+                            assert old1.shape[0] == old6.shape[0], "Inconsistent dimensions InputPrev"+str(old1.shape[0])+" != "+str(old6.shape[0])
+                            assert old1.shape[0] == old7.shape[0], "Inconsistent dimensions Feasible"+str(old1.shape[0])+" != "+str(old7.shape[0])
                 
-                            assert old1.shape[0] == old8.shape[0], "Inconsistent dimensions Input2"+str(old1.shape)[0]+" != "+str(old8.shape[0])
-                            assert old1.shape[0] == old9.shape[0], "Inconsistent dimensions InputPrev2"+str(old1.shape)[0]+" != "+str(old9.shape[0])
+                            assert old1.shape[0] == old8.shape[0], "Inconsistent dimensions Input2"+str(old1.shape[0])+" != "+str(old8.shape[0])
+                            assert old1.shape[0] == old9.shape[0], "Inconsistent dimensions InputPrev2"+str(old1.shape[0])+" != "+str(old9.shape[0])
 
 
                         old8=np.concatenate((old8,new8), axis=0)
@@ -761,7 +765,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev_feat', new9)
 
         #np.save(path_dB+'/'+timestamp+appendName+'/InstructionPrev', old4)
-        if old1.shape[0]>160000:
+        if old1.shape[0]>160000 and False:
             idxSplit=int(old1.shape[0]/3)
             #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev1', old5[:idxSplit,:,:,:])
             #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev2', old5[idxSplit:2*idxSplit,:,:,:])
@@ -774,7 +778,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2_feat', old9[idxSplit:2*idxSplit,:,:])
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev3_feat', old9[2*idxSplit:,:,:])
 
-        elif old1.shape[0]>80000:
+        elif old1.shape[0]>80000 and False:
             idxSplit=int(old1.shape[0]/2)
             #print(old5.shape)
             #print(old6.shape)

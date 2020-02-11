@@ -1,4 +1,5 @@
 #dir_file="/home/my/rai-python/v_MA"
+import os
 dir_file=os.path.abspath(os.path.dirname(__file__))
 import sys
 sys.path.append(dir_file+'/../ry/')
@@ -46,6 +47,17 @@ import sys
 sys.path.append(dir_file+'/../ry/')
 from libry import *
 import rai_world
+
+K=Config()
+V=K.view()
+K.addFile(dir_file+'/models_final/Test_setup_'+str(1).zfill(3)+'.g')
+K.addFile(dir_file+'/rai-robotModels/baxter/baxter.g')
+lgp=K.lgp(dir_file+"/models_final/fol-pickAndPlace.g")
+
+lgp.walkToNode("(grasp baxterR stick) (push stickTip blue table2)")# (grasp baxterL blue)")
+lgp.optBound(BT.seq, True)
+lgp.optBound(BT.seqPath, True)
+
 
 goalString="(on red green) (on green blue) (on blue yellow)"
 

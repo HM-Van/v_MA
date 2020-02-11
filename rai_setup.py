@@ -112,7 +112,7 @@ class RaiWorld():
             self.K.addFile(path_rai+'/models/Test_setup_'+str(nenv).zfill(3)+'.g')
 
             self.logicalNames, self.logicalType , self.grNames, self.objNames, self.tabNames=self.preprocessLogicalState()
-            if datasetMode in [13,14]:
+            if datasetMode in [1,2,3,4]:
                 self.goallength=(self.numGoalInstruct + self.numObj+5)*self.numGoal
 
         self.objNames_orig=self.objNames.copy()
@@ -194,10 +194,6 @@ class RaiWorld():
             i=i+1
 
         self.listLog=[listGr, listObj, listTab]
-        if self.setup=="pusher":
-            self.listLog.append(listPush)
-            print(self.listLog)
-            print(logicalTypesencoded)
 
         if self.NNmode in ["minimal", "dataset", "mixed", "FFchain", "mixed2", "mixed0", "FFnew", "mixed3", "final", "mixed10"]:
             if self.setup=="minimal":
@@ -215,7 +211,12 @@ class RaiWorld():
         folstate = self.lgp.nodeState()
         unfullfilled=[]
         for goal in goalStep:
-            if not goal in folstate[0]:
+            goaltmp=goal.split(" ")
+            if goaltmp[-1][:-2]=="table":
+                goal2=goaltmp[0]+" "+goaltmp[2][:-1]+" "+goaltmp[1]+")"
+            else:
+                goal2=goal
+            if not (goal in folstate[0] or goal2 in folstate[0]):
                 unfullfilled.append(goal)
         return unfullfilled
 
@@ -525,14 +526,17 @@ class RaiWorld():
 
         else:
             NotImplementedError
-
+        self.rai_net.load_net(self.path_rai, model_dir)
         self.model_dir=model_dir
 
 
-    def resetFit(self):
-        if self.NNmode in ["mixed", "3d", "mixed2", "mixed0", "mixed3","mixed10"]:
+    def resetFit(self, cheatGoalState=False, goal=""):
+        if self.NNmode in ["mixed10"]:
             self.prevInstr = np.zeros((5,self.input_size))
             self.step=0
+        self.goalString=goal
+        self.goalString_orig=goal
+        self.goalState, _,_=self.preprocessGoalState(initState=False, cheatGoalState=cheatGoalState)
 
     #--------------Action Prediction: NN Softmax output to one hot, most probable action of all possible decisons-------------
     def padInput(self):
@@ -702,6 +706,8 @@ class RaiWorld():
         else:
             mult=1
 
+        #print(infeasible)
+
         if self.setup=="minimal":
             goalState=inputState[:,:self.goallength]
             envState=inputState[:,self.goallength:]
@@ -785,7 +791,9 @@ class RaiWorld():
                     prob[0,0]=prob[0,0]/3
 
                 if decision in infeasible:
-                    prob=prob*(1.1-0.3*len(depth))
+                    prob=prob*(1.1-0.2*depth)
+
+                #print(decision, prob[0,0])
                 
                 if prob[0,0] > probBest:
                     actBest= decisions[i]
