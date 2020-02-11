@@ -1,0 +1,18 @@
+Result for env 100
+
+----Successfully reached goal 001-1: (held red) (held green)----
+		  NN: (grasp pr2R green)
+		  MP: (place pr2R green table1)	with prob 0.679 instead of (grasp pr2L green)
+		  MP: (grasp pr2L red)	with prob 0.745 instead of (place pr2R red blue)
+		  NN: (place pr2L red blue)
+		  MP: (grasp pr2R green)	with prob 0.66 instead of (place pr2L green table1)
+		  MP: (grasp pr2L red)	with prob 0.67 instead of (place pr2R red table2)
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red)----
+		  NN: (grasp pr2R green)
+		  MP: (place pr2R green table1)	with prob 0.743 instead of (grasp pr2L green)
+		  MP: (grasp pr2L red)	with prob 0.742 instead of (place pr2L green table1)
+		  MP: (grasp pr2R green)	with prob 0.667 instead of (place pr2L green table1)
+--------------------
+

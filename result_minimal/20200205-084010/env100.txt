@@ -1,0 +1,29 @@
+Result for env 100
+
+----Successfully reached goal 001-1: (held red) (held green) feasible 1----
+		  NN: (grasp pr2R green)[ 1 1 ]
+		  NN: (place pr2R green table1)[ 1 1 ]
+		  MP: (grasp pr2L red)[ 1 1 ]	with prob 0.639 instead of (place pr2R green table1)
+		  NN: (grasp pr2R green)[ 1 1 ]
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red) feasible 1----
+		  NN: (grasp pr2R green)[ 1 1 ]
+		  NN: (place pr2R green table1)[ 1 1 ]
+		  MP: (grasp pr2L red)[ 1 1 ]	with prob 0.637 instead of (place pr2R green table1)
+		  NN: (grasp pr2R green)[ 1 1 ]
+--------------------
+
+----Successfully reached goal 002-1: (held red) (on green table1) feasible 1----
+		  NN: (grasp pr2L red)[ 1 1 ]
+		  MP: (place pr2L red table1)[ 1 1 ]	with prob 0.574 instead of (place pr2L green table1)
+		  NN: (grasp pr2R green)[ 1 1 ]
+		  NN: (place pr2R green table1)[ 1 1 ]
+		  MP: (grasp pr2L red)[ 1 1 ]	with prob 0.624 instead of (place pr2R green table1)
+--------------------
+
+----KOMO path failed for goal 002-2: (on green table1) (held red) infeasible 0----
+		  NN: (grasp pr2L red)[ 1 1 ]
+		  MP: (place pr2L red table1)[ 1 1 ]	with prob 0.592 instead of (place pr2L green table1)
+--------------------
+

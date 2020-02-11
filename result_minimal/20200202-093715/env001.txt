@@ -1,0 +1,47 @@
+Result for env 1
+
+----Successfully reached goal 001-1: (held red) (held green)----
+		  MP: (grasp pr2R green)	with prob 0.569 instead of (place pr2L red green)
+		  NN: (grasp pr2L red)
+--------------------
+
+----Maximum depth of 8 reached for goal 001-2: (held green) (held red)----
+		  MP: (grasp pr2R red)	with prob 0.556 instead of (place pr2L red green)
+		  NN: (place pr2R red green)
+		  MP: (grasp pr2L green)	with prob 0.636 instead of (place pr2R red green)
+		  MP: (place pr2L green table2)	with prob 0.668 instead of (place pr2L red green)
+		  MP: (grasp pr2R green)	with prob 0.282 instead of (place pr2L red green)
+		  MP: (place pr2R green table2)	with prob 0.667 instead of (place pr2R red green)
+		  MP: (grasp pr2L green)	with prob 0.484 instead of (place pr2L red green)
+		  MP: (place pr2L green table2)	with prob 0.668 instead of (place pr2L red green)
+--------------------
+
+----Successfully reached goal 002-1: (held red) (on green table1)----
+		  MP: (grasp pr2R red)	with prob 0.667 instead of (place pr2L green table1)
+--------------------
+
+----Successfully reached goal 002-2: (on green table1) (held red)----
+		  MP: (grasp pr2R red)	with prob 0.655 instead of (place pr2L green table1)
+--------------------
+
+----Successfully reached goal 003-1: (held red) (on green table2)----
+		  MP: (grasp pr2R red)	with prob 0.663 instead of (place pr2L green table2)
+		  MP: (place pr2R red table2)	with prob 0.667 instead of (place pr2R green table2)
+		  MP: (grasp pr2L green)	with prob 0.641 instead of (place pr2L green table2)
+		  NN: (place pr2L green table2)
+		  MP: (grasp pr2R red)	with prob 0.592 instead of (place pr2L green table2)
+--------------------
+
+----Successfully reached goal 003-2: (on green table2) (held red)----
+		  MP: (grasp pr2R red)	with prob 0.666 instead of (place pr2L green table2)
+		  MP: (grasp pr2L green)	with prob 0.607 instead of (place pr2R green table2)
+		  NN: (place pr2L green table2)
+--------------------
+
+----KOMO path failed for goal 004-1: (held red) (on green red)----
+		  MP: (grasp pr2R red)	with prob 0.667 instead of (place pr2L green red)
+		  MP: (place pr2R red green)	with prob 0.667 instead of (place pr2R green red)
+		  MP: (grasp pr2L green)	with prob 0.609 instead of (place pr2R green red)
+		  MP: (place pr2L green table1)	with prob 0.667 instead of (place pr2L green red)
+--------------------
+

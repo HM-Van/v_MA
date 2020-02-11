@@ -1,0 +1,97 @@
+Result for env 102
+
+----Successfully reached goal 001-1: (held red) (held green)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 002-1: (held red) (on green table1)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table1)	with prob 0.667 instead of (grasp pr2R green)
+--------------------
+
+----Successfully reached goal 002-2: (on green table1) (held red)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table1)	with prob 0.667 instead of (grasp pr2R green)
+--------------------
+
+----Successfully reached goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----Maximum depth of 8 reached for goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table2)	with prob 0.667 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table2)	with prob 0.667 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table2)	with prob 0.667 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table2)	with prob 0.667 instead of (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.667 instead of (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 004-2: (on green red) (held red)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.667 instead of (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 005-1: (held red) (on green blue)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.667 instead of (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 005-2: (on green blue) (held red)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.667 instead of (grasp pr2R green)
+--------------------
+
+----Successfully reached goal 006-1: (held red) (held blue)----
+		  NN: (grasp pr2L blue)
+		  MP: (grasp pr2R red)	with prob 0.621 instead of (grasp pr2R blue)
+--------------------
+
+----Maximum depth of 8 reached for goal 006-2: (held blue) (held red)----
+		  NN: (grasp pr2R blue)
+		  MP: (place pr2R blue red)	with prob 0.634 instead of (grasp pr2L blue)
+		  NN: (grasp pr2L blue)
+		  MP: (place pr2L blue table2)	with prob 0.527 instead of (grasp pr2L blue)
+		  NN: (grasp pr2R blue)
+		  MP: (place pr2R blue red)	with prob 0.607 instead of (grasp pr2L blue)
+		  NN: (grasp pr2L blue)
+		  MP: (place pr2L blue table2)	with prob 0.505 instead of (grasp pr2L blue)
+--------------------
+
+----Successfully reached goal 007-1: (held red) (on blue table1)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 007-2: (on blue table1) (held red)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 008-1: (held red) (on blue table2)----
+		  NN: (grasp pr2R red)
+		  NN: (grasp pr2L blue)
+		  MP: (place pr2L blue table2)	with prob 0.667 instead of (grasp pr2L blue)
+--------------------
+
+----KOMO path failed for goal 008-2: (on blue table2) (held red)----
+		  NN: (grasp pr2R red)
+--------------------
+

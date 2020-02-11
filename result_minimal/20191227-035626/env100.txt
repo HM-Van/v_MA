@@ -1,0 +1,23 @@
+Result for env 100
+
+----Successfully reached goal 001-1: (held red) (held green)----
+		  NN: (grasp pr2R green)
+		  NN: (grasp pr2L red)
+--------------------
+
+----KOMO failed for goal 001-2: (held green) (held red)----
+		  MP: (grasp pr2R green)	with prob 0.517 instead of (place pr2R red blue)
+		  NN: (place pr2R green table1)
+		  MP: (grasp pr2L red)	with prob 0.502 instead of (place pr2L green table1)
+		  MP: (place pr2L red blue)	with prob 0.641 instead of (place pr2L green table1)
+		  MP: (grasp pr2R green)	with prob 0.501 instead of (place pr2L red table2)
+		  NN: (place pr2R green table1)
+		  MP: (grasp pr2L red)	with prob 0.418 instead of (place pr2L green table1)
+		  NN: (place pr2L red blue)
+		  MP: (grasp pr2R green)	with prob 0.491 instead of (place pr2L green table1)
+		  MP: (place pr2R green table1)	with prob 0.803 instead of (place pr2R red blue)
+		  MP: (grasp pr2L red)	with prob 0.488 instead of (place pr2L green table1)
+		  MP: (place pr2L red blue)	with prob 0.747 instead of (place pr2L red table2)
+		  MP: (grasp pr2R green)	with prob 0.498 instead of (place pr2L red table2)
+--------------------
+

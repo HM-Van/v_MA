@@ -1,0 +1,217 @@
+Result for env 100
+
+----Successfully reached goal 001-1: (held red) (held green)----
+		  NN: (grasp pr2R green)
+		  MP: (grasp pr2L red)	with prob 0.393 instead of (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red)----
+		  NN: (grasp pr2R green)
+		  MP: (grasp pr2L red)	with prob 0.414 instead of (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 002-1: (held red) (on green table1)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table1)	with prob 0.867 instead of (place pr2L green green)
+		  NN: (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 002-2: (on green table1) (held red)----
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+		  MP: (place pr2L green table1)	with prob 0.88 instead of (place pr2L green green)
+--------------------
+
+----KOMO failed for goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.679 instead of (place pr2L green green)
+		  NN: (place pr2R green red)
+		  MP: (grasp pr2R green)	with prob 0.274 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.59 instead of (grasp pr2L red)
+--------------------
+
+----KOMO failed for goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+		  MP: (place pr2R red table1)	with prob 0.253 instead of (place pr2R green red)
+--------------------
+
+----KOMO failed for goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.701 instead of (grasp pr2L green)
+		  NN: (place pr2R green red)
+		  MP: (grasp pr2R green)	with prob 0.313 instead of (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+		  MP: (grasp pr2L green)	with prob 0.252 instead of (grasp pr2L red)
+--------------------
+
+----KOMO failed for goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.724 instead of (grasp pr2R green)
+--------------------
+
+----KOMO failed for goal 004-2: (on green red) (held red)----
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.701 instead of (grasp pr2L green)
+		  NN: (place pr2R green red)
+		  MP: (grasp pr2R green)	with prob 0.313 instead of (grasp pr2R red)
+		  NN: (place pr2R green red)
+		  MP: (place pr2L red blue)	with prob 0.237 instead of (place pr2L green green)
+--------------------
+
+----KOMO failed for goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.701 instead of (grasp pr2L green)
+		  NN: (place pr2R green red)
+		  MP: (grasp pr2R green)	with prob 0.313 instead of (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+		  MP: (grasp pr2L green)	with prob 0.252 instead of (grasp pr2L red)
+		  MP: (place pr2L green red)	with prob 0.8 instead of (place pr2L green green)
+--------------------
+
+----KOMO failed for goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 004-2: (on green red) (held red)----
+----Successfully reached goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.769 instead of (grasp pr2R green)
+		  NN: (grasp pr2R green)
+		  MP: (place pr2R green red)	with prob 0.675 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+		  MP: (place pr2L green red)	with prob 0.973 instead of (place pr2L green green)
+--------------------
+
+----KOMO failed for goal 004-2: (on green red) (held red)----
+		  NN: (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.769 instead of (grasp pr2R green)
+		  NN: (grasp pr2R green)
+		  MP: (place pr2R green red)	with prob 0.675 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+--------------------
+
+----Successfully reached goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.769 instead of (grasp pr2R green)
+		  NN: (grasp pr2R green)
+		  MP: (place pr2R green red)	with prob 0.675 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+		  MP: (place pr2L green red)	with prob 0.973 instead of (place pr2L green green)
+--------------------
+
+----KOMO failed for goal 004-2: (on green red) (held red)----
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+		  MP: (place pr2L green red)	with prob 0.814 instead of (grasp pr2L green)
+--------------------
+
+----KOMO failed for goal 005-1: (held red) (on green blue)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.922 instead of (place pr2L green green)
+--------------------
+
+----Successfully reached goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 003-2: (on green table2) (held red)----
+		  NN: (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 004-1: (held red) (on green red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green red)	with prob 0.769 instead of (grasp pr2R green)
+		  NN: (grasp pr2R green)
+		  MP: (place pr2R green red)	with prob 0.675 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+		  MP: (place pr2L green red)	with prob 0.973 instead of (place pr2L green green)
+--------------------
+
+----Successfully reached goal 004-2: (on green red) (held red)----
+		  NN: (grasp pr2L green)
+		  NN: (grasp pr2R red)
+		  MP: (place pr2L green red)	with prob 0.814 instead of (grasp pr2L green)
+--------------------
+
+----Maximum depth of 20 reached for goal 005-1: (held red) (on green blue)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.922 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.677 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.934 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.675 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.97 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.669 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.957 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.669 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.948 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.664 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.982 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.594 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.956 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.47 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.965 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.503 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.954 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.511 instead of (place pr2L green green)
+		  MP: (place pr2L green blue)	with prob 0.973 instead of (place pr2L green green)
+--------------------
+
+----KOMO failed for goal 005-2: (on green blue) (held red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.855 instead of (place pr2L green green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.737 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.77 instead of (grasp pr2L green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.881 instead of (place pr2L green green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.839 instead of (place pr2L green green)
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green blue)	with prob 0.838 instead of (place pr2L green green)
+		  MP: (grasp pr2L green)	with prob 0.661 instead of (place pr2L green green)
+--------------------
+

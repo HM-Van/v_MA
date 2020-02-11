@@ -1,0 +1,46 @@
+Result for env 100
+
+----Successfully reached goal 001-1: (held red) (held green)----
+		  NN: (grasp pr2R green)
+		  MP: (grasp pr2L red)	with prob 0.667 instead of (grasp pr2R green)
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red)----
+		  NN: (grasp pr2R green)
+		  NN: (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 002-1: (held red) (on green table1)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table1)	with prob 0.935 instead of (place pr2L green green)
+		  NN: (grasp pr2R red)
+--------------------
+
+----Successfully reached goal 002-2: (on green table1) (held red)----
+		  NN: (grasp pr2L green)
+		  MP: (place pr2L green table1)	with prob 0.923 instead of (place pr2L green green)
+		  NN: (grasp pr2R red)
+--------------------
+
+----KOMO failed for goal 003-1: (held red) (on green table2)----
+		  NN: (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.324 instead of (grasp pr2L red)
+		  NN: (place pr2R green red)
+		  MP: (grasp pr2R green)	with prob 0.489 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.483 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.463 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.5 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.476 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.496 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.459 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.553 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.476 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.582 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.476 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.491 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.467 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.497 instead of (grasp pr2L red)
+		  MP: (grasp pr2R green)	with prob 0.476 instead of (grasp pr2R red)
+		  MP: (place pr2R green red)	with prob 0.494 instead of (grasp pr2L red)
+--------------------
+

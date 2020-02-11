@@ -1,0 +1,18 @@
+Result for env 102
+
+----Maximum depth of 8 reached for goal 001-1: (held red) (held green)----
+		  NN: (grasp pr2R red)[ 1 0.76 0.613 0.594 0.522 ]
+		  FD: (place pr2R red table2)[ 1 0.702 0.447 0.839 0.747 ]	with prob 0.593 instead of (grasp pr2L red)
+		  NN: (grasp pr2L red)[ 1 0.784 0.997 0.911 0.914 ]
+		  NN: (place pr2L red green)[ 1 1.0 0.997 0.964 0.999 ]
+		  FD: (grasp pr2L green)[ 1 0.696 0.949 0.959 0.971 ]	with prob 0.739 instead of (place pr2L red green)
+		  FD: (place pr2L green table1)[ 1 0.772 0.995 0.89 0.878 ]	with prob 0.776 instead of (place pr2L red green)
+		  FD: (grasp pr2R green)[ 1 0.984 0.993 0.926 0.756 ]	with prob 0.775 instead of (place pr2L red green)
+		  FD: (place pr2R green table1)[ 1 1.0 0.906 0.865 0.787 ]	with prob 0.746 instead of (place pr2R red table2)
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red)----
+		  FD: (grasp pr2L red)[ 1 0.343 0.971 0.734 0.628 ]	with prob 0.896 instead of (grasp pr2R red)
+		  FD: (grasp pr2R green)[ 1 0.967 0.999 0.868 0.81 ]	with prob 0.685 instead of (grasp pr2L red)
+--------------------
+

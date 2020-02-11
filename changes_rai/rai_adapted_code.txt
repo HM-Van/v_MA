@@ -1,0 +1,433 @@
+----ry.cpp----
+see file ry.cpp
+
+----LGP_node.h-----
+struct LGP_Node 
+public:
+  Graph getState() const;
+
+----LGP_node.cpp----
+//new
+Graph LGP_Node::getState() const {
+  Graph G;
+  G.newNode<rai::String>({"state"}, {}, STRING(*folState->isNodeOfGraph));
+  return G;
+}
+
+-----LGP_node.h------
+struct LGP_Tree : GLDrawer
+  LGP_Node* walkToNode(const rai::String& seq, int verbose=1);
+-----LGP_node.cpp------
+//adapted, console output
+LGP_Node* LGP_Tree::walkToNode(const rai::String& seq, int verbose){
+  Graph& tmp = root->fol.KB.newSubgraph({"TMP"}, {});
+  rai::String tmpseq(seq);
+  tmp.read(tmpseq);
+  if(verbose>0) cout <<"decision sequence:" <<*tmp.isNodeOfGraph <<endl;
+
+  //first walk to the node that corresponds to seq
+  LGP_Node *node = root;
+  for(Node *actionLiteral:tmp) {
+//    if(specificBound==BD_all || specificBound==BD_pose) node->optBound(BD_pose, collisions); //optimize poses along the path
+    if(!node->isExpanded) node->expand();
+    LGP_Node *next = node->getChildByAction(actionLiteral);
+    if(!next) LOG(-2) <<"action '" <<*actionLiteral <<"' is not a child of '" <<*node <<"'";
+    node = next;
+  }
+
+  focusNode = node;
+  return node;
+}
+//adapted, console output
+void LGP_Tree::step() {
+  expandNext();
+  
+  uint numSol = fringe_solved.N;
+  
+//  if(rnd.uni()<.5) optBestOnLevel(BD_pose, fringe_pose, BD_symbolic, &fringe_seq, &fringe_pose);
+  optFirstOnLevel(BD_pose, fringe_poseToGoal, &fringe_seq);
+  optBestOnLevel(BD_seq, fringe_seq, BD_pose, &fringe_path, NULL);
+  if(verbose>0 && fringe_path.N) cout <<"EVALUATING PATH " <<fringe_path.last()->getTreePathString() <<endl;
+  optBestOnLevel(BD_seqPath, fringe_path, BD_seq, &fringe_solved, NULL);
+  
+  if(fringe_solved.N>numSol) {
+    if(verbose>0) cout <<"NEW SOLUTION FOUND! " <<fringe_solved.last()->getTreePathString() <<endl;
+    else{cout <<"\"" <<fringe_solved.last()->getTreePathString() <<"\"," <<endl;}
+    solutions.set()->append(new LGP_Tree_SolutionData(*this, fringe_solved.last()));
+    solutions.set()->sort(sortComp2);
+  }
+  
+  //-- update queues (if something got infeasible)
+  clearFromInfeasibles(fringe_expand);
+  clearFromInfeasibles(fringe_pose);
+  clearFromInfeasibles(fringe_poseToGoal);
+  clearFromInfeasibles(fringe_seq);
+  clearFromInfeasibles(fringe_path);
+  clearFromInfeasibles(terminals);
+  
+  if(verbose>0) {
+    rai::String out=report();
+    fil <<out <<endl;
+    cout <<out <<endl;
+    if(verbose>1 && !(numSteps%1)) updateDisplay();
+  }
+  numSteps++;
+}
+-------kin.h-------
+namespace rai
+  void setFrameState(const arr& X, const StringA& frameNames={}, bool calc_q_from_X=true, bool warnOnDifferentDim=true, int verbose=1);
+
+-----kin.cpp-----
+//adapted, console output
+void rai::KinematicWorld::setFrameState(const arr& X, const StringA& frameNames, bool calc_q_from_X, bool warnOnDifferentDim, int verbose){
+  if(!frameNames.N){
+    if(warnOnDifferentDim){
+      if(verbose>0){
+        if(X.d0 > frames.N) LOG(-1) <<"X.d0=" <<X.d0 <<" is larger than frames.N=" <<frames.N;
+        if(X.d0 < frames.N) LOG(-1) <<"X.d0=" <<X.d0 <<" is smaller than frames.N=" <<frames.N;}
+      else{
+        if(X.d0 > frames.N) std::cout <<"\t\t Warning: inconsistent number of frames"<<std::endl;
+        if(X.d0 < frames.N) std::cout <<"\t\t Warning: inconsistent number of frames"<<std::endl;
+      }
+    }
+    for(uint i=0;i<frames.N && i<X.d0;i++){
+      frames(i)->X.set(X[i]);
+      frames(i)->X.rot.normalize();
+    }
+  }else{
+    if(X.nd==1){
+      CHECK_EQ(1, frameNames.N, "X.d0 does not equal #frames");
+      rai::Frame *f = getFrameByName(frameNames(0));
+      if(!f) return;
+      f->X.set(X);
+      f->X.rot.normalize();
+    }else{
+      CHECK_EQ(X.d0, frameNames.N, "X.d0 does not equal #frames");
+      for(uint i=0;i<X.d0;i++){
+        rai::Frame *f = getFrameByName(frameNames(i));
+        if(!f) return;
+        f->X.set(X[i]);
+        f->X.rot.normalize();
+      }
+    }
+  }
+  if(calc_q_from_X){
+    calc_Q_from_BodyFrames();
+    calc_q_from_Q();
+  }
+}
+
+#--------------------------------------------------------------------------------------------------------------------#
+#--------------------------Does not work yet, so no need to add to code currently------------------------------------#
+
+----bounds.h----
+//adapted, does not work yet
+enum BoundType{ BD_all=-1,
+                BD_symbolic=0,
+                BD_pose,
+                BD_seq,
+                BD_path,
+                BD_pathStep,
+                BD_seqPath,
+                BD_seqVelPath,
+                BD_max };
+-----bounds.cpp----
+//adapted, does not work yet
+void skeleton2Bound(KOMO& komo, BoundType boundType, const Skeleton& S,
+                    const rai::KinematicWorld& startKinematics,
+                    const rai::KinematicWorld& effKinematics,
+                    bool collisions, const arrA& waypoints){
+  double maxPhase=0;
+  for(const SkeletonEntry& s:S) if(s.phase1>maxPhase) maxPhase=s.phase1;
+  komo.clearObjectives();
+  //-- prepare the komo problem
+  switch(boundType) {
+    case BD_pose: {
+      //-- grep only the latest entries in the skeleton
+      Skeleton finalS;
+      for(const SkeletonEntry& s:S) if(s.phase0>=maxPhase){
+        finalS.append(s);
+        finalS.last().phase0 -= maxPhase-1.;
+        finalS.last().phase1 -= maxPhase-1.;
+      }
+
+      komo.setModel(effKinematics, collisions);
+      komo.setTiming(1., 1, 10., 1);
+
+      komo.setHoming(0., -1., 1e-2);
+      komo.setSquaredQVelocities(1., -1., 1e-1); //IMPORTANT: do not penalize transitions of from prefix to x_{0} -> x_{0} is 'loose'
+      komo.setSquaredQuaternionNorms();
+
+      komo.setSkeleton(finalS, false);
+
+      //-- deactivate all velocity objectives except for transition
+      for(Objective *o:komo.objectives){
+        if(!std::dynamic_pointer_cast<TM_Transition>(o->map) && o->map->order>0){
+          o->vars.clear();
+        }
+      }
+
+      if(collisions) komo.add_collision(false);
+
+      komo.reset();
+//      komo.setPairedTimes();
+    } break;
+    case BD_seq: {
+      komo.setModel(startKinematics, collisions);
+      komo.setTiming(maxPhase+1., 1, 5., 1);
+
+      komo.setHoming(0., -1., 1e-2);
+      komo.setSquaredQVelocities(0., -1., 1e-2);
+//      komo.setFixEffectiveJoints(0., -1., 1e2);
+//      komo.setFixSwitchedObjects(0., -1., 1e2);
+      komo.setSquaredQuaternionNorms();
+
+      komo.setSkeleton(S);
+
+      if(collisions) komo.add_collision(true, 0., 1e1);
+
+      komo.reset();
+//      komo.setPairedTimes();
+      //      cout <<komo.getPath_times() <<endl;
+    } break;
+    case BD_path: {
+      komo.setModel(startKinematics, collisions);
+      uint stepsPerPhase = rai::getParameter<uint>("LGP/stepsPerPhase", 10);
+      uint pathOrder = rai::getParameter<uint>("LGP/pathOrder", 2);
+      komo.setTiming(maxPhase+.5, stepsPerPhase, 10., pathOrder);
+
+      komo.setHoming(0., -1., 1e-2);
+      if(pathOrder==1) komo.setSquaredQVelocities();
+      else komo.setSquaredQAccelerations();
+      komo.setSquaredQuaternionNorms();
+
+      komo.setSkeleton(S);
+
+      if(collisions) komo.add_collision(true, 0, 1e1);
+
+      komo.reset();
+      //      cout <<komo.getPath_times() <<endl;
+    } break;
+    case BD_pathStep:{
+       //-- grep only the latest entries in the skeleton
+      Skeleton finalS;
+      for(const SkeletonEntry& s:S){
+        /*/
+        if(s.phase0>=maxPhase){
+          finalS.append(s);
+          finalS.last().phase1 = maxPhase+0.5;
+        }
+        else if(s.phase1==maxPhase){
+          finalS.append(s);
+          finalS.last().phase0 = maxPhase-1;
+          finalS.last().phase1 = maxPhase+0.5;
+        }*/
+        if(s.phase0>=maxPhase){
+          finalS.append(s);
+          finalS.last().phase0 -= maxPhase-1.;
+          finalS.last().phase1 -= maxPhase-1;
+        }
+        else if(s.phase1==maxPhase){
+          finalS.append(s);
+          finalS.last().phase0 -= maxPhase-1;
+          finalS.last().phase1 -= maxPhase-1;
+        }
+      }
+      writeSkeleton(finalS);
+
+      komo.setModel(effKinematics, collisions);
+      uint stepsPerPhase = rai::getParameter<uint>("LGP/stepsPerPhase", 10);
+      uint pathOrder = rai::getParameter<uint>("LGP/pathOrder", 2);
+      //komo.setTiming(maxPhase+.5, stepsPerPhase, 10., pathOrder);
+      komo.setTiming(1.5, stepsPerPhase, 10., pathOrder);
+
+      komo.setHoming(0., -1., 1e-2);
+      if(pathOrder==1) komo.setSquaredQVelocities(1., -1., 1e-1);
+      else komo.setSquaredQAccelerations();
+      komo.setSquaredQuaternionNorms();
+
+      komo.setSkeleton(finalS);
+
+      if(collisions) komo.add_collision(true, 0, 1e1);
+
+      komo.reset();
+    }break;
+    case BD_seqPath: {
+      komo.setModel(startKinematics, collisions);
+      uint stepsPerPhase = rai::getParameter<uint>("LGP/stepsPerPhase", 10);
+      uint pathOrder = rai::getParameter<uint>("LGP/pathOrder", 2);
+      komo.setTiming(maxPhase+.5, stepsPerPhase, 10., pathOrder);
+
+      komo.setHoming(0., -1., 1e-2);
+      if(pathOrder==1) komo.setSquaredQVelocities(1., -1., 1e-1);
+      else komo.setSquaredQAccelerations();
+      komo.setSquaredQuaternionNorms();
+
+      CHECK_EQ(waypoints.N-1, floor(maxPhase+.5), "");
+      for(uint i=0;i<waypoints.N-1;i++){
+        komo.addObjective(ARR(double(i+1)), OT_sos, FS_qItself, {}, {1e-1}, waypoints(i));
+      }
+
+      komo.setSkeleton(S);
+      //delete all added objectives! -> only keep switches
+//      uint O = komo.objectives.N;
+//      for(uint i=O; i<komo.objectives.N; i++) delete komo.objectives(i);
+//      komo.objectives.resizeCopy(O);
+
+      if(collisions) komo.add_collision(true, 0, 1e1);
+
+      komo.reset();
+      komo.initWithWaypoints(waypoints);
+      //      cout <<komo.getPath_times() <<endl;
+    } break;
+
+    case BD_seqVelPath: {
+      komo.setModel(startKinematics, collisions);
+      uint stepsPerPhase = rai::getParameter<uint>("LGP/stepsPerPhase", 10);
+      komo.setTiming(maxPhase+.5, stepsPerPhase, 10., 1);
+
+      komo.setHoming(0., -1., 1e-2);
+      komo.setSquaredQVelocities();
+      komo.setSquaredQuaternionNorms();
+
+      CHECK_EQ(waypoints.N-1, floor(maxPhase+.5), "");
+      for(uint i=0;i<waypoints.N-1;i++){
+        komo.addObjective(ARR(double(i+1)), OT_sos, FS_qItself, {}, {1e-1}, waypoints(i));
+//        komo.addObjective(ARR(double(i+1)), OT_eq, FS_qItself, {}, {1e0}, waypoints(i));
+      }
+//      uint O = komo.objectives.N;
+
+      komo.setSkeleton(S);
+      //delete all added objectives! -> only keep switches
+//      for(uint i=O; i<komo.objectives.N; i++) delete komo.objectives(i);
+//      komo.objectives.resizeCopy(O);
+
+      if(collisions) komo.add_collision(true, 0, 1e1);
+
+      komo.reset();
+      komo.initWithWaypoints(waypoints, false);
+      //      cout <<komo.getPath_times() <<endl;
+    } break;
+
+    default: NIY;
+  }
+}
+
+----LGP_node.h-----
+struct LGP_Node 
+  void computeEndKinematicsPath();
+
+----LGP_node.cpp-----
+//new
+void LGP_Node::computeEndKinematicsPath(){
+  Skeleton S = getSkeleton({"touch", "above", "inside", "impulse",
+                            "stable", "stableOn", "dynamic", "dynamicTrans", "dynamicOn",
+                            "push", "graspSlide", "liftDownUp"
+                           });
+
+  std::cout <<"doing this\n";
+
+  effKinematics.copy(startKinematics, true);
+  KOMO tmp;
+  tmp.setModel(startKinematics, false);
+  uint stepsPerPhase = rai::getParameter<uint>("LGP/stepsPerPhase", 10);
+  uint pathOrder = rai::getParameter<uint>("LGP/pathOrder", 2);
+  double maxPhase=0;
+  for(const SkeletonEntry& s:S) if(s.phase1>maxPhase) maxPhase=s.phase1;
+  tmp.setTiming(maxPhase+.5, stepsPerPhase, 10., pathOrder);
+  tmp.setSkeleton(S);
+//  tmp.reportProblem();
+  for(rai::KinematicSwitch *s : tmp.switches) s->apply(effKinematicsPath);
+}
+//adapted, does not work yet
+void LGP_Node::optBound(BoundType bound, bool collisions, int verbose) {
+  if(komoProblem(bound)) komoProblem(bound).reset();
+  komoProblem(bound) = std::make_shared<KOMO>();
+  KOMO& komo(*komoProblem(bound));
+
+  komo.verbose = rai::MAX(verbose,0);
+
+  if(komo.verbose>0){
+    cout <<"########## OPTIM lev " <<bound <<endl;
+  }
+
+  komo.fil = new ofstream(OptLGPDataPath + STRING("komo-" <<id <<'-' <<step <<'-' <<bound));
+  
+  Skeleton S = getSkeleton({"touch", "above", "inside", "impulse",
+                            "stable", "stableOn", "dynamic", "dynamicTrans", "dynamicOn",
+                            "push", "graspSlide", "liftDownUp"
+                           });
+
+  if(komo.verbose>1){
+    writeSkeleton(S, getSwitchesFromSkeleton(S));
+  }
+
+  //ensure the effective kinematics are computed when BD_pose
+//  if(bound==BD_pose && step>1){
+//    if(!parent->effKinematics.q.N) parent->optBound(BD_pose, collisions);
+//    CHECK(parent->effKinematics.q.N, "I can't compute a pose when no pose was comp. for parent (I need the effKin)");
+//  }
+  if(bound==BD_pose && parent){
+    if(!parent->effKinematics.q.N) parent->computeEndKinematics();
+  }
+  if(bound==BD_pathStep && parent){
+    if(!parent->effKinematicsPath.q.N) parent->computeEndKinematics();
+  }
+  arrA waypoints;
+  if(bound==BD_seqPath || bound==BD_seqVelPath){
+    CHECK(komoProblem(BD_seq), "BD_seq needs to be computed before");
+    waypoints = komoProblem(BD_seq)->getPath_q();
+  }
+
+  if(bound==BD_pathStep){
+    skeleton2Bound(komo, bound, S,
+                 startKinematics, (parent->effKinematicsPath),
+                 collisions,
+                 waypoints);
+  }
+  else{
+    skeleton2Bound(komo, bound, S,
+                  startKinematics, (parent?parent->effKinematics:startKinematics),
+                  collisions,
+                  waypoints);
+  }
+//adapted, does not work yet
+  LGP_Node::LGP_Node(rai::KinematicWorld& kin, FOL_World& _fol, uint levels)
+  : parent(NULL), step(0), time(0.), id(COUNT_node++),
+    fol(_fol),
+    startKinematics(kin),
+    effKinematicsPath(kin),
+    L(levels) {
+  //this is the root node!
+  fol.reset_state();
+  folState = fol.createStateCopy();
+  
+  resetData();
+  
+  if(filNodes)(*filNodes) <<id <<' ' <<step <<' ' <<time <<' ' <<getTreePathString() <<endl;
+}
+//adapted, does not work yet
+LGP_Node::LGP_Node(LGP_Node* parent, MCTS_Environment::Handle& a)
+  : parent(parent), step(parent->step+1), id(COUNT_node++),
+    fol(parent->fol),
+    effKinematicsPath(parent->effKinematicsPath),
+    startKinematics(parent->startKinematics),
+    L(parent->L) {
+  parent->children.append(this);
+  
+  fol.setState(parent->folState, parent->step);
+  CHECK(a,"giving a 'NULL' shared pointer??");
+  ret = fol.transition(a);
+  time = parent->time + ret.duration;
+  isTerminal = fol.successEnd;
+  if(fol.deadEnd) isInfeasible=true;
+  folState = fol.createStateCopy();
+  folDecision = folState->getNode("decision");
+  decision = a;
+  
+  resetData();
+  cost(BD_symbolic) = parent->cost(BD_symbolic) - 0.1*ret.reward; //cost-so-far
+  highestBound = parent->highestBound - 0.1*ret.reward;
+  
+  if(filNodes)(*filNodes) <<id <<' ' <<step <<' ' <<time <<' ' <<getTreePathString() <<endl;
+}

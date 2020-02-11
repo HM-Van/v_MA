@@ -1,0 +1,3 @@
+Instruct    n_layers: 2    n_size: 84    epochs: 420    
+Grasp    n_layers: 3    n_size: 120    epochs: 1200    
+Place    n_layers: 3    n_size: 120    epochs: 3000    
