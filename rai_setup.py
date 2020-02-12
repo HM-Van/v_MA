@@ -85,6 +85,20 @@ def applyKomo(komo, logical, num=-1, verbose=0):
 	config = komo.getConfiguration(num)
 	return state, config
 
+def rearrangeGoal(goal):
+    goaltmp=goal.split(" ")
+    if len(goaltmp)==3:
+        return goaltmp[0]+" "+goaltmp[2][:-1]+" "+goaltmp[1]+")"
+    else:
+        return goal
+
+def rearrangeGoalTable(goal):
+    goaltmp=goal.split(" ")
+    if len(goaltmp)==3 and goaltmp[2][:-2]=="table":
+        return goaltmp[0]+" "+goaltmp[2][:-1]+" "+goaltmp[1]+")"
+    else:
+        return goal
+
 
 #------------------------------------------------------------------------------------------------------------------------------
 class RaiWorld():
@@ -153,7 +167,11 @@ class RaiWorld():
         if not goalString=="":
             self.goalString=""
             #goalStep = splitStringStep(goalString, list_old=[],verbose=verbose)
+            #goaltmp=splitStringStep(goalString, list_old=[])
+            #goalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])
+
             self.lgp.addTerminalRule(goalString)
+            print(goalString)
             self.goalState, _,_=self.preprocessGoalState(initState=True)
 
         #self.lgp.walkToNode("(grasp pr2R red) (grasp pr2L green)",0)
@@ -793,7 +811,7 @@ class RaiWorld():
                 if decision in infeasible:
                     prob=prob*(1.1-0.2*depth)
 
-                #print(decision, prob[0,0])
+                print(decision, prob[0,0])
                 
                 if prob[0,0] > probBest:
                     actBest= decisions[i]
