@@ -159,20 +159,22 @@ class RaiWorld():
                 self.V = self.K.view()
 
         if self.setup=="minimal":
-            self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace.g", printInit)
-
+            #self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace.g", printInit)
+            self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace2.g", printInit)
 
         self.goalString_orig=goalString
         self.numGoal_orig=len(splitStringStep(self.goalString_orig, list_old=[],verbose=0))
+
         if not goalString=="":
             self.goalString=""
-            #goalStep = splitStringStep(goalString, list_old=[],verbose=verbose)
-            #goaltmp=splitStringStep(goalString, list_old=[])
-            #goalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])
-
+            goaltmp=splitStringStep(goalString, list_old=[])
+            goalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])
+            self.realGoalString=goalString
             self.lgp.addTerminalRule(goalString)
-            print(goalString)
+            #print(goalString)
             self.goalState, _,_=self.preprocessGoalState(initState=True)
+        else:
+            self.realGoalString=goalString
 
         #self.lgp.walkToNode("(grasp pr2R red) (grasp pr2L green)",0)
         #komo = runLGP(self.lgp, BT.path, verbose=0, view=True)
@@ -226,15 +228,21 @@ class RaiWorld():
 
     def preprocessGoals(self):
         goalStep = splitStringStep(self.goalString_orig, list_old=[],verbose=0)
+        goalStepReal = splitStringStep(self.realGoalString, list_old=[],verbose=0)
         folstate = self.lgp.nodeState()
         unfullfilled=[]
-        for goal in goalStep:
-            goaltmp=goal.split(" ")
-            if goaltmp[-1][:-2]=="table":
-                goal2=goaltmp[0]+" "+goaltmp[2][:-1]+" "+goaltmp[1]+")"
-            else:
-                goal2=goal
-            if not (goal in folstate[0] or goal2 in folstate[0]):
+        for goal, real in zip(goalStep, goalStepReal):
+            #goaltmp=goal.split(" ")
+            #if goaltmp[-1][:-2]=="table":
+            #    goal2=goaltmp[0]+" "+goaltmp[2][:-1]+" "+goaltmp[1]+")"
+            #else:
+            #    goal2=goal
+            #if not (goal in folstate[0] or goal2 in folstate[0]):
+            #    unfullfilled.append(goal)
+
+            #if not rearrangeGoal(goal)in folstate[0]:
+            #    unfullfilled.append(goal)
+            if not real in folstate[0]:
                 unfullfilled.append(goal)
         return unfullfilled
 
@@ -246,7 +254,7 @@ class RaiWorld():
         #input(unfullfilled)
 
         changed=False
-        #goalString_prev=self.goalString
+        goalString_prev=self.goalString
         #print(goalString_prev)
 
         if self.setup=="minimal":
@@ -270,6 +278,10 @@ class RaiWorld():
                 changed=False
             else:
                 self.goalString=unfullfilled[0]+" "+unfullfilled[1]
+        elif len(unfullfilled)==1 and not cheatGoalState:
+            unfullfilled=splitStringStep(goalString_prev, list_old=[],verbose=0)
+            self.goalString=goalString_prev
+
             #print(self.goalString)
 
         if len(self.objNames_orig)>self.numObj:
@@ -554,7 +566,7 @@ class RaiWorld():
             self.step=0
         self.goalString=goal
         self.goalString_orig=goal
-        self.goalState, _,_=self.preprocessGoalState(initState=False, cheatGoalState=cheatGoalState)
+        self.goalState, _,_=self.preprocessGoalState(initState=True)
 
     #--------------Action Prediction: NN Softmax output to one hot, most probable action of all possible decisons-------------
     def padInput(self):
@@ -713,7 +725,7 @@ class RaiWorld():
 
     
 
-    def evalPredictions(self, inputState, infeasible=[""], prevSke="", depth=0):
+    def evalPredictions(self, inputState, infeasible=[""], prevSke="", depth=0, tries=0):
         decisions=self.lgp.getDecisions()
 
         if self.NNmode=="mixed10":
@@ -809,9 +821,12 @@ class RaiWorld():
                     prob[0,0]=prob[0,0]/3
 
                 if decision in infeasible:
-                    prob=prob*(1.1-0.2*depth)
+                    if tries<4:
+                        prob=prob*(1.1-0.2*depth*infeasible.count(decision))
+                    else:
+                        prob=prob*(1-0.3*depth*infeasible.count(decision)**2)
 
-                print(decision, prob[0,0])
+                #print(decision, prob[0,0])
                 
                 if prob[0,0] > probBest:
                     actBest= decisions[i]

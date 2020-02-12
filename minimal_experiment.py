@@ -100,10 +100,12 @@ envInfo=x = np.array([[1, 1, 2], #1
                         [2, 2, 2],
                         [2, 2, 2],#99
                         [2, 2, 2], #100
-                        [2, 1, 1],
-                        [1, 2, 1],
-                        [2, 1, 2],
-                        [2, 1, 2]
+                        [2, 1, 1], #101
+                        [1, 2, 1], #102
+                        [2, 1, 2], #103
+                        [2, 1, 2], #104
+                        [0, 0, 0], #105
+                        [1, 1, 0], #106
                         ],
                         np.int16)
 
@@ -215,21 +217,21 @@ def getData1(nset=1, nenv=1):
     
     elif nset==2:
         goalString=["(on red table1) (on red table1)"]
-        if getEnvInfo(nenv, "red")==2:
+        if getEnvInfo(nenv, "red") in [0,2]:
             solutions=["(grasp pr2R red) (place pr2R red table1)",
                         "(grasp pr2L red) (place pr2L red table1)"]
             numLoops=1*2*2
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==3:
         goalString=["(on red table2) (on red table2)"]
-        if getEnvInfo(nenv, "red")==1:
+        if getEnvInfo(nenv, "red") in [0,1]:
             solutions=["(grasp pr2R red) (place pr2R red table2)",
                         "(grasp pr2L red) (place pr2L red table2)"]
             numLoops=1*2*2
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=[]
             numLoops=0
 
@@ -253,21 +255,21 @@ def getData1(nset=1, nenv=1):
     
     elif nset==7:
         goalString=["(on green table1) (on green table1)"]
-        if getEnvInfo(nenv, "green")==2:
+        if getEnvInfo(nenv, "green") in [0,2]:
             solutions=["(grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L green) (place pr2L green table1)"]
             numLoops=1*2*2
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==8:
         goalString=["(on green table2) (on green table2)"]
-        if getEnvInfo(nenv, "green")==1:
+        if getEnvInfo(nenv, "green") in [0,1]:
             solutions=["(grasp pr2R green) (place pr2R green table2)",
                         "(grasp pr2L green) (place pr2L green table2)"]
             numLoops=1*2*2
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=[]
             numLoops=0
 
@@ -291,21 +293,21 @@ def getData1(nset=1, nenv=1):
     
     elif nset==12:
         goalString=["(on blue table1) (on blue table1)"]
-        if getEnvInfo(nenv, "blue")==2:
+        if getEnvInfo(nenv, "blue") in [0,2]:
             solutions=["(grasp pr2R blue) (place pr2R blue table1)",
                         "(grasp pr2L blue) (place pr2L blue table1)"]
             numLoops=1*2*2
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==13:
         goalString=["(on blue table2) (on blue table2)"]
-        if getEnvInfo(nenv, "blue")==1:
+        if getEnvInfo(nenv, "blue") in [0,1]:
             solutions=["(grasp pr2R blue) (place pr2R blue table2)",
                         "(grasp pr2L blue) (place pr2L blue table2)"]
             numLoops=1*2*2
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=[]
             numLoops=0
 
@@ -337,7 +339,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==2:
         goalString=["(held red) (on green table1)", "(on green table1) (held red)"]
-        if getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2L green table1)",
                         "(grasp pr2R green) (grasp pr2L red) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red)",
@@ -347,13 +349,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R red)","(grasp pr2L red)"]
             numLoops=2*2*1
 
     elif nset==3:
         goalString=["(held red) (on green table2)", "(on green table2) (held red)"]
-        if getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2L green table2)",
                         "(grasp pr2R green) (grasp pr2L red) (place pr2R green table2)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R red)",
@@ -363,7 +365,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2R red)",
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2L red)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R red)","(grasp pr2L red)"]
             numLoops=2*2*1
 
@@ -399,7 +401,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==7:
         goalString=["(held red) (on blue table1)", "(on blue table1) (held red)"]
-        if getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table1)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table1)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red)",
@@ -409,13 +411,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R red)","(grasp pr2L red)"]
             numLoops=2*2*1
 
     elif nset==8:
         goalString=["(held red) (on blue table2)", "(on blue table2) (held red)"]
-        if getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table2)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table2)",
                         "(grasp pr2R blue) (place pr2R blue table2) (grasp pr2R red)",
@@ -425,7 +427,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R red)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L red)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R red)","(grasp pr2L red)"]
             numLoops=2*2*1
 
@@ -455,7 +457,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==11:
         goalString=["(on red table1) (held green)", "(held green) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2:
+        if getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2L red table1)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2R red table1)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green)",
@@ -465,13 +467,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R green)","(grasp pr2L green)"]
             numLoops=2*2*1
 
     elif nset==12:
         goalString=["(on red table1) (on green table1)", "(on green table1) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2R green table1) (place pr2L red table1)",
                         "(grasp pr2R green) (grasp pr2L red) (place pr2L red table1) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red table1)",
@@ -489,21 +491,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L red) (place pr2L red table1)",
                     "(grasp pr2R red) (place pr2R red table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L green) (place pr2L green table1)",
                     "(grasp pr2R green) (place pr2R green table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==13:
         goalString=["(on red table1) (on green table2)", "(on green table2) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2L red table1) (place pr2R green table2)",
                         "(grasp pr2R green) (grasp pr2L red) (place pr2R green table2) (place pr2L red table1)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R red) (place pr2R red table1)",
@@ -521,21 +523,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green table2)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L green) (place pr2L green table2)",
                         "(grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L red) (place pr2L red table1)",
                         "(grasp pr2R red) (place pr2R red table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=[]
             numLoops=0
 
     elif nset==14:
         goalString=["(on red table1) (on green red)", "(on green red) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2:
+        if getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red table1) (place pr2L green red)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green red) (place pr2R red table1)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green red)", 
@@ -553,14 +555,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green red) (grasp pr2R red) (place pr2R red table1)", 
                         "(grasp pr2L green) (place pr2L green red) (grasp pr2L red) (place pr2L red table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2L green) (place pr2L green red)",
                         "(grasp pr2R green) (place pr2R green red)"]
             numLoops=2*2*2
 
     elif nset==15:
         goalString=["(on red table1) (on green blue)", "(on green blue) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2:
+        if getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red table1) (place pr2L green blue)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green blue) (place pr2R red table1)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green blue)",
@@ -578,14 +580,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green blue) (grasp pr2L red) (place pr2L red table1)",
                         "(grasp pr2L green) (place pr2L green blue) (grasp pr2R red) (place pr2R red table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2L green) (place pr2L green blue)",
                         "(grasp pr2R green) (place pr2R green blue)"]
             numLoops=2*2*2
 
     elif nset==16:
         goalString=["(on red table1) (held blue)", "(held blue) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2:
+        if getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2L red table1)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2R red table1)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue)",
@@ -595,13 +597,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R blue)","(grasp pr2L blue)"]
             numLoops=2*2*1
 
     elif nset==17:
         goalString=["(on red table1) (on blue table1)", "(on blue table1) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table1) (place pr2L red table1)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2L red table1) (place pr2R blue table1)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red table1)",
@@ -619,21 +621,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue table1)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2L red) (place pr2L red table1)",
                     "(grasp pr2R red) (place pr2R red table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue table1)",
                     "(grasp pr2R blue) (place pr2R blue table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==18:
         goalString=["(on red table1) (on blue table2)", "(on blue table2) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2L red table1) (place pr2R blue table2)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table2) (place pr2L red table1)",
                         "(grasp pr2R blue) (place pr2R blue table2) (grasp pr2R red) (place pr2R red table1)",
@@ -651,21 +653,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue table2)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2L blue) (place pr2L blue table2)",
                         "(grasp pr2R blue) (place pr2R blue table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2L red) (place pr2L red table1)",
                         "(grasp pr2R red) (place pr2R red table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=[]
             numLoops=0
 
     elif nset==19:
         goalString=["(on red table1) (on blue red)", "(on blue red) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2:
+        if getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red table1) (place pr2L blue red)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue red) (place pr2R red table1)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue red)",
@@ -683,14 +685,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2R red) (place pr2R red table1)",
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2L red) (place pr2L red table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R blue) (place pr2R blue red)",
                     "(grasp pr2L blue) (place pr2L blue red)"]
             numLoops=2*2*2
 
     elif nset==20:
         goalString=["(on red table1) (on blue green)", "(on blue green) (on red table1)"]
-        if getEnvInfo(nenv,"red")==2:
+        if getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red table1) (place pr2L blue green)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue green) (place pr2R red table1)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue green)",
@@ -708,14 +710,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue green) (grasp pr2R red) (place pr2R red table1)",
                         "(grasp pr2L blue) (place pr2L blue green) (grasp pr2L red) (place pr2L red table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1:
+        elif getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R blue) (place pr2R blue green)",
                     "(grasp pr2L blue) (place pr2L blue green)"]
             numLoops=2*2*2
 
     elif nset==21:
         goalString=["(on red table2) (held green)", "(held green) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1:
+        if getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2L red table2)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2R red table2)",
                         "(grasp pr2R red) (place pr2R red table2) (grasp pr2R green)",
@@ -725,13 +727,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2R green)",
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2L green)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R green)","(grasp pr2L green)"]
             numLoops=2*2*1
 
     elif nset==22:
         goalString=["(on red table2) (on green table1)", "(on green table1) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2R green table1) (place pr2L red table2)",
                         "(grasp pr2R green) (grasp pr2L red) (place pr2L red table2) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red table2)",
@@ -749,21 +751,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2L green) (place pr2L green table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L red) (place pr2L red table2)",
                     "(grasp pr2R red) (place pr2R red table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L green) (place pr2L green table1)",
                     "(grasp pr2R green) (place pr2R green table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==23:
         goalString=["(on red table2) (on green table2)", "(on green table2) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2R green table2) (place pr2L red table2)",
                         "(grasp pr2R green) (grasp pr2L red) (place pr2L red table2) (place pr2R green table2)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R red) (place pr2R red table2)",
@@ -781,21 +783,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2R green) (place pr2R green table2)",
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2L green) (place pr2L green table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L red) (place pr2L red table2)",
                     "(grasp pr2R red) (place pr2R red table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L green) (place pr2L green table2)",
                     "(grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=[]
             numLoops=0
 
     elif nset==24:
         goalString=["(on red table2) (on green red)", "(on green red) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1:
+        if getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red table2) (place pr2L green red)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green red) (place pr2R red table2)",
                         "(grasp pr2R red) (place pr2R red table2) (grasp pr2R green) (place pr2R green red)",
@@ -813,14 +815,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green red) (grasp pr2L red) (place pr2L red table2)",
                         "(grasp pr2L green) (place pr2L green red) (grasp pr2R red) (place pr2R red table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2L green) (place pr2L green red)",
                         "(grasp pr2R green) (place pr2R green red)"]
             numLoops=2*2*2
 
     elif nset==25:
         goalString=["(on red table2) (on green blue)", "(on green blue) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1:
+        if getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red table2) (place pr2L green blue)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green blue) (place pr2R red table2)",
                         "(grasp pr2R red) (place pr2R red table2) (grasp pr2R green) (place pr2R green blue)",
@@ -838,14 +840,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green blue) (grasp pr2R red) (place pr2R red table2)",
                         "(grasp pr2L green) (place pr2L green blue) (grasp pr2L red) (place pr2L red table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2L green) (place pr2L green blue)",
                         "(grasp pr2R green) (place pr2R green blue)"]
             numLoops=2*2*2
 
     elif nset==26:
         goalString=["(on red table2) (held blue)", "(held blue) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1:
+        if getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2L red table2)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2R red table2)",
                         "(grasp pr2R red) (place pr2R red table2) (grasp pr2R blue)",
@@ -855,13 +857,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2R blue)",
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2L blue)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R blue)","(grasp pr2L blue)"]
             numLoops=2*2*1
 
     elif nset==27:
         goalString=["(on red table2) (on blue table1)", "(on blue table1) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table1) (place pr2L red table2)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2L red table2) (place pr2R blue table1)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red table2)",
@@ -879,21 +881,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2R blue) (place pr2R blue table1)",
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2L blue) (place pr2L blue table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2L red) (place pr2L red table2)",
                     "(grasp pr2R red) (place pr2R red table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue table1)",
                     "(grasp pr2R blue) (place pr2R blue table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==28:
         goalString=["(on red table2) (on blue table2)", "(on blue table2) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table2) (place pr2L red table2)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2L red table2) (place pr2R blue table2)",
                         "(grasp pr2R blue) (place pr2R blue table2) (grasp pr2R red) (place pr2R red table2)",
@@ -911,21 +913,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2R blue) (place pr2R blue table2)",
                         "(grasp pr2L red) (place pr2L red table2) (grasp pr2L blue) (place pr2L blue table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==1 and getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"red") in [0,1] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2L red) (place pr2L red table2)",
                     "(grasp pr2R red) (place pr2R red table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2L blue) (place pr2L blue table2)",
                     "(grasp pr2R blue) (place pr2R blue table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"red")==2 and getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"red") in [0,2] and getEnvInfo(nenv,"blue") in [0,2]:
             solutions=[]
             numLoops=0
 
     elif nset==29:
         goalString=["(on red table2) (on blue red)", "(on blue red) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1:
+        if getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red table2) (place pr2L blue red)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue red) (place pr2R red table2)",
                         "(grasp pr2R red) (place pr2R red table2) (grasp pr2R blue) (place pr2R blue red)",
@@ -943,14 +945,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2L red) (place pr2L red table2)",
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2R red) (place pr2R red table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2R blue) (place pr2R blue red)"]
             numLoops=2*2*2
 
     elif nset==30:
         goalString=["(on red table2) (on blue green)", "(on blue green) (on red table2)"]
-        if getEnvInfo(nenv,"red")==1:
+        if getEnvInfo(nenv,"red") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red table2) (place pr2L blue green)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue green) (place pr2R red table2)",
                         "(grasp pr2R red) (place pr2R red table2) (grasp pr2R blue) (place pr2R blue green)",
@@ -968,7 +970,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue green) (grasp pr2R red) (place pr2R red table2)",
                         "(grasp pr2L blue) (place pr2L blue green) (grasp pr2L red) (place pr2L red table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"red")==2:
+        elif getEnvInfo(nenv,"red") in [0,2]:
             solutions=["(grasp pr2R blue) (place pr2R blue green)",
                     "(grasp pr2L blue) (place pr2L blue green)"]
             numLoops=2*2*2
@@ -987,7 +989,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==32:
         goalString=["(on red green) (on green table1)", "(on green table1) (on red green)"]
-        if getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red green) (place pr2L green table1)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (place pr2R red green)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (place pr2R red green)",
@@ -1005,7 +1007,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red green)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L red) (place pr2L red green)"]
             numLoops=2*2*2
@@ -1013,7 +1015,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==33:
         goalString=["(on red green) (on green table2)", "(on green table2) (on red green)"]
-        if getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red green) (place pr2L green table2)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table2) (place pr2R red green)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table2) (place pr2R red green)",
@@ -1031,7 +1033,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2L red) (place pr2L red green)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L red) (place pr2L red green)"]
             numLoops=2*2*2
@@ -1070,7 +1072,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==36:
         goalString=["(on red green) (on blue table1)", "(on blue table1) (on red green)"]
-        if getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red green) (place pr2L blue table1)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table1) (place pr2R red green)",
                         "(grasp pr2R red) (place pr2R red green) (grasp pr2R blue) (place pr2R blue table1)",
@@ -1088,14 +1090,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red green)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R red) (place pr2R red green)",
                     "(grasp pr2L red) (place pr2L red green)"]
             numLoops=2*2*2
 
     elif nset==37:
         goalString=["(on red green) (on blue table2)", "(on blue table2) (on red green)"]
-        if getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red green) (place pr2L blue table2)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table2) (place pr2R red green)",
                         "(grasp pr2R red) (place pr2R red green) (grasp pr2R blue) (place pr2R blue table2)",
@@ -1113,7 +1115,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L red) (place pr2L red green)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R red) (place pr2R red green)",
                     "(grasp pr2L red) (place pr2L red green)"]
             numLoops=2*2*2
@@ -1172,7 +1174,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==41:
         goalString=["(on red blue) (on green table1)", "(on green table1) (on red blue)"]
-        if getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red blue) (place pr2L green table1)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (place pr2R red blue)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (place pr2R red blue)",
@@ -1190,14 +1192,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*2*2
 
     elif nset==42:
         goalString=["(on red blue) (on green table2)", "(on green table2) (on red blue)"]
-        if getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2R red blue) (place pr2L green table2)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table2) (place pr2R red blue)",
                         "(grasp pr2R red) (grasp pr2L green) (place pr2L green table2) (place pr2R red blue)",
@@ -1215,7 +1217,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*2*2
@@ -1274,7 +1276,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==46:
         goalString=["(on red blue) (on blue table1)", "(on blue table1) (on red blue)"]
-        if getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red blue) (place pr2L blue table1)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table1) (place pr2R red blue)",
                         "(grasp pr2R red) (place pr2R red blue) (grasp pr2R blue) (place pr2R blue table1)",
@@ -1292,14 +1294,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R red) (place pr2R red blue)",
                     "(grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*2*2
 
     elif nset==47:
         goalString=["(on red blue) (on blue table2)", "(on blue table2) (on red blue)"]
-        if getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red blue) (place pr2L blue table2)",
                         "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table2) (place pr2R red blue)",
                         "(grasp pr2R red) (place pr2R red blue) (grasp pr2R blue) (place pr2R blue table2)",
@@ -1317,7 +1319,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R red) (place pr2R red blue)",
                     "(grasp pr2L red) (place pr2L red blue)"]
             numLoops=2*2*2
@@ -1352,7 +1354,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==50:
         goalString=["(held green) (on blue table1)", "(on blue table1) (held green)"]
-        if getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1)",
                         "(grasp pr2R blue) (grasp pr2L green) (place pr2R blue table1)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green)",
@@ -1362,13 +1364,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R green)","(grasp pr2L green)"]
             numLoops=2*2*1
 
     elif nset==51:
         goalString=["(held green) (on blue table2)", "(on blue table2) (held green)"]
-        if getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table2)",
                         "(grasp pr2R blue) (grasp pr2L green) (place pr2R blue table2)",
                         "(grasp pr2R blue) (place pr2R blue table2) (grasp pr2R green)",
@@ -1378,7 +1380,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R green)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L green)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R green)","(grasp pr2L green)"]
             numLoops=2*2*1
 
@@ -1408,7 +1410,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==54:
         goalString=["(on green table1) (held blue)", "(held blue) (on green table1)"]
-        if getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R blue) (grasp pr2L green) (place pr2L green table1)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue)",
@@ -1418,13 +1420,13 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R blue)","(grasp pr2L blue)"]
             numLoops=2*2*1
 
     elif nset==55:
         goalString=["(on green table1) (on blue table1)", "(on blue table1) (on green table1)"]
-        if getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (place pr2L blue table1)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue table1)",
@@ -1442,21 +1444,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L blue) (place pr2L blue table1)",
                     "(grasp pr2R blue) (place pr2R blue table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L green) (place pr2L green table1)",
                     "(grasp pr2R green) (place pr2R green table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=[]
             numLoops=0        
 
     elif nset==56:
         goalString=["(on green table1) (on blue table2)", "(on blue table2) (on green table1)"]
-        if getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (place pr2L blue table2)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table2) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue table2)",
@@ -1474,21 +1476,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L green) (place pr2L green table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L blue) (place pr2L blue table2)",
                     "(grasp pr2R blue) (place pr2R blue table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L green) (place pr2L green table1)",
                     "(grasp pr2R green) (place pr2R green table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=[]
             numLoops=0
 
     elif nset==57:
         goalString=["(on green table1) (on blue red)", "(on blue red) (on green table1)"]
-        if getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (place pr2L blue red)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue red) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue red)",
@@ -1506,14 +1508,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2L green) (place pr2L green table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2R blue) (place pr2R blue red)"]
             numLoops=2*2*2
 
     elif nset==58:
         goalString=["(on green table1) (on blue green)", "(on blue green) (on green table1)"]
-        if getEnvInfo(nenv,"green")==2:
+        if getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (place pr2L blue green)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue green) (place pr2R green table1)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue green)",
@@ -1531,14 +1533,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue green) (grasp pr2R green) (place pr2R green table1)",
                         "(grasp pr2L blue) (place pr2L blue green) (grasp pr2L green) (place pr2L green table1)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L blue) (place pr2L blue green)",
                         "(grasp pr2R blue) (place pr2R blue green)"]
             numLoops=2*2*2
 
     elif nset==59:
         goalString=["(on green table2) (held blue)", "(held blue) (on green table2)"]
-        if getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table2)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R blue)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2L blue)",
@@ -1548,14 +1550,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L green) (place pr2L green table2) (grasp pr2L blue)",
                         "(grasp pr2L blue) (grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*8*3
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L blue)",
                     "(grasp pr2R blue)"]
             numLoops=2*2*1
 
     elif nset==60:
         goalString=["(on green table2) (on blue table1)", "(on blue table1) (on green table2)"]
-        if getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (place pr2R green table2)",
                         "(grasp pr2R green) (grasp pr2L blue)  (place pr2R green table2)(place pr2L blue table1)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R blue) (place pr2R blue table1)",
@@ -1573,21 +1575,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green table2)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L green) (place pr2L green table2)",
                         "(grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue table1)",
                         "(grasp pr2R blue) (place pr2R blue table1)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=[]
             numLoops=0
 
     elif nset==61:
         goalString=["(on green table2) (on blue table2)", "(on blue table2) (on green table2)"]
-        if getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table2) (place pr2L blue table2)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table2) (place pr2R green table2)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R blue) (place pr2R blue table2)",
@@ -1605,21 +1607,21 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R green) (place pr2R green table2)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L green) (place pr2L green table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"blue") in [0,1] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue table2)",
                     "(grasp pr2R blue) (place pr2R blue table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==1:
+        elif getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2L green) (place pr2L green table2)",
                     "(grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*2*2
-        elif getEnvInfo(nenv,"blue")==2 and getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2] and getEnvInfo(nenv,"green") in [0,2]:
             solutions=[]
             numLoops=0
 
     elif nset==62:
         goalString=["(on green table2) (on blue red)", "(on blue red) (on green table2)"]
-        if getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table2) (place pr2L blue red)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue red) (place pr2R green table2)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R blue) (place pr2R blue red)",
@@ -1637,14 +1639,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2L green) (place pr2L green table2)",
                         "(grasp pr2L blue) (place pr2L blue red) (grasp pr2R green) (place pr2R green table2)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2R blue) (place pr2R blue red)"]
             numLoops=2*2*2
 
     elif nset==63:
         goalString=["(on green table2) (on blue green)", "(on blue green) (on green table2)"]
-        if getEnvInfo(nenv,"green")==1:
+        if getEnvInfo(nenv,"green") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green table2) (place pr2L blue green)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue green) (place pr2R green table2)",
                         "(grasp pr2R green) (place pr2R green table2) (grasp pr2R blue) (place pr2R blue green)",
@@ -1662,7 +1664,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (grasp pr2R green) (place pr2L blue green) (place pr2R green table2)",
                         "(grasp pr2L blue) (grasp pr2R green) (place pr2R green table2) (place pr2L blue green)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"green")==2:
+        elif getEnvInfo(nenv,"green") in [0,2]:
             solutions=["(grasp pr2L blue) (place pr2L blue green)",
                         "(grasp pr2R blue) (place pr2R blue green)"]
             numLoops=2*2*2
@@ -1681,7 +1683,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==65:
         goalString=["(on green red) (on blue table1)", "(on blue table1) (on green red)"]
-        if getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green red) (place pr2L blue table1)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (place pr2R green red)",
                         "(grasp pr2R green) (place pr2R green red) (grasp pr2L blue) (place pr2L blue table1)",
@@ -1699,14 +1701,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green red)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2L green) (place pr2L green red)"]
             numLoops=2*2*2
 
     elif nset==66:
         goalString=["(on green red) (on blue table2)", "(on blue table2) (on green red)"]
-        if getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green red) (place pr2L blue table2)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table2) (place pr2R green red)",
                         "(grasp pr2R green) (place pr2R green red) (grasp pr2L blue) (place pr2L blue table2)",
@@ -1724,7 +1726,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L green) (place pr2L green red)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2L green) (place pr2L green red)"]
             numLoops=2*2*2
@@ -1783,7 +1785,7 @@ def getData(nset=1, nenv=1):
 
     elif nset==70:
         goalString=["(on green blue) (on blue table1)", "(on blue table1) (on green blue)"]
-        if getEnvInfo(nenv,"blue")==2:
+        if getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green blue) (place pr2L blue table1)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (place pr2R green blue)",
                         "(grasp pr2R green) (place pr2R green blue) (grasp pr2R blue) (place pr2R blue table1)",
@@ -1801,14 +1803,14 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green blue)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==1:
+        elif getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R green) (place pr2R green blue)",
                     "(grasp pr2L green) (place pr2L green blue)"]
             numLoops=2*2*2
 
     elif nset==71:
         goalString=["(on green blue) (on blue table2)", "(on blue table2) (on green blue)"]
-        if getEnvInfo(nenv,"blue")==1:
+        if getEnvInfo(nenv,"blue") in [0,1]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green blue) (place pr2L blue table2)",
                         "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table2) (place pr2R green blue)",
                         "(grasp pr2R green) (place pr2R green blue) (grasp pr2R blue) (place pr2R blue table2)",
@@ -1826,7 +1828,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2L blue) (place pr2L blue table2) (grasp pr2L green) (place pr2L green blue)"]
             numLoops=2*16*4
-        elif getEnvInfo(nenv,"blue")==2:
+        elif getEnvInfo(nenv,"blue") in [0,2]:
             solutions=["(grasp pr2R green) (place pr2R green blue)",
                     "(grasp pr2L green) (place pr2L green blue)"]
             numLoops=2*2*2

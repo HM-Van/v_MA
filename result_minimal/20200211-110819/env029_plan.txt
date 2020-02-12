@@ -1107,19 +1107,9 @@
 		  NN: (place pr2R green blue)[ 1 -1 ]
 --------------------
 
-----Successfully reached goal 082-1: (on green blue) (on green blue) infeasible 0----
-		  NN: (grasp pr2R green)[ 1 -1 ]
-		  NN: (place pr2R green blue)[ 1 -1 ]
---------------------
-
-----Successfully reached goal 082-1: (on green blue) (on green blue) infeasible 0----
-		  NN: (grasp pr2R green)[ 1 -1 ]
-		  NN: (place pr2R green blue)[ 1 -1 ]
---------------------
-
-----Successfully reached goal 082-1: (on green blue) (on green blue) infeasible 0----
-		  NN: (grasp pr2R green)[ 1 -1 ]
-		  NN: (place pr2R green blue)[ 1 -1 ]
+----Successfully reached goal 082-1: (on green blue) (on green blue) feasible 1----
+		  NN: (grasp pr2L green)[ 1 -1 ]
+		  NN: (place pr2L green blue)[ 1 -1 ]
 --------------------
 
 ----Successfully reached goal 083-1: (held blue) (held blue) feasible 1----
@@ -1144,18 +1134,9 @@
 		  NN: (place pr2R blue green)[ 1 -1 ]
 --------------------
 
-----Successfully reached goal 087-1: (on blue green) (on blue green) infeasible 0----
-		  NN: (grasp pr2R blue)[ 1 -1 ]
-		  NN: (place pr2R blue green)[ 1 -1 ]
+----Successfully reached goal 087-1: (on blue green) (on blue green) feasible 1----
+		  NN: (grasp pr2L blue)[ 1 -1 ]
+		  NN: (place pr2L blue green)[ 1 -1 ]
 --------------------
 
-----Successfully reached goal 087-1: (on blue green) (on blue green) infeasible 0----
-		  NN: (grasp pr2R blue)[ 1 -1 ]
-		  NN: (place pr2R blue green)[ 1 -1 ]
---------------------
-
-----Successfully reached goal 087-1: (on blue green) (on blue green) infeasible 0----
-		  NN: (grasp pr2R blue)[ 1 -1 ]
-		  NN: (place pr2R blue green)[ 1 -1 ]
---------------------
 
