@@ -822,9 +822,14 @@ class RaiWorld():
 
                 if decision in infeasible:
                     if tries<4:
-                        prob=prob*(1.1-0.2*depth*infeasible.count(decision))
+                        penalty=(1.1-0.2*depth*infeasible.count(decision))
                     else:
-                        prob=prob*(1-0.3*depth*infeasible.count(decision)**2)
+                        penalty=(1-0.3*depth*infeasible.count(decision)**2)
+
+                    if penalty < 0.01:
+                        penalty = 0.01
+
+                    prob=prob*penalty
 
                 #print(decision, prob[0,0])
                 

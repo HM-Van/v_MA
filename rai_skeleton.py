@@ -41,15 +41,17 @@ def main():
 	#goalString="(on tray red)"# (on tray green) (on tray blue)"# (on tray cyan)"
 	#nenv=105
 
-	nenv=106
-	goalString="(on blue red) (on red green)"
+	nenv=109
+	goalString="(on table2 red) (on red blue)"
 	K=Config()
 	K.addFile(path_rai+'/rai-robotModels/pr2/pr2.g')
-	K.addFile(path_rai+'/test/Test_setup_'+str(nenv).zfill(3)+'.g')
-	#lgp=K.lgp(path_rai+"/test/fol-pnp-switch.g")
+	#K.addFile(path_rai+'/test/Test_setup_'+str(nenv).zfill(3)+'.g')
+	K.addFile(path_rai+'/models/Test_setup_'+str(nenv).zfill(3)+'.g')
+
 	lgp=K.lgp(path_rai+"/models/fol-pickAndPlace2.g")
 	lgp.addTerminalRule(goalString)
 	
+	V=K.view()
 	input("test")
 
 	lgp.run(0)

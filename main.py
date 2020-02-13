@@ -209,16 +209,16 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 		typeDecision.append(tmpDes)
 
-		K2=Config()
+		#K2=Config()
 		if planOnly:
 			#_, config = rai_world.applyKomo(komo, rai_net.logicalNames, num=komo.getPathFrames(rai_net.logicalNames).shape[0]-2, verbose=0)
-			komo.getKFromKomo(K2, komo.getPathFrames(rai_net.logicalNames).shape[0]-2)
+			komo.getKFromKomo(rai_net.K, komo.getPathFrames(rai_net.logicalNames).shape[0]-2)
 		else:
 			#_, config = rai_world.applyKomo(komo, rai_net.logicalNames, num=komo.getPathFrames(rai_net.logicalNames).shape[0]-1, verbose=0)
-			komo.getKFromKomo(K2, komo.getPathFrames(rai_net.logicalNames).shape[0]-1)
+			komo.getKFromKomo(rai_net.K, komo.getPathFrames(rai_net.logicalNames).shape[0]-1)
 		#rai_net.K.setFrameState(config,verb=0)
 
-		rai_net.K.copy(K2)
+		#rai_net.K.copy(K2)
 
 		time.sleep(waitTime)
 		
@@ -437,12 +437,20 @@ def main():
 					rangeEnv=range(nenv,nenv+1)
 			else:
 				if allEnv:
-					rangeEnv=range(nenv,104)
+					if nenv in range(100,104):
+						rangeEnv=range(nenv,104)
+					else:
+						rangeEnv=range(nenv,110)
 				else:
 					rangeEnv=range(nenv,nenv+1)
 
 
 			for nenv in rangeEnv:
+
+				if nenv ==109:
+					rai.maxDepth=rai.maxDepth+2
+					maxTries=maxTries+2
+
 				summary=[[],[],[],[],[]] #optimal feasible infeasible-op infeasible no
 
 				start=start0
@@ -563,7 +571,7 @@ def main():
 						summary[4].append(strgoal)
 				
 				with open(path+'/Summaryenv'+str(nenv).zfill(3)+append_test+'.txt', 'a+') as f:
-					f.write(rai.NNmode+", datamode "+str(rai.dataMode)+", maxDepth "+str(maxDepth)+"\n\n" )
+					f.write(rai.NNmode+", datamode "+str(rai.dataMode)+", maxDepth "+str(rai.maxDepth)+", maxTries "+str(maxTries)+"\n\n" )
 					f.write("----Optimal Solution ("+str(len(summary[0]))+")----\n")
 					for elem in summary[0]:
 						f.write(elem+"\t")

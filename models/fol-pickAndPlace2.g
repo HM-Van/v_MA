@@ -143,6 +143,24 @@ Rule{
   { (ontop A C)}
 }
 
+Rule{
+  A, B, C
+  { (ontop A B) (on B C) (object A) }
+  { (ontop A C)}
+}
+
+Rule{
+  A, B, C
+  { (ontop A C) (on B C) (on A B)! }
+  { (ontop A C)!}
+}
+
+Rule{
+  A, B, C
+  { (ontop A C) (on B C) (ontop A B)! (on A B)!}
+  { (ontop A C)!}
+}
+
 #Rule {
 #  A
 #  { (notheld A) }
