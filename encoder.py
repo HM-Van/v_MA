@@ -37,24 +37,24 @@ if True: #Goalencoder
     np.set_printoptions(threshold=sys.maxsize)
     input0=keras.Input(shape=(20,))
 
-    encoded = keras.layers.Dense(16, activation=keras.activations.relu, kernel_regularizer=keras.regularizers.l2(0.0001))(input0)
+    encoded = keras.layers.Dense(12, activation=keras.activations.relu, kernel_regularizer=keras.regularizers.l2(0.0001))(input0)
     decoded = keras.layers.Dense(20, activation=keras.activations.sigmoid)(encoded)
 
     autoencoder=keras.models.Model(inputs=input0, outputs=decoded)
     encoder=keras.models.Model(inputs=input0, outputs=encoded)
 
-    encodedInput=input0=keras.Input(shape=(16,))
+    encodedInput=input0=keras.Input(shape=(12,))
     decodeLayer=autoencoder.layers[-1]
     decoder=keras.models.Model(inputs=encodedInput, outputs=decodeLayer(encodedInput))
 
     autoencoder.compile(optimizer=keras.optimizers.Adam(lr=0.001), loss="binary_crossentropy") #decay=0.001/self.epochs_inst
-    autoencoder.fit(datasetIn, datasetOut, epochs=800, batch_size=32, shuffle=True)
+    autoencoder.fit(datasetIn, datasetOut, epochs=10000, batch_size=2000, shuffle=True)
 
     encoded_test=encoder.predict(datasetIn)
     decoded_test=decoder.predict(encoded_test)
 
     #print(decoded_test)
 
-    autoencoder.save(dir_file+'/logs/encoder/autoencoderGoal2.h5')
-    encoder.save(dir_file+'/logs/encoder/encoderGoal2.h5')
-    decoder.save(dir_file+'/logs/encoder/decoderGoal2.h5')
+    autoencoder.save(dir_file+'/logs/encoder/autoencoderGoal3.h5')
+    encoder.save(dir_file+'/logs/encoder/encoderGoal4.h5')
+    decoder.save(dir_file+'/logs/encoder/decoderGoal4.h5')

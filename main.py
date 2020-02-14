@@ -307,7 +307,7 @@ def main():
 	parser.add_argument('--lr', type=float, default=0.001)
 	parser.add_argument('--lr_drop', type=float, default=1.0)
 	parser.add_argument('--epoch_drop', type=int, default=100)
-	parser.add_argument('--clipnorm', type=float, default=10.)
+	parser.add_argument('--clipnorm', type=float, default=100.0)
 	parser.add_argument('--val_split', type=float, default=0.0)
 	parser.add_argument('--reg_l2', type=float, default=0.0)
 	parser.add_argument('--reg0_l2', type=float, default=0.0)
