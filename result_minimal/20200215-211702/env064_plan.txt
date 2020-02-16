@@ -1,0 +1,345 @@
+
+
+-----Result for env 64-----
+
+----Successfully reached goal 011-1: (on red table1) (held green) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.566 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 011-2: (held green) (on red table1) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 012-1: (on red table1) (on green table1) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (place pr2R green table1)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 0 -1 ]
+--------------------
+
+----Successfully reached goal 012-2: (on green table1) (on red table1) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (place pr2R green table1)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 0 -1 ]
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.654 instead of (grasp pr2R green)
+		  NN: (place pr2R green table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 013-1: (on red table1) (on green table2) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 013-2: (on green table2) (on red table1) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.649 instead of (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 014-1: (on red table1) (on green red) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (place pr2R green red)[ 1 -1 ]
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.538 instead of (place pr2L green red)
+--------------------
+
+----Successfully reached goal 014-2: (on green red) (on red table1) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  NN: (place pr2R green red)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 015-1: (on red table1) (on green blue) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (place pr2R green blue)[ 1 -1 ]
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 015-2: (on green blue) (on red table1) feasible 1----
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2R green blue)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 016-1: (on red table1) (held blue) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  NN: (grasp pr2L blue)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 016-2: (held blue) (on red table1) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (grasp pr2L blue)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 017-1: (on red table1) (on blue table1) feasible 1----
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 017-2: (on blue table1) (on red table1) feasible 1----
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 018-1: (on red table1) (on blue table2) infeasible 0----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.664 instead of (grasp pr2R red)
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.655 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 018-1: (on red table1) (on blue table2) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.895 instead of (grasp pr2R red)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.663 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.732 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 018-1: (on red table1) (on blue table2) infeasible 0----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.818 instead of (grasp pr2R red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.629 instead of (place pr2R red table1)
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.889 instead of (grasp pr2L red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.663 instead of (grasp pr2L red)
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.697 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 018-1: (on red table1) (on blue table2) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.805 instead of (grasp pr2R red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.629 instead of (place pr2L red table1)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.907 instead of (grasp pr2R red)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.696 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 0 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.657 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 018-2: (on blue table2) (on red table1) infeasible 0----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.621 instead of (grasp pr2L red)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.576 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.656 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.54 instead of (place pr2R red table1)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.625 instead of (grasp pr2R red)
+--------------------
+
+----Maximum depth of 8 reached for goal 018-2: (on blue table2) (on red table1) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.833 instead of (grasp pr2R red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.643 instead of (grasp pr2R red)
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.546 instead of (place pr2R red table1)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.619 instead of (grasp pr2R red)
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.604 instead of (place pr2L red table1)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.567 instead of (grasp pr2L red)
+--------------------
+
+----Successfully reached goal 018-2: (on blue table2) (on red table1) feasible 1----
+---- in 2 tries ----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.76 instead of (grasp pr2R red)
+		  MP: (grasp pr2L blue)[ 1 -1 ]	with prob 0.555 instead of (grasp pr2L red)
+		  NN: (place pr2R red table2)[ 1 -1 ]
+		  NN: (place pr2L blue table2)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.609 instead of (place pr2R red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 019-1: (on red table1) (on blue red) infeasible 0----
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.713 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.657 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 019-1: (on red table1) (on blue red) infeasible 0----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.909 instead of (grasp pr2L red)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.664 instead of (grasp pr2R red)
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.66 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 019-1: (on red table1) (on blue red) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.826 instead of (grasp pr2L red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.629 instead of (place pr2L red table1)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.658 instead of (place pr2L red table1)
+		  NN: (place pr2L red table1)[ 0 -1 ]
+		  MP: (grasp pr2R red)[ 0 -1 ]	with prob 0.716 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.661 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 019-1: (on red table1) (on blue red) infeasible 0----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.818 instead of (grasp pr2L red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.629 instead of (place pr2R red table1)
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.885 instead of (grasp pr2L red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.664 instead of (grasp pr2L red)
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 019-2: (on blue red) (on red table1) infeasible 0----
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.788 instead of (grasp pr2R red)
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.552 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.624 instead of (place pr2L red table1)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.734 instead of (grasp pr2L red)
+--------------------
+
+----Maximum depth of 8 reached for goal 019-2: (on blue red) (on red table1) infeasible 0----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.891 instead of (grasp pr2L red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.662 instead of (grasp pr2L red)
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.658 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.56 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 019-2: (on blue red) (on red table1) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.818 instead of (grasp pr2L red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.551 instead of (grasp pr2R red)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.846 instead of (grasp pr2R red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.777 instead of (grasp pr2R red)
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.558 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 019-2: (on blue red) (on red table1) feasible 1----
+---- in 3 tries ----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.802 instead of (grasp pr2L red)
+		  MP: (grasp pr2L blue)[ 1 -1 ]	with prob 0.564 instead of (grasp pr2L red)
+		  NN: (place pr2L blue red)[ 1 -1 ]
+		  MP: (grasp pr2L blue)[ 1 -1 ]	with prob 0.623 instead of (place pr2L blue red)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  NN: (place pr2L blue red)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 020-1: (on red table1) (on blue green) infeasible 0----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.693 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 0 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.636 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 020-1: (on red table1) (on blue green) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.89 instead of (grasp pr2R red)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.701 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.638 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.7 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 020-1: (on red table1) (on blue green) infeasible 0----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.805 instead of (grasp pr2R red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.629 instead of (place pr2R red table1)
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.873 instead of (grasp pr2L red)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.656 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.706 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 0 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 020-1: (on red table1) (on blue green) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.801 instead of (grasp pr2R red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.629 instead of (place pr2L red table1)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.664 instead of (place pr2L red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.706 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.635 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 0 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 020-2: (on blue green) (on red table1) infeasible 0----
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.511 instead of (place pr2R red table1)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.756 instead of (grasp pr2R red)
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.678 instead of (place pr2L red table1)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.611 instead of (grasp pr2L red)
+--------------------
+
+----Maximum depth of 8 reached for goal 020-2: (on blue green) (on red table1) infeasible 0----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.864 instead of (grasp pr2L red)
+		  MP: (place pr2R red table1)[ 1 -1 ]	with prob 0.636 instead of (grasp pr2L red)
+		  NN: (grasp pr2L red)[ 1 -1 ]
+		  NN: (place pr2L red table1)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.601 instead of (place pr2L red table1)
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.52 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Maximum depth of 8 reached for goal 020-2: (on blue green) (on red table1) infeasible 0----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.786 instead of (grasp pr2L red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.531 instead of (place pr2L red table1)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.82 instead of (grasp pr2R red)
+		  MP: (place pr2L red table1)[ 1 -1 ]	with prob 0.631 instead of (grasp pr2R red)
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.548 instead of (place pr2R red table1)
+		  NN: (place pr2L red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 020-2: (on blue green) (on red table1) feasible 1----
+---- in 3 tries ----
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.777 instead of (grasp pr2L red)
+		  MP: (grasp pr2L blue)[ 1 -1 ]	with prob 0.564 instead of (grasp pr2L red)
+		  NN: (place pr2L blue green)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal 074-1: (on red table1) (on red table1) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red table1)[ 1 -1 ]
+--------------------
+

@@ -430,7 +430,7 @@ def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2, feasib
 
     return finalInput, finalLogicals, finalprevInput, finalInput2, finalprevInput2
 
-def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixData=False, feasible=False):
+def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixData=False, feasible=False,exclude=False):
 
     if rand2>0 and rand2<numSets:
         arrSets=np.arange(1,numSets+1)
@@ -438,8 +438,17 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         arrSets=arrSets[0:rand2]
     else:
         arrSets=np.arange(start,stop+1)
+
+    obg = [[15], [10,20,30,39,48,53,58,63,68]]
+    or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
+    og2 = [[8], [2,12,22,32,41,54,55,56,57,58]]
     
-    if feasible:
+    if exclude:
+        arrSets=list(range(1,numSets+1))
+        envSets=[5,7,9,11,15,17,21,23,26,30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
+                6,14,27,28,44,49,60,71,77,84,95]
+
+    elif feasible:
         arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71,4,51,54,1]
         arrSets0=[x for x in list(range(1,numSets+1)) if x not in arrSets]
         random.shuffle(arrSets0)
@@ -585,7 +594,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                     elif expert.getEnvInfo(nenv,"b")==2 and expert.getEnvInfo(nenv,"g")==1:
                         nset=60
 
-            if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input.npy'):
+            if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input.npy') or (exclude and nset in or1[1]):
                 print("skip    env "+str(nenv)+" set "+str(nset).zfill(3))
                 listNoSet.append(str(nset).zfill(3))
                 continue
@@ -612,11 +621,11 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                             #new4= np.tile(new4,(6,1,1))
                             new7= np.tile(new7,(6,1))
                             #print(new2.shape)
-                            if new2.shape[0]<48*6+1 and not feasible:
+                            if new2.shape[0]<=48*6 and not feasible:
                                 new2=np.concatenate((new2,new2), axis=0)
                                 #new4=np.concatenate((new4,new4), axis=0)
                                 new7=np.concatenate((new7,new7), axis=0)
-                        elif new2.shape[0]<49:
+                        elif new2.shape[0]<=48:
                             new1=np.concatenate((new1,new1), axis=0)
                             new2=np.concatenate((new2,new2), axis=0)
                             new3=np.concatenate((new3,new3), axis=0)
@@ -665,7 +674,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 set1=range(1,16)
             for nset in set1:
 
-                if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input.npy'):
+                if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input.npy') or (exclude and nset in or1[0]):
                     print("skip    env "+str(nenv)+" set "+str(nset).zfill(2))
                     listNoSet.append(str(nset).zfill(2))
                     continue
@@ -895,6 +904,9 @@ def main():
     parser.set_defaults(skip1=False)
     parser.add_argument('--skip2', dest='skip2', action='store_true')
     parser.set_defaults(skip2=False)
+
+    parser.add_argument('--exclude', dest='exclude', action='store_true')
+    parser.set_defaults(exclude=False)
     
     args = parser.parse_args()
     path_rai = args.rai_dir
@@ -908,6 +920,7 @@ def main():
     NNmode=args.NNmode
     dataMode=args.datasetMode
     feasible=args.feasible
+    exclude=args.exclude
 
     skip1=args.skip1
     skip2=args.skip2
@@ -943,7 +956,7 @@ def main():
     input("stop")"""
 
     if nenv==0:
-        concatData(path_rai+'/dataset',start2,stop2, skip1=skip1,rand2=rand2, NNmode=NNmode, mixData=mixData, feasible=feasible)
+        concatData(path_rai+'/dataset',start2,stop2, skip1=skip1,rand2=rand2, NNmode=NNmode, mixData=mixData, feasible=feasible, exclude=exclude)
     else:
         rai=rai_world.RaiWorld(path_rai, nenv, setup, "", verbose, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
 

@@ -33,7 +33,7 @@ def createResults(rai_net, cheat_goalstate=False,cheat_tree=False, start=1, plan
 		path=rai_net.path_rai+'/result_minimal/'+rai_net.model_dir+append_folder
 		if not(os.path.exists(path)):
 				os.makedirs(path)
-		
+				
 		if start==1:
 			if rai_net.NNmode in ["mixed10"]:
 				appendmode="mixed"+str(rai_net.dataMode)
@@ -50,6 +50,7 @@ def createResults(rai_net, cheat_goalstate=False,cheat_tree=False, start=1, plan
 				append_test="_test"
 
 			shutil.copyfile(rai_net.path_rai+'/logs/'+rai_net.model_dir+"_"+appendmode+'/params.txt',path+'/params.txt')
+
 			with open(path+'/env'+str(rai_net.nenv).zfill(3)+append_test+'.txt', 'a+') as f:
 				f.write("\n\n-----Result for env "+str(rai_net.nenv)+"-----\n\n")
 
@@ -303,6 +304,7 @@ def main():
 	parser.add_argument('--hlayers_place', type=int, default=3)
 	parser.add_argument('--size_place', type=int, default=64)
 	parser.add_argument('--num_batch_it', type=int, default=1)
+	parser.add_argument('--batch_size', type=int, default=32)
 
 	parser.add_argument('--lr', type=float, default=0.001)
 	parser.add_argument('--lr_drop', type=float, default=1.0)
@@ -336,6 +338,8 @@ def main():
 	parser.set_defaults(viewConfig=False)
 	parser.add_argument('--planOnly', dest='planOnly', action='store_true')
 	parser.set_defaults(planOnly=False)
+	parser.add_argument('--exclude', dest='exclude', action='store_true')
+	parser.set_defaults(exclude=False)
 
 	parser.add_argument('--goal', type=str, default="(on red green) (on green blue)")
 	parser.add_argument('--env', type=int, default=1)
@@ -364,6 +368,7 @@ def main():
 	showFinal=args.showFinal
 	viewConfig=args.viewConfig
 	planOnly=args.planOnly
+	exclude=args.exclude
 
 	model_dir=args.model_dir
 	model_dir_data=args.model_dir_data
@@ -382,6 +387,7 @@ def main():
 	n_size_place=args.size_place
 	n_layers_place=args.hlayers_place
 	num_batch_it=args.num_batch_it
+	batch_size=args.batch_size
 
 	lr=args.lr
 	lr_drop=args.lr_drop
@@ -405,6 +411,10 @@ def main():
 	if not dataMode in [1,2,3,4]:
 		planOnly=False
 
+	obg = [[15], [10,20,30,39,48,53,58,63,68]]
+	or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
+	og2 = [[8], [2,12,22,32,41,54,55,56,57,58]]
+
 	#-------------------------------------------------------------------------------------------------------------------------	
 	print("Setting up basic Config and FOL for env: "+str(nenv))
 	rai=rai_world.RaiWorld(path_rai, nenv, setup, goalString, verbose, maxDepth=maxDepth, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
@@ -412,7 +422,7 @@ def main():
 	print("\nModel and dataset")
 	if saveModel:
 		rai.saveFit(model_dir_data,epochs_inst, n_layers_inst, n_size_inst, epochs_grasp, n_layers_grasp, n_size_grasp, epochs_place, n_layers_place, n_size_place,
-					lr, lr_drop, epoch_drop, clipnorm, val_split, reg, reg0, num_batch_it, n_layers_inst2=n_layers_inst2)
+					lr, lr_drop, epoch_drop, clipnorm, val_split, reg, reg0, num_batch_it, batch_size,n_layers_inst2=n_layers_inst2)
 		print("Model trained: "+rai.rai_net.timestamp)
 	else:
 		rai.loadFit(model_dir)
@@ -458,6 +468,7 @@ def main():
 				path=createResults(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, start=start0, planOnly=planOnly)
 				if 2*(start-1) < len(minimal_experiment.Sets):
 					numGoal=start-1
+
 					if not startSub==1:
 						numGoal+=1
 					for i in range(2*(start-1)+startSub-1,len(minimal_experiment.Sets)):
@@ -466,6 +477,10 @@ def main():
 							strgoal=str(numGoal).zfill(3)+"-1"
 						else:
 							strgoal=str(numGoal).zfill(3)+"-2"
+
+						if exclude and not numGoal in or1[1]:
+							#print("skip "+str(numGoal))
+							continue
 
 						goal=minimal_experiment.Sets[i]
 
@@ -533,10 +548,13 @@ def main():
 				else:
 					numGoal=start-1
 					start=(start-1)-len(minimal_experiment.Sets)/2
-					#print(start)
 
 				for i in range(int(start),len(minimal_experiment.test)):
 					numGoal+=1
+					if exclude and not i+1 in or1[0]:
+						#print("skip "+str(numGoal))
+						continue
+
 					strgoal=str(numGoal).zfill(3)+"-1"
 
 					goal= minimal_experiment.test[i]+" "+minimal_experiment.test[i]

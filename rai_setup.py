@@ -476,7 +476,7 @@ class RaiWorld():
     #--------------------------Policy: Currently Feed Forward NN-------------------------------------------------------
 
     def saveFit(self, model_dir,epochs_inst, n_layers_inst, n_size_inst, epochs_grasp, n_layers_grasp, n_size_grasp, epochs_place, n_layers_place, n_size_place,
-                lr, lr_drop, epoch_drop,clipnorm, val_split, reg, reg0, num_batch_it, n_layers_inst2=0):
+                lr, lr_drop, epoch_drop,clipnorm, val_split, reg, reg0, num_batch_it, batch_size, n_layers_inst2=0):
 
         if self.NNmode=="minimal":
 
@@ -488,7 +488,7 @@ class RaiWorld():
                                 epochs_grasp=epochs_grasp, n_layers_grasp=n_layers_grasp, size_grasp=n_size_grasp,
                                 epochs_place=epochs_place, n_layers_place=n_layers_place, size_place=n_size_place,
                                 lr=lr, lr_drop=lr_drop, epoch_drop=epoch_drop, val_split=val_split, mode=self.dataMode,
-                                listLog=self.listLog, reg0=reg0
+                                listLog=self.listLog, reg0=reg0, batch_size=batch_size
                                 )
 
             modelInstructHist, modelGraspHist, modelPlaceHist=self.rai_net.train(self.path_rai, model_dir)
@@ -513,7 +513,7 @@ class RaiWorld():
                                 epochs_place=epochs_place, n_layers_place=n_layers_place, size_place=n_size_place,
                                 lr=lr, lr_drop=lr_drop, epoch_drop=epoch_drop, clipnorm=clipnorm, val_split=val_split,
                                 reg=reg, listLog=self.listLog, num_batch_it=num_batch_it, mode=modeMixed,
-                                n_layers_inst2=n_layers_inst2, reg0=reg0
+                                n_layers_inst2=n_layers_inst2, reg0=reg0, batch_size=batch_size
                                 )
             modelInstructHist, modelGraspObjHist, modelGraspGrpHist, modelPlaceObjHist, modelPlaceGrpHist=self.rai_net.train(self.path_rai, model_dir, num_batch_it)
             self.model_dir=self.rai_net.timestamp.split("_")[0]
@@ -528,7 +528,7 @@ class RaiWorld():
                                 epochs_grasp=epochs_grasp, n_layers_grasp=n_layers_grasp, size_grasp=n_size_grasp,
                                 epochs_place=epochs_place, n_layers_place=n_layers_place, size_place=n_size_place,
                                 lr=lr, lr_drop=lr_drop, epoch_drop=epoch_drop, clipnorm=clipnorm, val_split=val_split,
-                                reg0=reg0, listLog=self.listLog, mode=self.dataMode
+                                reg0=reg0, listLog=self.listLog, mode=self.dataMode, batch_size=batch_size
                                 )
             modelInstructHist, modelGraspObjHist, modelGraspGrpHist, modelPlaceObjHist, modelPlaceGrpHist=self.rai_net.train(self.path_rai, model_dir)
             self.model_dir = self.rai_net.timestamp.split("_")[0]
@@ -660,6 +660,7 @@ class RaiWorld():
                         placePred[1] = softmaxToOnehot(placePred[1])
 
                     [placePred[0], placePred[2]]=self.rai_net.modelPlaceGrpTab.predict({"goal": goalState, "state2":np.concatenate((envState, placePred[1]), axis=1)})
+                    #input(placePred)
 
                     if oneHot:
                         placePred[0] = softmaxToOnehot(placePred[0])
@@ -822,7 +823,8 @@ class RaiWorld():
 
                 if decision in infeasible:
                     if tries<4:
-                        penalty=(1.1-0.2*depth*infeasible.count(decision))
+                        #penalty=(1.1-0.2*depth*infeasible.count(decision))
+                        penalty=(1.1-0.3*depth*infeasible.count(decision))
                     else:
                         penalty=(1-0.3*depth*infeasible.count(decision)**2)
 
@@ -830,6 +832,7 @@ class RaiWorld():
                         penalty = 0.01
 
                     prob=prob*penalty
+                    #print(decision, penalty, prob[0,0])
 
                 #print(decision, prob[0,0])
                 

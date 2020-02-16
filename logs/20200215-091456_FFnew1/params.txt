@@ -1,0 +1,4 @@
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001    val_split: 0.3    dataset_mode: 1    batch_size: 64    dropout: 0.1_0.4    
+Instruct    hlayers_inst: 1    size_inst: 64    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 96    epochs_grasp: 500    
+Place    hlayers_place: 3    size_place: 96    epochs_place: 500    

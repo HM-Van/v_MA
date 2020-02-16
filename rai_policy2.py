@@ -13,6 +13,9 @@ import shutil
 import os
 import random
 
+dropout=[0.0,0.3]
+tabfactor=0.1
+
 #import os
 dir_file=os.path.abspath(os.path.dirname(__file__))
 #sys.path.append(dir_file+'/../ry/')
@@ -25,14 +28,16 @@ def build_Sub(inputs,
               size=200, 
               activation=keras.activations.relu,
               output_activation=keras.activations.softmax,
-              reg=0.001
+              reg=0.001,
+              factor=dropout[1]
               ):
     out = inputs
+    out= keras.layers.Dropout(dropout[0])(out)
     with tf.variable_scope(scope):
         for i in range(n_layers):
             out = keras.layers.Dense(size, activation=activation, kernel_regularizer=keras.regularizers.l2(reg))(out)
-            if i<(n_layers-1):
-                out= keras.layers.Dropout(0.2)(out)
+            if i < n_layers-1 or True:
+                out= keras.layers.Dropout(factor)(out)
         out = keras.layers.Dense(output_size, activation=output_activation, name=name)(out)
     return out
 
@@ -113,7 +118,8 @@ class FeedForwardNN():
                 listLog=[],
                 path_rai=dir_file,
                 goallength=20,
-                reg0=0
+                reg0=0,
+                batch_size=32
                 ):
 
         if mode in [3,4]:
@@ -121,6 +127,7 @@ class FeedForwardNN():
             print("goalEncoder loaded")
 
         self.goallength=goallength
+        self.batch_size=batch_size
         
         self.inputlength=inputlength
         self.numInstruct=numInstruct
@@ -158,7 +165,10 @@ class FeedForwardNN():
         param.append("drop: "+str(self.lr_drop))
         param.append("epoch_drop: "+str(self.epoch_drop))
         param.append("val_split: "+str(self.val_split))
+        param.append("dataset_mode: "+str(self.mode))
         param.append("reg_l2: "+str(reg0))
+        param.append("batch_size: "+str(batch_size))
+        param.append("dropout: "+str(dropout[0])+"_"+str(dropout[1])+"_"+str(tabfactor))
         self.params.append(param)
 
         self.listLog=listLog
@@ -253,7 +263,7 @@ class FeedForwardNN():
 
         GripperNet = build_Sub(keras.layers.concatenate([inputs, inputs1]), self.numGripper, "placeGripperScope", "placeGripperOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
         ObjNet = build_Sub(keras.layers.concatenate([inputs, inputs1]), self.numObjects, "placeObjectScope", "placeObjectOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
-        TableNet = build_Sub(keras.layers.concatenate([inputs, inputs1]), self.numTables, "placeTableScope", "placeTableOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
+        TableNet = build_Sub(keras.layers.concatenate([inputs, inputs1]), self.numTables, "placeTableScope", "placeTableOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0, factor=tabfactor)
 
         modelPlace = keras.models.Model(inputs=[inputs0,inputs1], outputs=[GripperNet, ObjNet, TableNet], name="placeNet")
         return modelPlace
@@ -359,7 +369,7 @@ class FeedForwardNN():
         print("Training set size: "+str(graspFinalIn.shape[0]))
         modelGraspHist=self.modelGrasp.fit(x={"goal": graspFinalIn[:,:self.goallength], "state": graspFinalIn[:,self.goallength:]},
                                         y={"graspGripperOut": graspFinalOut[:,1,self.listLog[0]], "graspObjectOut": graspFinalOut[:,0,self.listLog[1]]},
-                                        epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split, callbacks=[tbGrasp, printEpoch(),keras.callbacks.LearningRateScheduler(self.step_decay),savegrasp, EarlyStopping(self.val_split, patience=40)])
+                                        epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split, callbacks=[tbGrasp, printEpoch(),keras.callbacks.LearningRateScheduler(self.step_decay),savegrasp, EarlyStopping(self.val_split, patience=30)])
         
         final_losses[1].append(modelGraspHist.history["loss"][-1])
         final_losses[1].append(modelGraspHist.history["val_loss"][-1])
@@ -371,7 +381,7 @@ class FeedForwardNN():
         print("Training set size: "+str(placeFinalIn.shape[0]))
         modelPlaceHist=self.modelPlace.fit(x={"goal": placeFinalIn[:,:self.goallength], "state": placeFinalIn[:,self.goallength:]},
                                         y={"placeGripperOut": placeFinalOut[:,1,self.listLog[0]], "placeObjectOut": placeFinalOut[:,0,self.listLog[1]], "placeTableOut": placeFinalOut[:,2,self.listLog[2]]},
-                                        epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split, callbacks=[tbPlace, printEpoch(),keras.callbacks.LearningRateScheduler(self.step_decay),saveplace, EarlyStopping(self.val_split, patience=40)])
+                                        epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split, callbacks=[tbPlace, printEpoch(),keras.callbacks.LearningRateScheduler(self.step_decay),saveplace, EarlyStopping(self.val_split, patience=30)])
         
         final_losses[2].append(modelPlaceHist.history["loss"][-1])
         final_losses[2].append(modelPlaceHist.history["val_loss"][-1])
@@ -435,7 +445,8 @@ class ClassifierMixed():
                 mode=1,
                 n_layers_inst2=0,
                 path_rai=dir_file,
-                goallength=20
+                goallength=20,
+                batch_size=32
                 ):
         #print("0")
         if mode in [3,4]:
@@ -444,6 +455,7 @@ class ClassifierMixed():
             print("goalEncoder loaded")
             #print("1")
         self.goallength=goallength
+        self.batch_size=batch_size
 
         self.inputlength=inputlength
         self.numInstruct=numInstruct
@@ -495,7 +507,10 @@ class ClassifierMixed():
         param.append("clipnorm: "+str(clipnorm))
         param.append("reg_l2: "+str(reg0)+"_"+str(reg))
         param.append("val_split: "+str(self.val_split))
+        param.append("dataset_mode: "+str(self.mode))
         param.append("num_batch_it: "+str(num_batch_it))
+        param.append("batch_size: "+str(batch_size))
+        param.append("dropout: "+str(dropout[0])+"_"+str(dropout[1])+"_"+str(tabfactor))
         self.params.append(param)
         
         if timestamp=="":
@@ -599,7 +614,7 @@ class ClassifierMixed():
         GrpNet = build_Sub(keras.layers.concatenate([inputs0, inputs2]), len(self.listLog[0]), "placeGripperScope", "placeGripperOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
 
         #inputs3 = keras.Input(shape=(self.inputlength+self.numLogicals,))
-        TabNet = build_Sub(keras.layers.concatenate([inputs0, inputs2]), len(self.listLog[2]), "placeTableScope", "placeTableOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
+        TabNet = build_Sub(keras.layers.concatenate([inputs0, inputs2]), len(self.listLog[2]), "placeTableScope", "placeTableOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0, factor=tabfactor)
 
 
         modelPlaceObj = keras.models.Model(inputs=[inputs00,inputs1], outputs=ObjNet, name="placeObjeNet")
@@ -784,14 +799,14 @@ class ClassifierMixed():
         print("Training set size: "+str(dataInputPrev.shape[0]))
         final_losses=[["instruct"],["graspobj"],["graspgrp"],["placeobj"],["placegrptab"]]
         numItDone=-5
-        #modelInstructHist=self.modelInstruct.fit(x=InstrList[4][0], y={"instructOut": InstrList[4][1]}, batch_size=32,
+        #modelInstructHist=self.modelInstruct.fit(x=InstrList[4][0], y={"instructOut": InstrList[4][1]}, batch_size=self.batch_size,
         #                                        epochs=5, shuffle=True, verbose=0, validation_split=self.val_split,
         #                                        callbacks=[tbInstruction,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveInst, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=10)])
         #if saveToFile:
         #    self.modelInstruct.save(path_rai+'/logs/'+self.timestamp+'/modelInstruct_tmp2.h5')
 
         modelInstructHist=self.modelInstruct.fit(x={"goal":InstrList[4][0][:,0:1,:self.goallength],"state":InstrList[4][0][:,:,self.goallength:] },
-                                                y={"instructOut": InstrList[4][1]}, batch_size=32,
+                                                y={"instructOut": InstrList[4][1]}, batch_size=self.batch_size,
                                                 epochs=self.epochs_inst-numItDone-5, shuffle=True, verbose=0, validation_split=self.val_split,
                                                 callbacks=[tbInstruction,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveInst, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=20)])
 
@@ -805,7 +820,7 @@ class ClassifierMixed():
 
         print("GraspObj")
         modelGraspObjHist=self.modelGraspObj.fit(x={"goal": graspFinalIn[:,:self.goallength], "state1":graspFinalIn[:,self.goallength:]},
-                                        y={"graspObjectOut":graspFinalOut[:,0,self.listLog[1]]}, batch_size=32,
+                                        y={"graspObjectOut":graspFinalOut[:,0,self.listLog[1]]}, batch_size=self.batch_size,
                                         epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbGraspObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
         
@@ -817,7 +832,7 @@ class ClassifierMixed():
 
         print("GraspGrp")
         modelGraspGrpHist=self.modelGraspGrp.fit(x={"goal": graspFinalIn[:,:self.goallength], "state2":np.concatenate((graspFinalIn[:,self.goallength:], graspFinalOut[:,0,self.listLog[1]]), axis=1)},
-                                        y={"graspGripperOut":graspFinalOut[:,1,self.listLog[0]]}, batch_size=32,
+                                        y={"graspGripperOut":graspFinalOut[:,1,self.listLog[0]]}, batch_size=self.batch_size,
                                         epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbGraspGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
 
@@ -831,7 +846,7 @@ class ClassifierMixed():
         print("Training set size: "+str(placeFinalIn.shape[0]))
         print("PlaceObj")
         modelPlaceObjHist=self.modelPlaceObj.fit(x={"goal": placeFinalIn[:,:self.goallength], "state1": placeFinalIn[:,self.goallength:]},
-                                        y={"placeObjectOut": placeFinalOut[:,0,self.listLog[1]]},batch_size=32,
+                                        y={"placeObjectOut": placeFinalOut[:,0,self.listLog[1]]},batch_size=self.batch_size,
                                         epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbPlaceObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
         
@@ -843,7 +858,7 @@ class ClassifierMixed():
 
         print("PlaceGrpTab")
         modelPlaceGrpHist=self.modelPlaceGrpTab.fit(x={"goal": placeFinalIn[:,:self.goallength], "state2":np.concatenate((placeFinalIn[:,self.goallength:], placeFinalOut[:,0,self.listLog[1]]), axis=1)},
-                                        y={"placeGripperOut": placeFinalOut[:,1,self.listLog[0]],"placeTableOut": placeFinalOut[:,2,self.listLog[2]]},batch_size=32,
+                                        y={"placeGripperOut": placeFinalOut[:,1,self.listLog[0]],"placeTableOut": placeFinalOut[:,2,self.listLog[2]]},batch_size=self.batch_size,
                                         epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbPlaceGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
         
@@ -901,13 +916,15 @@ class ClassifierChainNew():
                 mode=1,
                 reg0=0.001,
                 path_rai=dir_file,
-                goallength=20
+                goallength=20,
+                batch_size=32
                 ):
         if mode in [3,4]:
             self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal3.h5', compile=False)
             print("goalEncoder loaded")
 
         self.goallength=goallength
+        self.batch_size=batch_size
 
         self.inputlength=inputlength
         self.numInstruct=numInstruct
@@ -952,6 +969,8 @@ class ClassifierChainNew():
         param.append("reg_l2: "+str(reg0))
         param.append("val_split: "+str(self.val_split))
         param.append("dataset_mode: "+str(self.mode))
+        param.append("batch_size: "+str(batch_size))
+        param.append("dropout: "+str(dropout[0])+"_"+str(dropout[1])+"_"+str(tabfactor))
         self.params.append(param)
         
         if timestamp=="":
@@ -1054,7 +1073,7 @@ class ClassifierChainNew():
         GrpNet = build_Sub(keras.layers.concatenate([inputs0, inputs2]), len(self.listLog[0]), "placeGripperScope", "placeGripperOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
 
         #inputs3 = keras.Input(shape=(self.inputlength+self.numLogicals,))
-        TabNet = build_Sub(keras.layers.concatenate([inputs0, inputs2]), len(self.listLog[2]), "placeTableScope", "placeTableOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0)
+        TabNet = build_Sub(keras.layers.concatenate([inputs0, inputs2]), len(self.listLog[2]), "placeTableScope", "placeTableOut", n_layers=self.hlayers_place, size=self.size_place, reg=self.reg0, factor=tabfactor)
 
 
         modelPlaceObj = keras.models.Model(inputs=[inputs00,inputs1], outputs=ObjNet, name="placeObjeNet")
@@ -1170,7 +1189,7 @@ class ClassifierChainNew():
         print("Train Instruct for "+str(self.epochs_inst)+" epochs (hidden layers "+str(self.hlayers_inst)+", size "+str(self.size_inst)+"). "+estimateT(self.epochs_inst))
         print("Training set size: "+str(dataInput.shape[0]))
         modelInstructHist=self.modelInstruct.fit(x={"goal": dataInput[:,:self.goallength], "state": dataInput[:,self.goallength:]},
-                                                y={"instructOut": dataInstruct}, batch_size=32, epochs=self.epochs_inst,
+                                                y={"instructOut": dataInstruct}, batch_size=self.batch_size, epochs=self.epochs_inst,
                                                 shuffle=True, verbose=0, validation_split=self.val_split,
                                                 callbacks=[tbInstruction,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveInst, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
 
@@ -1184,7 +1203,7 @@ class ClassifierChainNew():
         print("Training set size: "+str(graspFinalIn.shape[0]))
         print("GraspObj")
         modelGraspObjHist=self.modelGraspObj.fit(x={"goal": graspFinalIn[:,:self.goallength], "state1":graspFinalIn[:,self.goallength:]},
-                                        y={"graspObjectOut":graspFinalOut[:,0,self.listLog[1]]}, batch_size=32,
+                                        y={"graspObjectOut":graspFinalOut[:,0,self.listLog[1]]}, batch_size=self.batch_size,
                                         epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbGraspObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
         
@@ -1196,7 +1215,7 @@ class ClassifierChainNew():
         
         print("GraspGrp")
         modelGraspGrpHist=self.modelGraspGrp.fit(x={"goal": graspFinalIn[:,:self.goallength], "state2":np.concatenate((graspFinalIn[:,self.goallength:], graspFinalOut[:,0,self.listLog[1]]), axis=1)},
-                                        y={"graspGripperOut":graspFinalOut[:,1,self.listLog[0]]}, batch_size=32,
+                                        y={"graspGripperOut":graspFinalOut[:,1,self.listLog[0]]}, batch_size=self.batch_size,
                                         epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbGraspGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
 
@@ -1210,7 +1229,7 @@ class ClassifierChainNew():
         print("Training set size: "+str(placeFinalIn.shape[0]))
         print("PlaceObj")
         modelPlaceObjHist=self.modelPlaceObj.fit(x={"goal": placeFinalIn[:,:self.goallength], "state1": placeFinalIn[:,self.goallength:]},
-                                        y={"placeObjectOut": placeFinalOut[:,0,self.listLog[1]]},batch_size=32,
+                                        y={"placeObjectOut": placeFinalOut[:,0,self.listLog[1]]},batch_size=self.batch_size,
                                         epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbPlaceObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
         
@@ -1222,7 +1241,7 @@ class ClassifierChainNew():
         
         print("PlaceGrpTab")
         modelPlaceGrpHist=self.modelPlaceGrpTab.fit(x={"goal": placeFinalIn[:,:self.goallength], "state2":np.concatenate((placeFinalIn[:,self.goallength:], placeFinalOut[:,0,self.listLog[1]]), axis=1)},
-                                        y={"placeGripperOut": placeFinalOut[:,1,self.listLog[0]],"placeTableOut": placeFinalOut[:,2,self.listLog[2]]},batch_size=32,
+                                        y={"placeGripperOut": placeFinalOut[:,1,self.listLog[0]],"placeTableOut": placeFinalOut[:,2,self.listLog[2]]},batch_size=self.batch_size,
                                         epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
                                         callbacks=[tbPlaceGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
 

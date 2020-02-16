@@ -1,0 +1,13 @@
+----KOMO failed for goal 087-1: (on blue green) (on blue green) infeasible 0----
+		  NN: (grasp pr2R blue)[ 1 -1 ]
+		  NN: (place pr2R blue green)[ 1 -1 ]
+--------------------
+
+----KOMO failed for goal 087-1: (on blue green) (on blue green) infeasible 0----
+		  MP: (grasp pr2L blue)[ 1 -1 ]	with prob 0.937 instead of (grasp pr2R blue)
+		  NN: (place pr2L blue green)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal 087-1: (on blue green) (on blue green) infeasible 0----
+--------------------
+
