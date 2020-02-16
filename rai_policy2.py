@@ -123,7 +123,7 @@ class FeedForwardNN():
                 ):
 
         if mode in [3,4]:
-            self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal3.h5', compile=False)
+            self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal.h5', compile=False)
             print("goalEncoder loaded")
 
         self.goallength=goallength
@@ -450,7 +450,7 @@ class ClassifierMixed():
                 ):
         #print("0")
         if mode in [3,4]:
-            self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal3.h5', compile=False)
+            self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal.h5', compile=False)
             #self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/autoencoderGoal2.h5', compile=False)
             print("goalEncoder loaded")
             #print("1")
@@ -920,7 +920,7 @@ class ClassifierChainNew():
                 batch_size=32
                 ):
         if mode in [3,4]:
-            self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal3.h5', compile=False)
+            self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal.h5', compile=False)
             print("goalEncoder loaded")
 
         self.goallength=goallength

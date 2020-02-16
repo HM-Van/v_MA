@@ -1,3 +1,6 @@
 %% rai calc
 z.*
 z.*/
+dataset_new/2020*/*_feat.npy
+dataset_new/2020*/InputPrev.npy
+dataset_new/2020*/Input.npy

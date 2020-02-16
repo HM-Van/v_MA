@@ -726,7 +726,7 @@ class RaiWorld():
 
     
 
-    def evalPredictions(self, inputState, infeasible=[""], prevSke="", depth=0, tries=0):
+    def evalPredictions(self, inputState, infeasible=[""], maxdepth=[""], prevSke="", depth=0, tries=0):
         decisions=self.lgp.getDecisions()
 
         if self.NNmode=="mixed10":
@@ -824,15 +824,27 @@ class RaiWorld():
                 if decision in infeasible:
                     if tries<4:
                         #penalty=(1.1-0.2*depth*infeasible.count(decision))
-                        penalty=(1.1-0.3*depth*infeasible.count(decision))
+                        penalty=(1.1-0.2*depth*(infeasible+maxdepth).count(decision))
                     else:
-                        penalty=(1-0.3*depth*infeasible.count(decision)**2)
+                        penalty=(1-0.2*depth*(infeasible+maxdepth).count(decision)**2)
 
                     if penalty < 0.01:
                         penalty = 0.01
 
                     prob=prob*penalty
                     #print(decision, penalty, prob[0,0])
+                elif decision in maxdepth:
+                    if tries<4:
+                        penalty=(1.1-0.3*(depth+1)*(infeasible+maxdepth).count(decision))
+                    else:
+                        penalty=(1-0.2*(depth+1)*(infeasible+maxdepth).count(decision)**2)
+
+                    if penalty < 0.01:
+                        penalty = 0.01
+                    
+                    prob=prob*penalty
+                    #print(decision, penalty, prob[0,0])
+
 
                 #print(decision, prob[0,0])
                 

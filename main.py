@@ -106,7 +106,7 @@ def printResult(rai_net, skeleton):
 	print("")
 
 def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_tree=False, showFinal=True, waitTime=0, cheat_feas=False, feasThresh=0.4, planOnly=False,
-					infeasibleSkeletons=[], tries=0):
+					infeasibleSkeletons=[], depthSkeletons=[], tries=0):
 
 	skeleton=""
 	typeDecision=[]
@@ -142,24 +142,32 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 		tmpDes=[]
 		outEncoded = rai_net.processPrediction(inputState)
 		outDecoded = rai_net.decodeAction1(outEncoded)
-		if skeleton + " " +outDecoded in infeasibleSkeletons or (outDecoded in infeasibleSkeletons and depth==0) or cheat_tree or (outDecoded not in rai_net.lgp.getDecisions() and not rai_net.lgp.getDecisions() == [])or rai_net.checkPlaceSame(outDecoded):
+		if skeleton + " " +outDecoded in infeasibleSkeletons+depthSkeletons or (outDecoded in infeasibleSkeletons+depthSkeletons and depth==0) or cheat_tree or (outDecoded not in rai_net.lgp.getDecisions() and not rai_net.lgp.getDecisions() == [])or rai_net.checkPlaceSame(outDecoded):
 			old=outDecoded
 			infeasibleSke=[]
+			depthSke=[]
 			if depth==0:
 				for tmpske in infeasibleSkeletons:
 					tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
-					#print(tmpskeStep)
 					if len(tmpskeStep)==1:
 						infeasibleSke.append(tmpskeStep[-1])
-					#input(infeasibleSke)
+				for tmpske in depthSkeletons:
+					tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
+					if len(tmpskeStep)==1:
+						depthSke.append(tmpskeStep[-1])
+
 			else:
 				for tmpske in infeasibleSkeletons:
 					tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
 					if skeleton == ' '.join(tmpskeStep[:-1]):
 						infeasibleSke.append(tmpskeStep[-1])
+				for tmpske in depthSkeletons:
+					tmpskeStep = rai_world.splitStringStep(tmpske, list_old=[])
+					if skeleton == ' '.join(tmpskeStep[:-1]):
+						depthSke.append(tmpskeStep[-1])
 
 
-			outDecoded, prob = rai_net.evalPredictions(inputState, infeasible=infeasibleSke, prevSke=outDecoded, depth=depth+1, tries=tries)
+			outDecoded, prob = rai_net.evalPredictions(inputState, infeasible=infeasibleSke, maxdepth=depthSke, prevSke=outDecoded, depth=depth+1, tries=tries)
 			print("New Decision: ", outDecoded, "\twith probability", prob)
 			print("\tInstead of: ".expandtabs(4), old)
 			#tmpDes=[]
@@ -485,13 +493,17 @@ def main():
 						goal=minimal_experiment.Sets[i]
 
 						infeasibleSkeletons=[]
+						depthSkeletons=[]
 						rai.redefine(goal, nenv=nenv)
 
 						for tries in range(maxTries):
 							rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
 							print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
-							skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal, waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, tries=tries)
-							infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+							skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal, waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, tries=tries)
+							if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
+								depthSkeletons= depthSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+							else:
+								infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 							writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string=strgoal, planOnly=planOnly, feasible=feasible, tries=tries)
 
 							if feasible or skeleton=="":
@@ -559,14 +571,18 @@ def main():
 
 					goal= minimal_experiment.test[i]+" "+minimal_experiment.test[i]
 					infeasibleSkeletons=[]
+					depthSkeletons=[]
 					rai.redefine(goal, nenv=nenv)
 
 					for tries in range(maxTries):
 						rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
 						print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 
-						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, tries=tries)
-						infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons ,tries=tries)
+						if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
+							depthSkeletons= depthSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+						else:
+							infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 						writeResults(rai,skeleton,typeDecision,successmsg,path, goalnumber_string=strgoal, planOnly=planOnly, feasible=feasible)
 						if feasible:
 							break
@@ -610,11 +626,17 @@ def main():
 		else:
 			print("\nPredict: "+goalString)
 			path=createResults(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, start=start0, planOnly=planOnly, test=True)
-			
+			infeasibleSkeletons=[]
+			depthSkeletons=[]
 			for tries in range(maxTries):
 				rai.resetFit(cheatGoalState=cheat_goalstate, goal=goalString)
-				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_goalstate=cheat_goalstate, planOnly=planOnly)
-				infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_goalstate=cheat_goalstate, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeleton)
+
+				if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
+					depthSkeletons= depthSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+				else:
+					infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
+
 				writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string="", planOnly=planOnly, feasible=feasible, tries=0, test=True)
 				if feasible:
 					break
