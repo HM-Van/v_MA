@@ -106,7 +106,7 @@ def printResult(rai_net, skeleton):
 	print("")
 
 def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_tree=False, showFinal=True, waitTime=0, cheat_feas=False, feasThresh=0.4, planOnly=False,
-					infeasibleSkeletons=[], depthSkeletons=[], tries=0):
+					infeasibleSkeletons=[], depthSkeletons=[], tries=0, verbose=True):
 
 	skeleton=""
 	typeDecision=[]
@@ -168,15 +168,17 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 
 			outDecoded, prob = rai_net.evalPredictions(inputState, infeasible=infeasibleSke, maxdepth=depthSke, prevSke=outDecoded, depth=depth+1, tries=tries)
-			print("New Decision: ", outDecoded, "\twith probability", prob)
-			print("\tInstead of: ".expandtabs(4), old)
+			if verbose:
+				print("MP Decision: ", outDecoded, "\twith probability", prob)
+				print("\tInstead of: ".expandtabs(4), old)
 			#tmpDes=[]
 			tmpDes.append("MP")
 			tmpDes.append(old)
 			tmpDes.append(prob)
 			#typeDecision.append(tmpDes)
 		else:
-			print("NN Decision", outDecoded)
+			if verbose:
+				print("NN Decision", outDecoded)
 			#tmpDes=[]
 			tmpDes.append("NN")
 			#typeDecision.append(tmpDes)
@@ -421,7 +423,7 @@ def main():
 
 	obg = [[15], [10,20,30,39,48,53,58,63,68]]
 	or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
-	og2 = [[8], [2,12,22,32,41,54,55,56,57,58]]
+	og2 = [[8], [3,13,23,33,42,59,60,61,62,63]]
 
 	#-------------------------------------------------------------------------------------------------------------------------	
 	print("Setting up basic Config and FOL for env: "+str(nenv))
@@ -486,7 +488,7 @@ def main():
 						else:
 							strgoal=str(numGoal).zfill(3)+"-2"
 
-						if exclude and not numGoal in or1[1]:
+						if exclude and not numGoal in or1[1]+og2[1]:
 							#print("skip "+str(numGoal))
 							continue
 
@@ -563,7 +565,7 @@ def main():
 
 				for i in range(int(start),len(minimal_experiment.test)):
 					numGoal+=1
-					if exclude and not i+1 in or1[0]:
+					if exclude and not i+1 in or1[0]+og2[0]:
 						#print("skip "+str(numGoal))
 						continue
 
@@ -628,9 +630,10 @@ def main():
 			path=createResults(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, start=start0, planOnly=planOnly, test=True)
 			infeasibleSkeletons=[]
 			depthSkeletons=[]
+			starttime=time.time()
 			for tries in range(maxTries):
 				rai.resetFit(cheatGoalState=cheat_goalstate, goal=goalString)
-				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_goalstate=cheat_goalstate, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeleton)
+				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_goalstate=cheat_goalstate, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, verbose=False, showFinal=showFinal)
 
 				if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
 					depthSkeletons= depthSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
@@ -640,6 +643,8 @@ def main():
 				writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string="", planOnly=planOnly, feasible=feasible, tries=0, test=True)
 				if feasible:
 					break
+			endtime=time.time()
+			print("time: "+str(endtime-starttime))
 
 			printResult(rai, skeleton)
 			if not feasible:

@@ -828,19 +828,21 @@ class RaiWorld():
                     else:
                         penalty=(1-0.2*depth*(infeasible+maxdepth).count(decision)**2)
 
-                    if penalty < 0.01:
-                        penalty = 0.01
+                    if penalty < 0.1:
+                        penalty = 0.1/(depth*(infeasible+maxdepth).count(decision))
 
                     prob=prob*penalty
                     #print(decision, penalty, prob[0,0])
                 elif decision in maxdepth:
                     if tries<4:
                         penalty=(1.1-0.3*(depth+1)*(infeasible+maxdepth).count(decision))
+                        #penalty=(1.0-0.2*(depth+1)*(infeasible+maxdepth).count(decision))
+
                     else:
                         penalty=(1-0.2*(depth+1)*(infeasible+maxdepth).count(decision)**2)
 
-                    if penalty < 0.01:
-                        penalty = 0.01
+                    if penalty < 0.1:
+                        penalty = 0.1/(depth*(infeasible+maxdepth).count(decision))
                     
                     prob=prob*penalty
                     #print(decision, penalty, prob[0,0])

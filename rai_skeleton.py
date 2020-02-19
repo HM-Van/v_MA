@@ -52,7 +52,7 @@ def main():
 	lgp.addTerminalRule(goalString)
 	
 	V=K.view()
-	input("test")
+	#input("test")
 
 	lgp.run(0)
 	input("\nwait\n")

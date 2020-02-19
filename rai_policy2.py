@@ -61,7 +61,7 @@ def build_LSTM(inputs,
 
 class printEpoch(tf.keras.callbacks.Callback): 
 	def on_epoch_end(self, epoch, logs={}):
-		if (epoch%10)==0:
+		if (epoch%5)==0:
 			now=datetime.datetime.now()
 			timestamp=str(now.year)+"."+str(now.month).zfill(2)+"."+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+":"+str(now.second).zfill(2)
 			print("Epoch "+str(epoch).rjust(5)+" ended on "+timestamp+", loss: "+"{:.6f}".format(logs.get('loss'))+", val_loss: "+"{:.6f}".format(logs.get('val_loss')))
@@ -415,7 +415,14 @@ class ClassifierMixed():
         self.modelGraspGrp=tf.keras.models.load_model(path_rai+'/logs/'+model_dir+'modelGraspGrp.h5')
 
         self.modelPlaceObj=tf.keras.models.load_model(path_rai+'/logs/'+model_dir+'modelPlaceObj.h5')
-        self.modelPlaceGrpTab=tf.keras.models.load_model(path_rai+'/logs/'+model_dir+'modelPlaceGrpTab.h5')
+
+
+        id="_13_d2_10012"
+
+        if os.path.isfile(path_rai+'/logs/'+model_dir+'modelPlaceGrpTab'+id+'.h5'):
+            self.modelPlaceGrpTab=tf.keras.models.load_model(path_rai+'/logs/'+model_dir+'modelPlaceGrpTab'+id+'.h5')
+        else:
+            self.modelPlaceGrpTab=tf.keras.models.load_model(path_rai+'/logs/'+model_dir+'modelPlaceGrpTab.h5')
         #self.modelPlaceTab=tf.keras.models.load_model(path_rai+'/logs/'+model_dir+'modelPlaceTab.h5')
 
 
@@ -520,6 +527,8 @@ class ClassifierMixed():
 
         else:
             self.timestamp=timestamp
+
+        #self.timestamp="20200217-175700_mixed1"
 
         self.modelInstruct = self.build_Instruct()
         self.modelGraspObj, self.modelGraspGrp = self.build_Grasp()
@@ -696,7 +705,7 @@ class ClassifierMixed():
             random.shuffle(idxInstr[2])
             random.shuffle(idxInstr[3])
         else:
-            tmpidx2=idxInstr[2][int(len(idxInstr[2])/2):]
+            tmpidx2=idxInstr[2][int(len(idxInstr[2])*0.3):]
             tmp1In=np.concatenate((dataInputPrev[tmpidx2, 0:1,:],dataInputPrev[tmpidx2, 0:3,:]),axis=1)
             tmp1Out=dataInstruct[tmpidx2,:]
 
@@ -784,7 +793,9 @@ class ClassifierMixed():
             if not(os.path.exists(path_rai+'/logs/'+self.timestamp)):
                 os.makedirs(path_rai+'/logs/'+self.timestamp)
 
-            with open(path_rai+'/logs/'+self.timestamp+'/params.txt', 'w') as f:
+            #with open(path_rai+'/logs/'+self.timestamp+'/params.txt', 'w') as f:
+            with open(path_rai+'/logs/'+self.timestamp+'/params.txt', 'a+') as f:
+                f.write("\n")
                 for item in self.params:
                     for i in item:
                         f.write(i+"\t".expandtabs(4))
@@ -804,63 +815,64 @@ class ClassifierMixed():
         #                                        callbacks=[tbInstruction,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveInst, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=10)])
         #if saveToFile:
         #    self.modelInstruct.save(path_rai+'/logs/'+self.timestamp+'/modelInstruct_tmp2.h5')
+        if not self.timestamp=="20200217-175700_mixed1":
+            modelInstructHist=self.modelInstruct.fit(x={"goal":InstrList[4][0][:,0:1,:self.goallength],"state":InstrList[4][0][:,:,self.goallength:] },
+                                                    y={"instructOut": InstrList[4][1]}, batch_size=self.batch_size,
+                                                    epochs=self.epochs_inst-numItDone-5, shuffle=True, verbose=0, validation_split=self.val_split,
+                                                    callbacks=[tbInstruction,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveInst, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=20)])
 
-        modelInstructHist=self.modelInstruct.fit(x={"goal":InstrList[4][0][:,0:1,:self.goallength],"state":InstrList[4][0][:,:,self.goallength:] },
-                                                y={"instructOut": InstrList[4][1]}, batch_size=self.batch_size,
-                                                epochs=self.epochs_inst-numItDone-5, shuffle=True, verbose=0, validation_split=self.val_split,
-                                                callbacks=[tbInstruction,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveInst, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=20)])
+            final_losses[0].append(modelInstructHist.history["loss"][-1])
+            final_losses[0].append(modelInstructHist.history["val_loss"][-1])
+            if saveToFile:
+                self.modelInstruct.save(path_rai+'/logs/'+self.timestamp+'/modelInstruct.h5')
+            
+            print("Train Grasp for "+str(self.epochs_grasp)+" epochs (hidden layers "+str(self.hlayers_grasp)+", size "+str(self.size_grasp)+"). "+estimateT(self.epochs_grasp, num=2))
+            print("Training set size: "+str(graspFinalIn.shape[0]))
 
-        final_losses[0].append(modelInstructHist.history["loss"][-1])
-        final_losses[0].append(modelInstructHist.history["val_loss"][-1])
-        if saveToFile:
-            self.modelInstruct.save(path_rai+'/logs/'+self.timestamp+'/modelInstruct.h5')
-        
-        print("Train Grasp for "+str(self.epochs_grasp)+" epochs (hidden layers "+str(self.hlayers_grasp)+", size "+str(self.size_grasp)+"). "+estimateT(self.epochs_grasp, num=2))
-        print("Training set size: "+str(graspFinalIn.shape[0]))
+            print("GraspObj")
+            modelGraspObjHist=self.modelGraspObj.fit(x={"goal": graspFinalIn[:,:self.goallength], "state1":graspFinalIn[:,self.goallength:]},
+                                            y={"graspObjectOut":graspFinalOut[:,0,self.listLog[1]]}, batch_size=self.batch_size,
+                                            epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
+                                            callbacks=[tbGraspObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
+            
+            final_losses[1].append(modelGraspObjHist.history["loss"][-1])
+            final_losses[1].append(modelGraspObjHist.history["val_loss"][-1])
 
-        print("GraspObj")
-        modelGraspObjHist=self.modelGraspObj.fit(x={"goal": graspFinalIn[:,:self.goallength], "state1":graspFinalIn[:,self.goallength:]},
-                                        y={"graspObjectOut":graspFinalOut[:,0,self.listLog[1]]}, batch_size=self.batch_size,
-                                        epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
-                                        callbacks=[tbGraspObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
-        
-        final_losses[1].append(modelGraspObjHist.history["loss"][-1])
-        final_losses[1].append(modelGraspObjHist.history["val_loss"][-1])
+            if saveToFile:
+                self.modelGraspObj.save(path_rai+'/logs/'+self.timestamp+'/modelGraspObj.h5')
 
-        if saveToFile:
-            self.modelGraspObj.save(path_rai+'/logs/'+self.timestamp+'/modelGraspObj.h5')
+            print("GraspGrp")
+            modelGraspGrpHist=self.modelGraspGrp.fit(x={"goal": graspFinalIn[:,:self.goallength], "state2":np.concatenate((graspFinalIn[:,self.goallength:], graspFinalOut[:,0,self.listLog[1]]), axis=1)},
+                                            y={"graspGripperOut":graspFinalOut[:,1,self.listLog[0]]}, batch_size=self.batch_size,
+                                            epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
+                                            callbacks=[tbGraspGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
 
-        print("GraspGrp")
-        modelGraspGrpHist=self.modelGraspGrp.fit(x={"goal": graspFinalIn[:,:self.goallength], "state2":np.concatenate((graspFinalIn[:,self.goallength:], graspFinalOut[:,0,self.listLog[1]]), axis=1)},
-                                        y={"graspGripperOut":graspFinalOut[:,1,self.listLog[0]]}, batch_size=self.batch_size,
-                                        epochs=self.epochs_grasp, shuffle=True, verbose=0, validation_split=self.val_split,
-                                        callbacks=[tbGraspGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),savegraspGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
+            final_losses[2].append(modelGraspGrpHist.history["loss"][-1])
+            final_losses[2].append(modelGraspGrpHist.history["val_loss"][-1])
 
-        final_losses[2].append(modelGraspGrpHist.history["loss"][-1])
-        final_losses[2].append(modelGraspGrpHist.history["val_loss"][-1])
+            if saveToFile:
+                self.modelGraspGrp.save(path_rai+'/logs/'+self.timestamp+'/modelGraspGrp.h5')
 
-        if saveToFile:
-            self.modelGraspGrp.save(path_rai+'/logs/'+self.timestamp+'/modelGraspGrp.h5')
+            print("Train Place for "+str(self.epochs_place)+" epochs (hidden layers "+str(self.hlayers_place)+", size "+str(self.size_place)+"). "+estimateT(self.epochs_place, num=3))      
+            print("Training set size: "+str(placeFinalIn.shape[0]))
+            print("PlaceObj")
+            modelPlaceObjHist=self.modelPlaceObj.fit(x={"goal": placeFinalIn[:,:self.goallength], "state1": placeFinalIn[:,self.goallength:]},
+                                            y={"placeObjectOut": placeFinalOut[:,0,self.listLog[1]]},batch_size=self.batch_size,
+                                            epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
+                                            callbacks=[tbPlaceObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
+            
+            final_losses[3].append(modelPlaceObjHist.history["loss"][-1])
+            final_losses[3].append(modelPlaceObjHist.history["val_loss"][-1])
 
-        print("Train Place for "+str(self.epochs_place)+" epochs (hidden layers "+str(self.hlayers_place)+", size "+str(self.size_place)+"). "+estimateT(self.epochs_place, num=3))      
-        print("Training set size: "+str(placeFinalIn.shape[0]))
-        print("PlaceObj")
-        modelPlaceObjHist=self.modelPlaceObj.fit(x={"goal": placeFinalIn[:,:self.goallength], "state1": placeFinalIn[:,self.goallength:]},
-                                        y={"placeObjectOut": placeFinalOut[:,0,self.listLog[1]]},batch_size=self.batch_size,
-                                        epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
-                                        callbacks=[tbPlaceObj,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceObj, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
-        
-        final_losses[3].append(modelPlaceObjHist.history["loss"][-1])
-        final_losses[3].append(modelPlaceObjHist.history["val_loss"][-1])
-
-        if saveToFile:
-            self.modelPlaceObj.save(path_rai+'/logs/'+self.timestamp+'/modelPlaceObj.h5')
-
+            if saveToFile:
+                self.modelPlaceObj.save(path_rai+'/logs/'+self.timestamp+'/modelPlaceObj.h5')
+        else:
+            print("Training set size: "+str(placeFinalIn.shape[0]))
         print("PlaceGrpTab")
         modelPlaceGrpHist=self.modelPlaceGrpTab.fit(x={"goal": placeFinalIn[:,:self.goallength], "state2":np.concatenate((placeFinalIn[:,self.goallength:], placeFinalOut[:,0,self.listLog[1]]), axis=1)},
                                         y={"placeGripperOut": placeFinalOut[:,1,self.listLog[0]],"placeTableOut": placeFinalOut[:,2,self.listLog[2]]},batch_size=self.batch_size,
                                         epochs=self.epochs_place, shuffle=True, verbose=0, validation_split=self.val_split,
-                                        callbacks=[tbPlaceGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=30)])
+                                        callbacks=[tbPlaceGrp,keras.callbacks.LearningRateScheduler(self.step_decay), printEpoch(),saveplaceGrp, keras.callbacks.TerminateOnNaN(), EarlyStopping(self.val_split, patience=20)])
         
         final_losses[4].append(modelPlaceGrpHist.history["loss"][-1])
         final_losses[4].append(modelPlaceGrpHist.history["val_loss"][-1])
@@ -869,13 +881,14 @@ class ClassifierMixed():
             self.modelPlaceGrpTab.save(path_rai+'/logs/'+self.timestamp+'/modelPlaceGrpTab.h5')
 
             with open(path_rai+'/logs/'+self.timestamp+'/SummaryLoss.txt', 'a+') as f:
-                for floss in final_losses:
+                for floss in final_losses[4:]:
                     f.write(floss[0]+": loss "+str(floss[1])+" | val_loss "+str(floss[2])+"\n")
             
             shutil.rmtree(path_rai+'/logs/'+self.timestamp+'/tmp', ignore_errors=True)
 
 
-        return modelInstructHist, modelGraspObjHist, modelGraspGrpHist, modelPlaceObjHist, modelPlaceGrpHist
+        #return modelInstructHist, modelGraspObjHist, modelGraspGrpHist, modelPlaceObjHist, modelPlaceGrpHist
+        return modelPlaceGrpHist, modelPlaceGrpHist, modelPlaceGrpHist, modelPlaceGrpHist, modelPlaceGrpHist
 
 #---------------------------------------------
 

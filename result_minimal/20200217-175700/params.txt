@@ -1,0 +1,524 @@
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.3    
+Instruct    hlayers_inst: 0_1    size_inst: 96    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 96    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 96    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 40    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 45    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 50    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 55    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 65    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 70    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 75    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 80    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 85    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 105    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 64    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 115    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 120    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 125    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 125    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 130    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 135    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.3    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 140    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.3    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 150    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 160    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 170    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 180    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 190    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 200    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 40    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 50    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.3    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.4    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.5    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.3    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.4    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.0    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.0    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.0    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 80    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.3    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 85    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.15    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.15    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 85    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.15    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.15    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 80    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 85    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.2    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 105    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 85    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 105    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 95    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 85    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 1    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 1    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 1    size_place: 110    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 105    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 1    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 1    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 70    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 80    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 2    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 70    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 80    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 3    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 60    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 70    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 80    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 90    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 100    epochs_place: 200    
+
+learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    clipnorm: 100.0    reg_l2: 0.0001_1e-05    val_split: 0.2    dataset_mode: 1    num_batch_it: 2    batch_size: 128    dropout: 0.0_0.3_0.1    
+Instruct    hlayers_inst: 0_1    size_inst: 70    epochs_inst: 200    
+Grasp    hlayers_grasp: 3    size_grasp: 70    epochs_grasp: 200    
+Place    hlayers_place: 4    size_place: 110    epochs_place: 200    

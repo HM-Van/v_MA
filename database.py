@@ -441,12 +441,13 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
 
     obg = [[15], [10,20,30,39,48,53,58,63,68]]
     or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
-    og2 = [[8], [2,12,22,32,41,54,55,56,57,58]]
+    og2 = [[8], [3,13,23,33,42,59,60,61,62,63]]
     
     if exclude:
         arrSets=list(range(1,numSets+1))
         envSets=[5,7,9,11,15,17,21,23,26,30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
-                6,14,27,28,44,49,60,71,77,84,95]
+                6,14,27,28,44,49,60,71,77,84,95,
+                34,43,54,63,72,81,90,96, 2, 4, 13, 25, 1, 18, 20]
 
     elif feasible:
         arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71,4,51,54,1]
@@ -474,11 +475,21 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 6,14,27,28,44,49,60,71,77,84,95]
     else:
         #arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,54,31,16,56,71,21,45,34,49,4,17,22,26,38,29,10,68,62,27,41,9,70]
-        arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,54,31,16,56,71,21,45,34,49,4,37,22,26,38,29,10,68,62,27,15,9,60]
+        #arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,54,31,16,56,71,21,45,34,49,4,37,22,26,38,29,10,68,62,27,15,9,60]
         #envSets=list(range(1,numEnv+1)) + EnvAppend
-        envSets=list(range(1,18+1))+[30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
-                27,28,44,49,60,71,77,84,95,
-                34,96]
+        #envSets=list(range(1,18+1))+[30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
+        #        27,28,44,49,60,71,77,84,95,
+        #        34,96]
+        
+        #45
+        #arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,54,31,16,56,71,21,45,34,49,4,17,22,26,38,29,10,68,62,27,41,9,70]#,15,37]
+        #40
+        #arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,31,16,56,71,21,45,49,4,22,38,29,10,68,62,27,9,70]#,17, 41, 54, 34, 26]
+        #36
+        arrSets=[41,59,36,11,13,57,19,20,35,65,28,23,42,25,66,53,7,39,44,24,31,16,56,71,21,45,49,4,22,38,29,10,68,9,70,62]#,17, 41, 54, 34, 26, 18, 27, 30, 42, 40, 46] +41
+        envSets=[5,7,9,11,15,21,23,26,30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
+                6,14,27,28,44,49,60,71,77,84,95,
+                34,43,54,63,72,81,90,96]
 
     now=datetime.datetime.now()
     timestamp=str(now.year)+str(now.month).zfill(2)+str(now.day).zfill(2)+"-"+str(now.hour).zfill(2)+str(now.minute).zfill(2)+str(now.second).zfill(2)
@@ -594,7 +605,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                     elif expert.getEnvInfo(nenv,"b")==2 and expert.getEnvInfo(nenv,"g")==1:
                         nset=60
 
-            if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input.npy') or (exclude and nset in or1[1]):
+            if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input.npy') or (exclude and nset in or1[1]+og2[1]):
                 print("skip    env "+str(nenv)+" set "+str(nset).zfill(3))
                 listNoSet.append(str(nset).zfill(3))
                 continue
@@ -674,7 +685,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 set1=range(1,16)
             for nset in set1:
 
-                if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input.npy') or (exclude and nset in or1[0]):
+                if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input.npy') or (exclude and nset in or1[0]+og2[0]):
                     print("skip    env "+str(nenv)+" set "+str(nset).zfill(2))
                     listNoSet.append(str(nset).zfill(2))
                     continue
@@ -858,7 +869,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     with open(path_dB+'/'+timestamp+appendName+'/Summary.txt', 'w') as f:
         f.write("Dataset with "+str(old1.shape[0])+tmpstr+" samples\n\n")
         f.write("Environments:\n\t")
-        for i in list(range(1,numEnv+1)) + EnvAppend:
+        for i in envSets:
             f.write(str(i)+"\t")
         f.write("\n\nSets:\n\t")
         for i in arrSets:
