@@ -1,0 +1,44 @@
+env 005:   
+env 007:   
+env 009:   
+env 011:   
+env 015:   
+env 017:   
+env 021:   027  
+env 023:   027  
+env 026:   
+env 030:   
+env 031:   
+env 036:   
+env 037:   
+env 041:   
+env 045:   
+env 047:   
+env 052:   
+env 053:   
+env 055:   
+env 061:   
+env 062:   
+env 067:   027  
+env 069:   
+env 070:   
+env 074:   027  
+env 076:   
+env 079:   
+env 085:   
+env 086:   
+env 087:   
+env 092:   
+env 098:   
+env 099:   
+env 006:   
+env 014:   
+env 027:   
+env 028:   
+env 044:   
+env 049:   
+env 060:   
+env 071:   027  
+env 077:   027  
+env 084:   
+env 095:   

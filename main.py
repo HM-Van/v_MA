@@ -169,7 +169,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 			outDecoded, prob = rai_net.evalPredictions(inputState, infeasible=infeasibleSke, maxdepth=depthSke, prevSke=outDecoded, depth=depth+1, tries=tries)
 			if verbose:
-				print("MP Decision: ", outDecoded, "\twith probability", prob)
+				print("MP Decision", outDecoded, "\twith probability", prob)
 				print("\tInstead of: ".expandtabs(4), old)
 			#tmpDes=[]
 			tmpDes.append("MP")
@@ -266,10 +266,12 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 
 	if len(rai_net.preprocessGoals())>0:
-		print("--!! Goal not reached !!--")
+		if verbose:
+			print("--!! Goal not reached !!--")
 		feastmp=False
 	else:
-		print("\nSkeleton found. Show path and node info")
+		if verbose:
+			print("\nSkeleton found. Show path and node info")
 		successmsg="Successfully reached goal"
 		if planOnly:
 			try:
@@ -288,7 +290,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 	#rai_net.K.setFrameState(X0, verb=0)
 	rai_net.K.copy(K0)
 
-	if not feastmp:
+	if not feastmp and verbose:
 		print("--!! Infeasible Skeleton !!--")
 
 	return skeleton, typeDecision, successmsg, feastmp
@@ -421,7 +423,7 @@ def main():
 	if not dataMode in [1,2,3,4]:
 		planOnly=False
 
-	obg = [[15], [10,20,30,39,48,53,58,63,68]]
+	obg = [[],[]]#[[15], [10,20,30,39,48,53,58,63,68]]
 	or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
 	og2 = [[8], [3,13,23,33,42,59,60,61,62,63]]
 
@@ -488,7 +490,7 @@ def main():
 						else:
 							strgoal=str(numGoal).zfill(3)+"-2"
 
-						if exclude and not numGoal in or1[1]+og2[1]:
+						if exclude and not numGoal in or1[1]+og2[1]+obg[1]:
 							#print("skip "+str(numGoal))
 							continue
 
@@ -565,7 +567,7 @@ def main():
 
 				for i in range(int(start),len(minimal_experiment.test)):
 					numGoal+=1
-					if exclude and not i+1 in or1[0]+og2[0]:
+					if exclude and not i+1 in or1[0]+og2[0]+obg[0]:
 						#print("skip "+str(numGoal))
 						continue
 

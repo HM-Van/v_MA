@@ -441,7 +441,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
 
     obg = [[15], [10,20,30,39,48,53,58,63,68]]
     or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
-    og2 = [[8], [3,13,23,33,42,59,60,61,62,63]]
+    og2 = [[],[]]#[[8], [3,13,23,33,42,59,60,61,62,63]]
     
     if exclude:
         arrSets=list(range(1,numSets+1))
@@ -456,7 +456,8 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         arrSets=arrSets+arrSets0[:15]
         envSets=[17,18,19,25,28,40,46,56,64,76,84,93]
     elif mixData:
-        arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71,4,51,54,1]
+        arrSets=[6,7,21,27,32,62,68]#45 #67, 52 #71, 20 #12 61
+        #arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71]#,4,51,54,1]
                 #13,55,28]
         #arrSets=[6,7,12,20,21,27,32,45,52,61,62,67,68,71]#,7,21,52,6]
         if rand2>0 and not rand2==len(arrSets):
@@ -605,7 +606,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                     elif expert.getEnvInfo(nenv,"b")==2 and expert.getEnvInfo(nenv,"g")==1:
                         nset=60
 
-            if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input.npy') or (exclude and nset in or1[1]+og2[1]):
+            if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input.npy') or (exclude and nset in or1[1]+og2[1]+obg[1]):
                 print("skip    env "+str(nenv)+" set "+str(nset).zfill(3))
                 listNoSet.append(str(nset).zfill(3))
                 continue
@@ -685,7 +686,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 set1=range(1,16)
             for nset in set1:
 
-                if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input.npy') or (exclude and nset in or1[0]+og2[0]):
+                if not os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input.npy') or (exclude and nset in or1[0]+og2[0]+obg[0]):
                     print("skip    env "+str(nenv)+" set "+str(nset).zfill(2))
                     listNoSet.append(str(nset).zfill(2))
                     continue

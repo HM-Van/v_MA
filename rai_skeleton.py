@@ -3,6 +3,7 @@ import rai_world
 
 import sys
 import os
+import time
 
 dir_file=os.path.abspath(os.path.dirname(__file__))
 sys.path.append(dir_file+'/../ry/')
@@ -43,6 +44,9 @@ def main():
 
 	nenv=109
 	goalString="(on table2 red) (on red blue)"
+	nenv=29
+	goalString="(on green blue) (on table1 red)"
+
 	K=Config()
 	K.addFile(path_rai+'/rai-robotModels/pr2/pr2.g')
 	#K.addFile(path_rai+'/test/Test_setup_'+str(nenv).zfill(3)+'.g')
@@ -54,7 +58,13 @@ def main():
 	V=K.view()
 	#input("test")
 
-	lgp.run(0)
+	starttime=time.time()
+	try:
+		lgp.run(0)
+	except:
+		endtime=time.time()
+		print("crash after: "+str(endtime-starttime))
+
 	input("\nwait\n")
 
 	#for command in CommandList:
