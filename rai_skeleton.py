@@ -42,10 +42,10 @@ def main():
 	#goalString="(on tray red)"# (on tray green) (on tray blue)"# (on tray cyan)"
 	#nenv=105
 
-	nenv=109
-	goalString="(on table2 red) (on red blue)"
-	nenv=29
-	goalString="(on green blue) (on table1 red)"
+	#nenv=109
+	#goalString="(on table2 red) (on red blue)"
+	#nenv=29
+	#goalString="(on green blue) (on table1 red)"
 
 	K=Config()
 	K.addFile(path_rai+'/rai-robotModels/pr2/pr2.g')
@@ -56,7 +56,7 @@ def main():
 	lgp.addTerminalRule(goalString)
 	
 	V=K.view()
-	#input("test")
+	input("test")
 
 	starttime=time.time()
 	try:

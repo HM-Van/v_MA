@@ -1,0 +1,62 @@
+
+
+-----Result for env 106-----
+
+----Maximum depth of 10 reached for goal : (on green blue) (on green blue) infeasible 0----
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.791 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.69 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.645 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.688 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.646 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.684 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 0 -1 ]	with prob 0.648 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.69 instead of (place pr2L green blue)
+		  MP: (grasp pr2R green)[ 1 -1 ]	with prob 0.65 instead of (place pr2L green blue)
+		  MP: (place pr2R green table2)[ 0 -1 ]	with prob 0.692 instead of (place pr2R green blue)
+--------------------
+
+----Maximum depth of 10 reached for goal : (on green blue) (on green blue) infeasible 0----
+		  MP: (grasp pr2R green)[ 1 -1 ]	with prob 0.788 instead of (place pr2L green blue)
+		  MP: (place pr2R green table2)[ 1 -1 ]	with prob 0.695 instead of (place pr2R green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.645 instead of (place pr2R green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.691 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.645 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.691 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.645 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.691 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.646 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.688 instead of (place pr2L green blue)
+--------------------
+
+----Maximum depth of 10 reached for goal : (on green blue) (on green blue) infeasible 0----
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.395 instead of (place pr2L green blue)
+		  MP: (place pr2L green table1)[ 1 -1 ]	with prob 0.69 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.644 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.692 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.644 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.684 instead of (place pr2L green blue)
+		  MP: (grasp pr2R green)[ 1 -1 ]	with prob 0.647 instead of (place pr2L green blue)
+		  MP: (place pr2R green table2)[ 1 -1 ]	with prob 0.694 instead of (place pr2R green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.649 instead of (place pr2R green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.69 instead of (place pr2L green blue)
+--------------------
+
+----Maximum depth of 10 reached for goal : (on green blue) (on green blue) infeasible 0----
+		  MP: (grasp pr2R green)[ 1 -1 ]	with prob 0.394 instead of (place pr2L green blue)
+		  MP: (place pr2R green table1)[ 1 -1 ]	with prob 0.695 instead of (place pr2R green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.648 instead of (place pr2R green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.69 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.645 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.688 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.648 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.689 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.646 instead of (place pr2L green blue)
+		  MP: (place pr2L green table2)[ 1 -1 ]	with prob 0.689 instead of (place pr2L green blue)
+--------------------
+
+----Successfully reached goal : (on green blue) (on green blue) feasible 1----
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.156 instead of (place pr2L green blue)
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.682 instead of (place pr2R green blue)
+		  NN: (place pr2L green blue)[ 1 -1 ]
+--------------------
+

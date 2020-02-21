@@ -124,7 +124,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 	if cheat_goalstate or rai_net.numGoal_orig>2:
 			goals_tmp, unfullfilled, change=rai_net.preprocessGoalState(cheatGoalState=cheat_goalstate)
 			inputState=rai_net.encodeInput(envState, goalState=goals_tmp)
-			if change and rai_net.setup=="minimal":
+			if change and rai_net.setup=="minimal" and verbose:
 				print("\tGoal changed to "+unfullfilled[0])
 	else:
 		
@@ -189,8 +189,10 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 			skeleton = skeleton + " " + outDecoded
 		depth+=1
 
+
 		rai_net.lgp.walkToRoot()
 		rai_net.lgp.walkToNode(skeleton,0)
+
 
 		try:
 			komo = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False)
@@ -253,7 +255,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 		if cheat_goalstate or rai_net.numGoal_orig>2:
 			goals_tmp, unfullfilled, change=rai_net.preprocessGoalState(cheatGoalState=cheat_goalstate)
 			inputState=rai_net.encodeInput(envState, goalState=goals_tmp)
-			if change and rai_net.setup=="minimal":
+			if change and rai_net.setup=="minimal" and verbose:
 				print("\tGoal changed to "+rai_net.goalString)
 		else:
 			
@@ -632,6 +634,7 @@ def main():
 			path=createResults(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, start=start0, planOnly=planOnly, test=True)
 			infeasibleSkeletons=[]
 			depthSkeletons=[]
+			teststep=1
 			starttime=time.time()
 			for tries in range(maxTries):
 				rai.resetFit(cheatGoalState=cheat_goalstate, goal=goalString)
@@ -645,8 +648,9 @@ def main():
 				writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string="", planOnly=planOnly, feasible=feasible, tries=0, test=True)
 				if feasible:
 					break
+				teststep=teststep+1
 			endtime=time.time()
-			print("time: "+str(endtime-starttime))
+			print("time: "+str(endtime-starttime)+", tries: "+str(teststep))
 
 			printResult(rai, skeleton)
 			if not feasible:
