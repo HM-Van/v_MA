@@ -735,7 +735,10 @@ class RaiWorld():
             else:
                 mult=0.8
         else:
-            mult=1
+            if "(grasp" in prevSke:
+                mult=0.7
+            else:
+                mult=1
 
         #print(infeasible)
 
