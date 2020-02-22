@@ -1,0 +1,19 @@
+
+
+-----Result for env 32-----
+
+----Successfully reached goal : (on red green) (on blue green) infeasible 0----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (grasp pr2L blue)[ 1 -1 ]
+		  NN: (place pr2L blue green)[ 1 -1 ]
+		  NN: (place pr2R red green)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal : (on red green) (on blue green) feasible 1----
+---- in 1 tries ----
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.887 instead of (grasp pr2R red)
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.652 instead of (grasp pr2R red)
+		  NN: (place pr2L red green)[ 1 -1 ]
+		  NN: (place pr2R blue green)[ 1 -1 ]
+--------------------
+

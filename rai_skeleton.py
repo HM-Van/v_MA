@@ -1,5 +1,5 @@
 import numpy as np
-import rai_world
+#import rai_world
 
 import sys
 import os
@@ -49,8 +49,8 @@ def main():
 
 	K=Config()
 	K.addFile(path_rai+'/rai-robotModels/pr2/pr2.g')
-	#K.addFile(path_rai+'/test/Test_setup_'+str(nenv).zfill(3)+'.g')
-	K.addFile(path_rai+'/models/Test_setup_'+str(nenv).zfill(3)+'.g')
+	K.addFile(path_rai+'/test/Test_setup_'+str(nenv).zfill(3)+'.g')
+	#K.addFile(path_rai+'/models/Test_setup_'+str(nenv).zfill(3)+'.g')
 
 	lgp=K.lgp(path_rai+"/models/fol-pickAndPlace2.g")
 	lgp.addTerminalRule(goalString)

@@ -427,7 +427,7 @@ def main():
 
 	obg = [[],[]]#[[15], [10,20,30,39,48,53,58,63,68]]
 	or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
-	og2 = [[8], [3,13,23,33,42,59,60,61,62,63]]
+	og2 = [[],[]]#[[8], [3,13,23,33,42,59,60,61,62,63]]
 
 	#-------------------------------------------------------------------------------------------------------------------------	
 	print("Setting up basic Config and FOL for env: "+str(nenv))
@@ -638,14 +638,14 @@ def main():
 			starttime=time.time()
 			for tries in range(maxTries):
 				rai.resetFit(cheatGoalState=cheat_goalstate, goal=goalString)
-				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_goalstate=cheat_goalstate, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, verbose=False, showFinal=showFinal)
+				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_goalstate=cheat_goalstate, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, verbose=True, showFinal=showFinal)
 
 				if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
 					depthSkeletons= depthSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 				else:
 					infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 
-				writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string="", planOnly=planOnly, feasible=feasible, tries=0, test=True)
+				writeResults(rai,skeleton,typeDecision,successmsg,path,goalnumber_string="", planOnly=planOnly, feasible=feasible, tries=tries, test=True)
 				if feasible:
 					break
 				teststep=teststep+1

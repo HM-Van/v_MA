@@ -705,7 +705,7 @@ class ClassifierMixed():
             random.shuffle(idxInstr[2])
             random.shuffle(idxInstr[3])
         else:
-            tmpidx2=idxInstr[2][int(len(idxInstr[2])*0.3):]
+            tmpidx2=idxInstr[2][:int(len(idxInstr[2])*0.3)]
             tmp1In=np.concatenate((dataInputPrev[tmpidx2, 0:1,:],dataInputPrev[tmpidx2, 0:3,:]),axis=1)
             tmp1Out=dataInstruct[tmpidx2,:]
 

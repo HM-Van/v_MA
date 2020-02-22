@@ -730,14 +730,12 @@ class RaiWorld():
         decisions=self.lgp.getDecisions()
 
         if self.NNmode=="mixed10":
-            if "(place" in prevSke:
-                mult=0.7
-            else:
-                mult=0.8
+            #if "(place" in prevSke:
+            #    mult=0.7
+            #else:
+            #    mult=0.8
+            mult=1
         else:
-            if "(grasp" in prevSke:
-                mult=0.7
-            else:
                 mult=1
 
         #print(infeasible)
@@ -829,7 +827,7 @@ class RaiWorld():
                         #penalty=(1.1-0.2*depth*infeasible.count(decision))
                         penalty=(1.1-0.2*depth*(infeasible+maxdepth).count(decision))
                     else:
-                        penalty=(1-0.2*depth*(infeasible+maxdepth).count(decision)**2)
+                        penalty=(1-0.3*depth*(infeasible+maxdepth).count(decision)**2)
 
                     if penalty < 0.1:
                         penalty = 0.1/(depth*(infeasible+maxdepth).count(decision))
