@@ -38,6 +38,7 @@ attached
 hasScrew # gripper X holds a screw (screws are not objects/constrants, just a predicate of having a screw...)
 fixed    # object X and Y are fixed together
 never    # (for debugging)
+same
 
 ## KOMO symbols
 inside
@@ -111,7 +112,7 @@ DecisionRule grasp {
 #changed to remove notheld predicate
 DecisionRule place {
   X, Y, Z,
-  { (grasped X Y) (table Z) (held Y) (on Y Z)! (ontop Y Z)!}
+  { (grasped X Y) (table Z) (held Y) (on Y Z)! (ontop Y Z)! (same Y Z)!}
   { (grasped X Y)! (busy X)! (busy Y)! (held Y)! # logic only
     (stable ANY Y)! (touch X Y)! # NLP predicates
     (on Z Y) (above Y Z) (stableOn Z Y) tmp(touch X Y) tmp(touch Y Z)
@@ -135,6 +136,12 @@ Rule{
   A, B
   { (gripper A) (object B) (on A B)  }
   { (on A B)! (grasped A B) (held B) (busy A)}
+}
+
+Rule{
+  A
+  { (table A) (object A)}
+  { (same A A)}
 }
 
 Rule{
