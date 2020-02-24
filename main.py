@@ -464,7 +464,8 @@ def main():
 					if nenv in range(100,104):
 						rangeEnv=range(nenv,104)
 					else:
-						rangeEnv=range(nenv,110)
+						rangeEnv=range(nenv,109)
+						#rangeEnv=range(nenv,110)
 				else:
 					rangeEnv=range(nenv,nenv+1)
 
@@ -548,11 +549,11 @@ def main():
 								solutions, _, _ = minimal_experiment.getData(nenv=nenv, nset=numGoal)
 								if not solutions ==[]:
 									if not feasible:
-										if len(rai_world.splitStringStep(solutions[0], list_old=[])) == len(rai_world.splitStringStep(skeleton, list_old=[])):
+										if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 											summary[2].append(strgoal)
 										else:
 											summary[3].append(strgoal)
-									elif len(rai_world.splitStringStep(solutions[0], list_old=[])) == len(rai_world.splitStringStep(skeleton, list_old=[])):
+									elif len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 										summary[0].append(strgoal)
 									else:
 										summary[1].append(strgoal)
