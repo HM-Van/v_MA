@@ -16,6 +16,8 @@ import rai_policy
 
 dir_file=os.path.abspath(os.path.dirname(__file__))
 
+# Test to implement feasibility network: NOT USED
+
 def build_FeasSub(inputs, 
               output_size,
               scope,
@@ -415,21 +417,6 @@ class ClassifierFeasLSTM():
         self.modelFeasible.compile(optimizer=keras.optimizers.Adam(lr=self.lr, clipnorm=clipnorm), loss="binary_crossentropy") #decay=0.001/self.epochs_inst
         
     #------------------build subnetwork---------------
-    """
-    def build_Feasible(self):
-        # One Hot : Multi label classification
-        param=["Instruct"]
-        param.append("hlayers_inst: "+str(self.hlayers_feas))
-        param.append("size_inst: "+str(self.size_feas))
-        param.append("epochs_inst: "+str(self.epochs_feas))
-        self.params.append(param)
-
-        inputs = keras.Input(shape=(None, self.goallength+self.statelength+self.numInstruct+len(self.listLog[0])+len(self.listLog[1])+len(self.listLog[2])), name='action')
-        _, feasNet = build_FeasLSTM(inputs, self.size_feas, "feasScope", "feasMid", n_layers=1, size=self.size_feas, reg=self.reg)
-        feasNet = build_FeasSub(feasNet, 2, "feasScope", "feasOut", n_layers=self.hlayers_feas-1, size=self.size_feas)
-
-        modelFeasible = keras.models.Model(inputs=inputs, outputs=feasNet, name="feasNet")
-        return modelFeasible"""
 
     def build_Feasible(self):
         # One Hot : Multi label classification
@@ -557,151 +544,6 @@ class ClassifierFeasLSTM():
                      ]
 
         return FinalList
-    """
-    def reshapeInput(self, path_rai, model_dir):
-
-        path_rai="/home/my/rai-python/v_MA"
-        model_dir="20200122-104545_mixed3/"
-
-        dataFeasible=np.load(path_rai+'/dataset/'+model_dir+'Feasible.npy')
-
-        dataInstruct=np.load(path_rai+'/dataset/'+model_dir+'Instruction.npy') #None numinstr
-        dataLogicals=np.load(path_rai+'/dataset/'+model_dir+'Logicals.npy') #None 3 numlog
-
-        dataInstructPrev=np.load(path_rai+'/dataset/'+model_dir+'InstructionPrev.npy') #None 4 3*numinstr
-
-        if os.path.isfile(path_rai+'/dataset/'+model_dir+'InputPrev.npy'):
-            dataInputPrev=np.load(path_rai+'/dataset/'+model_dir+'InputPrev.npy') #None 4 inputsize
-
-        else:
-            dataInputPrev=np.concatenate((np.load(path_rai+'/dataset/'+model_dir+'InputPrev1.npy'),np.load(path_rai+'/dataset/'+model_dir+'InputPrev2.npy')), axis=0)
-
-
-        dataInstruct2=np.load(path_rai+'/dataset/'+model_dir+'InFeasibleInstr.npy') #None numinstr
-        dataLogicals2=np.load(path_rai+'/dataset/'+model_dir+'InFeasibleLog.npy') #None 3 numlog
-
-        dataInputPrev2=np.load(path_rai+'/dataset/'+model_dir+'InFeasibleInputPrev.npy') #None 4 inputsize
-        dataFeasible2=np.load(path_rai+'/dataset/'+model_dir+'InFeasible.npy')           #None2
-        dataInstructPrev2=np.load(path_rai+'/dataset/'+model_dir+'InFeasibleInstrPrev.npy')#None 4 3*numinstr
-
-        #----------------------------------------------------------------------------------
-
-        dataInstructPrev=np.concatenate((dataInstructPrev[:,1:2,0:2],dataInstructPrev[:,2:3,2:4],dataInstructPrev[:,3:4,4:6], np.zeros((dataInstructPrev.shape[0],1,2))),axis=1)
-        dataInstructPrev2=np.concatenate((dataInstructPrev2[:,1:2,0:2],dataInstructPrev2[:,2:3,2:4],dataInstructPrev2[:,3:4,4:6], np.zeros((dataInstructPrev2.shape[0],1,2))),axis=1)
-
-        for i in range(dataInstructPrev.shape[0]):
-            for j in range(dataInstructPrev.shape[1]):
-                if not np.any(dataInstructPrev[i,j,:]):
-                    dataInstructPrev[i,j,:]=dataInstruct[i,:]
-                    break
-        
-        for i in range(dataInstructPrev2.shape[0]):
-            for j in range(dataInstructPrev2.shape[1]):
-                if not np.any(dataInstructPrev2[i,j,:]):
-                    dataInstructPrev2[i,j,:]=dataInstruct2[i,:]
-                    break
-
-        dataLogicalsPrev=np.zeros((dataInputPrev.shape[0],4,len(self.listLog[0])+len(self.listLog[1])+len(self.listLog[2])))
-        goallength=self.goallength
-        for i in range(dataInputPrev.shape[0]):
-            currlen=4
-            if i==0:
-                input_old=np.zeros((dataInputPrev.shape[2]))
-                maxlen=5
-                currlen=0
-            for j in range(dataInputPrev.shape[1]):
-                #print(j)
-                if not np.any(dataInputPrev[i,j,:]):
-                    currlen=j
-                    break
-            if (currlen<=maxlen and not (np.array_equal(input_old[:int(goallength/2)],dataInputPrev[i,currlen-1,int(goallength/2):goallength]) and np.array_equal(input_old[int(goallength/2):goallength],dataInputPrev[i,currlen-1,:int(goallength/2)]))):
-                #logprev=np.zeros((4,len(self.listLog[0])+len(self.listLog[1])+len(self.listLog[2])))
-                #print("----------reset----------")
-                #print(input_old[:goallength],dataInputPrev[i,currlen-1,:goallength])
-                #print(input_old[:int(goallength/2)],dataInputPrev[i,currlen-1,int(goallength/2):goallength])
-                #print(input_old[int(goallength/2):goallength],dataInputPrev[i,currlen-1,:int(goallength/2)])
-                logprev=np.zeros((4,2+3+5))
-            elif currlen == maxlen:
-                #print("----------copy----------")
-                dataLogicalsPrev[i,:,:]=logprev
-                #print(dataLogicalsPrev[i,:currlen,:])
-                #input(i)
-                continue
-            #print("length: "+str(currlen))
-            maxlen=currlen
-            input_old=dataInputPrev[i,currlen-1,:]
-            #logprev[startidx,:]=np.concatenate((dataLogicals[i:i+1, 1 ,self.listLog[0]], dataLogicals[i:i+1, 0,self.listLog[1]],dataLogicals[i:i+1, 2,self.listLog[2]]), axis=1)
-            logprev[currlen-1,:]=np.concatenate((dataLogicals[i:i+1, 1 ,[0,1]], dataLogicals[i:i+1, 0,[2,3,4]],dataLogicals[i:i+1, 2,[2,3,4,5,6]]), axis=1)
-            dataLogicalsPrev[i,:,:]=logprev
-            #print(dataLogicalsPrev[i,:currlen,:])
-            #input(i)
-
-        dataLogicalsPrev2=np.zeros((dataInputPrev2.shape[0],4,len(self.listLog[0])+len(self.listLog[1])+len(self.listLog[2])))
-        for i in range(dataInputPrev2.shape[0]):
-            currlen=4
-            if i==0:
-                input_old=np.zeros((dataInputPrev2.shape[2]))
-                maxlen=5
-                currlen=0
-            for j in range(dataInputPrev2.shape[1]):
-                #print(j)
-                if not np.any(dataInputPrev2[i,j,:]):
-                    currlen=j
-                    break
-            if (currlen<=maxlen and not (np.array_equal(input_old[:int(goallength/2)],dataInputPrev2[i,currlen-1,int(goallength/2):goallength]) and np.array_equal(input_old[int(goallength/2):goallength],dataInputPrev2[i,currlen-1,:int(goallength/2)]))):
-                #logprev=np.zeros((4,len(self.listLog[0])+len(self.listLog[1])+len(self.listLog[2])))
-                #print("----------reset----------")
-                #print(input_old[:goallength],dataInputPrev2[i,currlen-1,:goallength])
-                #print(input_old[:int(goallength/2)],dataInputPrev2[i,currlen-1,int(goallength/2):goallength])
-                #print(input_old[int(goallength/2):goallength],dataInputPrev2[i,currlen-1,:int(goallength/2)])
-                logprev=np.zeros((4,2+3+5))
-            elif currlen == maxlen:
-                #print("----------copy----------")
-                dataLogicalsPrev2[i,:,:]=logprev
-                #print(dataLogicalsPrev2[i,:currlen,:])
-                #input(i)
-                continue
-            #print("length: "+str(currlen))
-            maxlen=currlen
-            input_old=dataInputPrev2[i,currlen-1,:]
-            #logprev[startidx,:]=np.concatenate((dataLogicals[i:i+1, 1 ,self.listLog[0]], dataLogicals[i:i+1, 0,self.listLog[1]],dataLogicals[i:i+1, 2,self.listLog[2]]), axis=1)
-            logprev[currlen-1,:]=np.concatenate((dataLogicals2[i:i+1, 1 ,[0,1]], dataLogicals2[i:i+1, 0,[2,3,4]],dataLogicals2[i:i+1, 2,[2,3,4,5,6]]), axis=1)
-            dataLogicalsPrev2[i,:,:]=logprev
-            #print(dataLogicalsPrev2[i,:currlen,:])
-            #input(i)
-            
-
-        FeasIn=np.concatenate((dataInputPrev, dataInstructPrev, dataLogicalsPrev),axis=2)
-        InFeasIn=np.concatenate((dataInputPrev2, dataInstructPrev2, dataLogicalsPrev2),axis=2)
-
-        FinalIn=np.concatenate((FeasIn, InFeasIn), axis=0)
-        FinalOut=np.concatenate((dataFeasible, dataFeasible2), axis=0)
-
-        idx=list(range(FinalIn.shape[0]))
-        random.shuffle(idx)
-        FinalIn=FinalIn[idx,:,:]
-        FinalOut=FinalOut[idx,:]
-
-        idxFinal=[[],[],[],[]]
-        for i in range(FinalIn.shape[0]):
-            for j in range(FinalIn.shape[1]):
-                if np.any(FinalIn[i,j,:]) or j == 0:
-                    if j==3:
-                        idxFinal[3].append(i)
-                else:
-                    idxFinal[j-1].append(i)
-                    break
-
-        print(len(idxFinal[0]),len(idxFinal[1]),len(idxFinal[2]),len(idxFinal[3]))
-
-        FinalList = [[FinalIn[idxFinal[0], 0:1,:], FinalOut[idxFinal[0],:]],
-                     [FinalIn[idxFinal[1], 0:2,:], FinalOut[idxFinal[1],:]],
-                     [FinalIn[idxFinal[2], 0:3,:], FinalOut[idxFinal[2],:]],
-                     [FinalIn[idxFinal[3], 0:4,:], FinalOut[idxFinal[3],:]],
-                     [FinalIn, FinalOut]
-                     ]
-
-        return FinalList"""
         
 
     def step_decay(self,epoch):
@@ -754,56 +596,6 @@ class ClassifierFeasLSTM():
 
         print("------Train Network Feas2. "+rai_policy.estimateT(self.epochs_feas)+"------")
         print("Training set size: "+str(finalList[4][0].shape[0]))
-        #modelFeasibleHist=self.modelFeasible.fit(x={"goal":finalList[4][2], "state": finalList[4][0], "action":finalList[4][3]},
-        #                                        y={"feasActOut": finalList[4][1][:,0:1], "feasSkeOut": finalList[4][1][:,1:2]},
-        #                                        #y=finalList[i][1],
-        #                                        batch_size=32, epochs=10,
-        #                                        shuffle=True, verbose=0, validation_split=self.val_split,
-        #                                        callbacks=[keras.callbacks.LearningRateScheduler(self.step_decay), rai_policy.printEpoch(),saveFeas, keras.callbacks.TerminateOnNaN(), rai_policy.EarlyStopping(self.val_split)])
-        """
-        print_it = math.floor(10/num_batch_it)
-        if print_it <1:
-            print_it=1
-        idx=list(range(4))
-        losses=[]
-        terminate=False
-        for j in range(math.ceil(0.5*self.epochs_feas/num_batch_it)):
-            random.shuffle(idx)
-            loss=[0,0,0,0]
-            val_loss=[0,0,0,0]
-            for i in idx:
-                modelFeasibleHist=self.modelFeasible.fit(x={"goal":finalList[i][2], "state": finalList[i][0], "action":finalList[i][3]},
-                                                y={"feasActOut": finalList[i][1][:,0:1], "feasSkeOut": finalList[i][1][:,1:2]},
-                                                #y=finalList[i][1],
-                                                batch_size=32, epochs=num_batch_it,
-                                                shuffle=True, verbose=0, validation_split=self.val_split,
-                                                callbacks=[keras.callbacks.LearningRateScheduler(self.step_decay),saveFeas, keras.callbacks.TerminateOnNaN()])
-                #loss[i]     = modelFeasibleHist.history["loss"][-1] + modelFeasibleHist.history["loss"][1]
-                loss[i]     = modelFeasibleHist.history["loss"][-1]
-                if np.isnan(loss[i]) or np.isinf(loss[i]):
-                    terminate=True
-                    break
-                #val_loss[i] = modelFeasibleHist.history["val_loss"][-1] + modelFeasibleHist.history["val_loss"][1]
-                val_loss[i] = modelFeasibleHist.history["val_loss"][-1]
-            
-            if terminate:
-                break
-
-            losses.append(sum(val_loss))
-            if (j%print_it)==0:
-                now=datetime.datetime.now()
-                timestamp=str(now.year)+"."+str(now.month).zfill(2)+"."+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+":"+str(now.second).zfill(2)
-                print("Epoch "+str(j*num_batch_it).rjust(5)+" ended on "+timestamp+
-                      ", loss: ["+", ".join("{:.6f}".format(l) for l in loss)+"] = "+"{:.6f}".format(sum(loss))+
-                      ", val_loss: ["+", ".join("{:.6f}".format(l) for l in val_loss)+"] = "+"{:.6f}".format(sum(val_loss)))
-            
-            if j>=math.ceil(50/num_batch_it):
-                #print(losses)
-                #print(str(losses[j])+" >? "+str(losses[j-math.ceil(50/num_batch_it)]-0.0001))
-                if losses[j]>losses[j-math.ceil(50/num_batch_it)]-0.0001:
-                    print(str(losses[j])+" > "+ str(losses[j-math.ceil(50/num_batch_it)]))
-                    break
-        """
         i=4
         modelFeasibleHist=self.modelFeasible.fit(x={"goal":finalList[i][2], "state": finalList[i][0], "action":finalList[i][3]},
                                                 y={"feasActOut": finalList[i][1][:,0:1], "feasSkeOut": finalList[i][1][:,1:2], "feasAct2Out": finalList[i][1][:,0:1]},
@@ -813,8 +605,6 @@ class ClassifierFeasLSTM():
                                                 callbacks=[tbFeas,keras.callbacks.LearningRateScheduler(self.step_decay), rai_policy.printEpoch(),saveFeas, keras.callbacks.TerminateOnNaN(), rai_policy.EarlyStopping(self.val_split, patience=25)])
 
 
-        #final_losses[0].append(modelFeasibleHist.history["loss"][-1]+modelFeasibleHist.history["loss"][1])
-        #final_losses[0].append(modelFeasibleHist.history["val_loss"][-1]+modelFeasibleHist.history["val_loss"][1])
         final_losses[0].append(modelFeasibleHist.history["loss"][-1])
         final_losses[0].append(modelFeasibleHist.history["val_loss"][-1])
 

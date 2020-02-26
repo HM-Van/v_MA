@@ -21,6 +21,7 @@ import datetime
 import time
 import shutil
 
+# Not used anymore -> see main.py
 
 #Notes
 	#K2.getFrameState() #get 7d state(3pos 4rot) for all frames

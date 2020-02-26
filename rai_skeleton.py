@@ -9,11 +9,10 @@ dir_file=os.path.abspath(os.path.dirname(__file__))
 sys.path.append(dir_file+'/../ry/')
 from libry import *
 
+# File to obtain solutions from original LGP
+# NOTE: goal formulations: (held object) (on table object)
 
 def main():
-	#dir_file=os.path.abspath(os.path.dirname(__file__))
-
-
 	import argparse
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--rai_dir', type=str, default=dir_file)
@@ -26,26 +25,11 @@ def main():
 	parser.add_argument('--maxDepth', type=int, default=20)
 	args = parser.parse_args()
 	path_rai = args.rai_dir
-	#verbose=args.verbose
 
 	nenv=args.env
 	goalString=args.goal
-	#setup=args.setup
-	#NNmode=args.NNmode
-	#dataMode=args.datasetMode
-	#maxDepth=args.maxDepth
 
-	#goalString="(on red green) (on green blue) (on blue yellow) (on yellow cyan)"
-	#goalString="(on red green) (on green blue) (on blue yellow)"
-	#nenv=104
-
-	#goalString="(on tray red)"# (on tray green) (on tray blue)"# (on tray cyan)"
-	#nenv=105
-
-	#nenv=109
-	#goalString="(on table2 red) (on red blue)"
-	#nenv=29
-	#goalString="(on green blue) (on table1 red)"
+	#-------------------------------------------------------------
 
 	K=Config()
 	K.addFile(path_rai+'/rai-robotModels/pr2/pr2.g')
@@ -64,6 +48,9 @@ def main():
 	except:
 		endtime=time.time()
 		print("crash after: "+str(endtime-starttime))
+
+	endtime=time.time()
+	print("Finished after: "+str(endtime-starttime))
 
 	input("\nwait\n")
 

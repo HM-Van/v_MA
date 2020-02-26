@@ -1,0 +1,34 @@
+
+
+-----Result for env 104-----
+
+----Successfully reached goal : (on cyan blue) (on blue red) (on red yellow) (on yellow green) (on green tray) feasible 1----
+		  NN: (grasp pr2R cyan)[ 1 -1 ]
+		  NN: (place pr2R cyan blue)[ 1 -1 ]
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.519 instead of (place pr2L red yellow)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.815 instead of (place pr2R red yellow)
+		  NN: (place pr2L red yellow)[ 1 -1 ]
+		  NN: (place pr2R blue red)[ 1 -1 ]
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.452 instead of (place pr2R yellow green)
+		  NN: (grasp pr2R yellow)[ 1 -1 ]
+		  NN: (place pr2R yellow green)[ 1 -1 ]
+		  MP: (place pr2L green tray)[ 1 -1 ]	with prob 0.939 instead of (place pr2R green tray)
+--------------------
+
+
+
+-----Result for env 104-----
+
+----Successfully reached goal : (on cyan blue) (on blue red) (on red yellow) (on yellow green) (on green tray) feasible 1----
+		  NN: (grasp pr2R cyan)[ 1 -1 ]
+		  NN: (place pr2R cyan blue)[ 1 -1 ]
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.519 instead of (place pr2L red yellow)
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.815 instead of (place pr2R red yellow)
+		  NN: (place pr2L red yellow)[ 1 -1 ]
+		  NN: (place pr2R blue red)[ 1 -1 ]
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.452 instead of (place pr2R yellow green)
+		  NN: (grasp pr2R yellow)[ 1 -1 ]
+		  NN: (place pr2R yellow green)[ 1 -1 ]
+		  MP: (place pr2L green tray)[ 1 -1 ]	with prob 0.939 instead of (place pr2R green tray)
+--------------------
+

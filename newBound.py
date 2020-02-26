@@ -6,6 +6,9 @@ from libry import *
 
 import rai_world
 
+# This gile tests starting optimization from node, not from root
+# CURRENTLY NOT USED
+
 def main():
     #dir_file=os.path.abspath(os.path.dirname(__file__))
 
@@ -19,12 +22,15 @@ def main():
     path_rai = args.rai_dir
     mode= args.mode
     #-------------------------------------------------------------------------------------------------------------------------	
+    # Load Configuration
     K=Config()
     K.addFile(path_rai+'/rai-robotModels/pr2/pr2.g')
     K.addFile(path_rai+'/models/Test_setup_'+str(1).zfill(3)+'.g')
     lgp=K.lgp(path_rai+"/models/fol-pickAndPlace.g")
 
     V=K.view()
+
+    # Select random skeleton
     skeleton="(grasp pr2R red) (grasp pr2L green) (place pr2R red green) (place pr2L green blue)"
     actions=rai_world.splitStringPath(skeleton, verbose=0, list_old=[])
     actions2=rai_world.splitStringStep(skeleton, verbose=0, list_old=[])
@@ -39,6 +45,7 @@ def main():
             lgp.walkToNode(act,0)
 
             try:
+                # Solve komo for new bound
                 komo = rai_world.runLGP(lgp, BT.pathStep, verbose=0, view=True)
                 
             except:
@@ -61,6 +68,7 @@ def main():
                 print("Can not solve komo for skeleton:", skeleton)
                 break
             
+            # Copy configuration and start LGP at current node => current node = new root 
             K2=Config()
             komo.getKFromKomo(K2, komo.getPathFrames(baseName).shape[0]-1)
             K.copy(K2)
@@ -73,7 +81,7 @@ def main():
 
     input("Press Enter to end Program...")
 
-    """SKELETON:
+    """SKELETON: #normal
     initial (pr2R) from 0 to 3
     initial (pr2L) from 0 to 3
     initial (red) from 0 to 3
@@ -96,7 +104,7 @@ def main():
     START  -->  stable (pr2L green) from 2 to 3
 
 
-    SKELETON:
+    SKELETON: #new bound
     stable (pr2R red) from 0 to 1
     stable (pr2L green) from 1 to 2
     above (red green) from 2 to 2

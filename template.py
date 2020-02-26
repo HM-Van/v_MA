@@ -5,6 +5,8 @@ import sys
 sys.path.append(dir_file+'/../ry/')
 from libry import *
 
+# template for some testing. Currently not used
+
 K=Config()
 K.addFile(dir_file+'/rai-robotModels/pr2/pr2.g')
 K.addFile(dir_file+'/models/Test_setup_'+str(102).zfill(3)+'.g')

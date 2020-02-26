@@ -48,13 +48,13 @@ if True: #Goalencoder
     decoder=keras.models.Model(inputs=encodedInput, outputs=decodeLayer(encodedInput))
 
     autoencoder.compile(optimizer=keras.optimizers.Adam(lr=0.001), loss="binary_crossentropy") #decay=0.001/self.epochs_inst
-    autoencoder.fit(datasetIn, datasetOut, epochs=10000, batch_size=2000, shuffle=True)
+    autoencoder.fit(datasetIn, datasetOut, epochs=1000, batch_size=2000, shuffle=True)
 
     encoded_test=encoder.predict(datasetIn)
     decoded_test=decoder.predict(encoded_test)
 
     #print(decoded_test)
 
-    autoencoder.save(dir_file+'/logs/encoder/autoencoderGoal3.h5')
+    autoencoder.save(dir_file+'/logs/encoder/autoencoderGoal4.h5')
     encoder.save(dir_file+'/logs/encoder/encoderGoal4.h5')
     decoder.save(dir_file+'/logs/encoder/decoderGoal4.h5')

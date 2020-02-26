@@ -13,6 +13,8 @@ import shutil
 import os
 import random
 
+# Old policy file => see policy2.py
+
 def build_Sub(inputs, 
               output_size,
               scope,

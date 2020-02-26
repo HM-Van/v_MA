@@ -1,5 +1,5 @@
 import numpy as np
-
+# Information for all init configurations: obj on which table
 envInfo=x = np.array([[1, 1, 2], #1
                         [2, 2, 1],#2
                         [2, 1, 1],#3
@@ -111,14 +111,14 @@ envInfo=x = np.array([[1, 1, 2], #1
                         [1, 0, 0]
                         ],
                         np.int16)
-
+# Goal formulations
 test=["(held red)", "(on red table1)", "(on red table2)", "(on red green)", "(on red blue)",
         "(held green)", "(on green table1)", "(on green table2)", "(on green red)", "(on green blue)",
         "(held blue)", "(on blue table1)", "(on blue table2)", "(on blue red)", "(on blue green)"]
 
 numSets=72
-numEnv=21
-
+numEnv=99
+# objectives consisting of 2 goal formulations
 Sets=[
     "(held red) (held green)", "(held green) (held red)", #1
     "(held red) (on green table1)", "(on green table1) (held red)", #2
@@ -193,7 +193,7 @@ Sets=[
     "(on green blue) (on blue table2)", "(on blue table2) (on green blue)", #71
     "(on green blue) (on blue red)", "(on blue red) (on green blue)", #72
 ]
-
+# Determine on which table obj is on
 def getEnvInfo(env,key):
     if key=="r" or key=="red" or key==0 or key=="0":
         return envInfo[env-1,0]
@@ -208,6 +208,8 @@ def getEnvInfo(env,key):
 #test=["(held red)", "(on red table1)", "(on red table2)", "(on red green)", "(on red blue)",
 #        "(held green)", "(on green table1)", "(on green table2)", "(on green red)", "(on green blue)",
 #        "(held blue)", "(on blue table1)", "(on blue table2)", "(on blue red)", "(on blue green)"]
+
+# Get solutions for goal formulations
 def getData1(nset=1, nenv=1):
     solutions=[]
     numLoops=0
@@ -328,6 +330,7 @@ def getData1(nset=1, nenv=1):
 
     return solutions, goalString, numLoops
 
+# Get solutions for objectives consisting of 2 goal formulations
 def getData(nset=1, nenv=1):
     solutions=[]
     numLoops=0
