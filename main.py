@@ -368,23 +368,14 @@ def main():
 	verbose=args.verbose
 	waitTime= args.waitTime
 
-	train_only = args.train_only #only trains model
-
-	saveModel = args.saveModel #trains model
-	cheat_goalstate= args.cheat_goalstate # adapts goal state if one goal formulation is satisfied
-	cheat_tree=args.cheat_tree # always evaluate heuristic for all high-level actions
-
-	completeTesting=args.completeTesting # Test all objectives
-	allEnv=args.allEnv # Test a sequence of env
-	showFinal=args.showFinal # Display final path
-	viewConfig=args.viewConfig # enable K.view
-	planOnly=args.planOnly # seq used for next config instead if seqPath
-	exclude=args.exclude # Tests only objectives that are excluded in training set. Here: (on red table1)
-
 	model_dir=args.model_dir # model_dir: timestamp of Policy directory or model_dir_data
 	model_dir_data=args.model_dir_data # model_dir_data_ timestamp of data set
 	if model_dir_data=="":
 		model_dir_data=model_dir
+
+	# Training parameters
+	train_only = args.train_only #only trains model
+	saveModel = args.saveModel #trains model
 	
 	# Instruction parameters
 	epochs_inst=args.epochs_inst
@@ -415,8 +406,20 @@ def main():
 	setup=args.setup
 	NNmode=args.NNmode # minimal(impl1) FFnew(impl2) mixed10(impl3)
 	dataMode=args.datasetMode # 1(global coord) 2(relative coord) 3(global coord+encoder) 4(relative coord+encoder)
+	
+	# Testing parameters
 	maxDepth=args.maxDepth # maximum depth before reattempting
 	maxTries=args.maxTries # maximum tries
+
+	cheat_goalstate= args.cheat_goalstate # adapts goal state if one goal formulation is satisfied
+	cheat_tree=args.cheat_tree # always evaluate heuristic for all high-level actions
+
+	completeTesting=args.completeTesting # Test all objectives
+	allEnv=args.allEnv # Test a sequence of env
+	showFinal=args.showFinal # Display final path
+	viewConfig=args.viewConfig # enable K.view
+	planOnly=args.planOnly # seq used for next config instead if seqPath
+	exclude=args.exclude # Tests only objectives that are excluded in training set. Here: (on red table1)
 
 	# train_only starts at objective
 	start=args.start

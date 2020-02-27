@@ -14,7 +14,6 @@ K.addFile(dir_file+'/models/Test_setup_'+str(102).zfill(3)+'.g')
 #K.addFile(dir_file+'/rai-robotModels/baxter/baxter.g')
 
 #K.addFile(dir_file+'/test/lgp-example.g')
-#lgp=K.lgp(dir_file+"/models_final/fol-pickAndPlace.g")
 lgp=K.lgp(dir_file+"/models/fol-pickAndPlace.g")
 
 V=K.view()

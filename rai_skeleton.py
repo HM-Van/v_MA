@@ -16,16 +16,11 @@ def main():
 	import argparse
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--rai_dir', type=str, default=dir_file)
-	parser.add_argument('--verbose', type=int, default=1)
 	parser.add_argument('--env', type=int, default=1)
 	parser.add_argument('--goal', type=str, default="(on red green) (on green blue)")
-	parser.add_argument('--setup', type=str, default="minimal")
-	parser.add_argument('--NNmode', type=str, default="minimal")
-	parser.add_argument('--datasetMode', type=int, default=1)
-	parser.add_argument('--maxDepth', type=int, default=20)
+	
 	args = parser.parse_args()
 	path_rai = args.rai_dir
-
 	nenv=args.env
 	goalString=args.goal
 

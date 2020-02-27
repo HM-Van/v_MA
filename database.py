@@ -429,24 +429,26 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         # Data set expansion
         arrSets=[6,7,21,27,32,62,68]#45 #67, 52 #71, 20 #12 61
 
-        if rand2>0 and not rand2==len(arrSets):
-            if rand2>len(arrSets):
-                arrSets0=[x for x in list(range(1,numSets+1)) if x not in arrSets]
-                random.shuffle(arrSets0)
-                arrSets=arrSets+arrSets0[:rand2-len(arrSets)]
-            else:
-                random.shuffle(arrSets)
-                arrSets=arrSets[:rand2]
+        if rand2>len(arrSets):
+            arrSets0=[x for x in list(range(1,numSets+1)) if x not in arrSets]
+            random.shuffle(arrSets0)
+            arrSets=arrSets+arrSets0[:rand2-len(arrSets)]
             input(arrSets)
         
         envSets=[5,7,9,11,15,17,21,23,26,30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
                 6,14,27,28,44,49,60,71,77,84,95]
     else:
         # Normal mode
-        #40
-        arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,31,16,56,71,21,45,49,4,22,38,29,10,68,62,27,9,70]#,17, 41, 54, 34, 26]
-        #36
-        #arrSets=[41,59,36,11,13,57,19,20,35,65,28,23,42,25,66,53,7,39,44,24,31,16,56,71,21,45,49,4,22,38,29,10,68,9,70,62]#,17, 41, 54, 34, 26, 18, 27, 30, 42, 40, 46] +41
+        if rand2==0:
+            #40
+            arrSets=[46,59,36,11,13,40,57,19,20,35,65,28,23,42,25,66,30,53,18,7,39,44,24,31,16,56,71,21,45,49,4,22,38,29,10,68,62,27,9,70]#,17, 41, 54, 34, 26]
+            #36
+            #arrSets=[41,59,36,11,13,57,19,20,35,65,28,23,42,25,66,53,7,39,44,24,31,16,56,71,21,45,49,4,22,38,29,10,68,9,70,62]#,17, 41, 54, 34, 26, 18, 27, 30, 42, 40, 46] +41
+        else:
+            arrSets=np.arange(1,numSets+1)
+            np.random.shuffle(arrSets)
+            arrSets=arrSets[0:rand2]
+        
         envSets=[5,7,9,11,15,21,23,26,30,31,36,37,41,45,47,52,53,55,61,62,67,69,70,74,76,79,85,86,87,92,98,99, 
                 6,14,27,28,44,49,60,71,77,84,95,
                 34,43,54,63,72,81,90,96]
