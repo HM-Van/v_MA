@@ -65,3 +65,8 @@ goalString="(on red green) (on green blue) (on blue yellow)"
 rai=rai_world.RaiWorld(dir_file, 104, "minimal", goalString, 1, maxDepth=10, NNmode="mixed0", datasetMode=3, view=True)
 """
 
+
+
+for i in range(15,30):
+    print("body obj"+str(i)+" { type:ssBox size:[.15 .15 .1 .02] color:[0. 1. 0.], contact, logical={ object, table }}")
+    print("joint joint"+str(i)+"(obj"+str(i-15)+" obj"+str(i)+"){type=rigid, Q:<t(0 0 .1)>}")

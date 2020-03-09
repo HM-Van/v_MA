@@ -37,6 +37,10 @@ def main():
 
     baseName=[K.getFrameNames()[1]]
 
+    tmpske=""
+
+    K0=Config()
+    K0.copy(K)
 
     if mode==1:
         print("pathStep Bound")
@@ -60,22 +64,32 @@ def main():
     else:
         print("test copy config")
         for act in actions2:
-            lgp.walkToNode(act,0)
+            tmpske=tmpske+act+" "
+            lgp.walkToNode(tmpske,0)
 
             try:
-                komo = rai_world.runLGP(lgp, BT.path, verbose=0, view=True)
+                komo = rai_world.runLGP(lgp, BT.seq, verbose=0, view=False)
+                #komo = rai_world.runLGP(lgp, BT.seqPath, verbose=0, view=False)
             except:
                 print("Can not solve komo for skeleton:", skeleton)
                 break
             
             # Copy configuration and start LGP at current node => current node = new root 
-            K2=Config()
-            komo.getKFromKomo(K2, komo.getPathFrames(baseName).shape[0]-1)
-            K.copy(K2)
-            lgp=K.lgp(path_rai+"/models/fol-pickAndPlace.g")
+            folstate = lgp.nodeState()
+            if not ("(held" in folstate[0]):
+                K2=Config()
+                komo.getKFromKomo(K2, komo.getPathFrames(baseName).shape[0]-2)
+                K.copy(K2)
+                lgp=K.lgp(path_rai+"/models/fol-pickAndPlace.g")
+                tmpske=""
         
 
             lgp.nodeInfo()
+        
+        lgp = K0.lgp(path_rai+"/models/fol-pickAndPlace.g")
+        lgp.walkToNode(skeleton,0)
+        komo = rai_world.runLGP(lgp, BT.seq, verbose=0, view=False)
+        komo = rai_world.runLGP(lgp, BT.seqPath, verbose=0, view=True)
 
 
 

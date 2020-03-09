@@ -35,7 +35,7 @@ def main():
 	lgp.addTerminalRule(goalString)
 	
 	V=K.view()
-	#input("test")
+	input("test")
 
 	starttime=time.time()
 	try:

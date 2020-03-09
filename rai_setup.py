@@ -76,7 +76,7 @@ def softmaxToOnehot(a):
 
 def runLGP(lgp, bound, verbose=0, view=True): #BT.pose BT.seq BT.path
     # Runs LGP and returns komo for bound
-	lgp.optBound(bound, True,view)
+	lgp.optBound(bound, True,view)#, initnoise
 	if verbose>0:
 		print("Bound", bound, "feasible: ", not lgp.isInfeasible())
 	komo = lgp.getKOMOforBound(bound)
@@ -245,6 +245,17 @@ class RaiWorld():
                 unfullfilled.append(goal)
         return unfullfilled
 
+    def restartLGP(self, init=False):
+        folstate = self.lgp.nodeState()
+        if init or not ("(held" in folstate[0]):
+            self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace2.g", False, 0)
+            self.lgp.addTerminalRule(self.realGoalString,0)
+            return True
+            
+        return False
+        
+
+
     def preprocessGoalState(self, initState=False, cheatGoalState=False):
         # Determine unsatisfied objectives
         if initState:
@@ -292,7 +303,7 @@ class RaiWorld():
             self.logicalNames=self.logicalNames_orig.copy()
             self.tabNames=self.tabNames_orig.copy()
             for obj in self.objNames_orig:
-                if not obj in self.goalString:
+                if not (obj+")" in self.goalString or obj+" " in self.goalString):
                     self.objNames.remove(obj)
                     self.logicalNames.remove(obj)
                     self.tabNames.remove(obj)
@@ -302,6 +313,8 @@ class RaiWorld():
         if len(self.objNames)>self.numObj:
             # If too many objects: change objective to one goal formulation and select objects
             changed=True
+            #print(self.objNames)
+            #print(self.goalString)
             self.goalString=unfullfilled[0]+" "+unfullfilled[0]
             unfullfilled=[unfullfilled[0], unfullfilled[0]]
 
@@ -309,7 +322,7 @@ class RaiWorld():
             self.logicalNames=self.logicalNames_orig.copy()
             self.tabNames=self.tabNames_orig.copy()
             for obj in self.objNames_orig:
-                if not obj in self.goalString:
+                if not (obj+")" in self.goalString or obj+" " in self.goalString):
                     self.objNames.remove(obj)
                     self.logicalNames.remove(obj)
                     self.tabNames.remove(obj)
