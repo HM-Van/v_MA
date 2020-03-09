@@ -7,7 +7,7 @@ This repo is currently integrated in https://github.com/HM-Van/rai-python/. Foll
 
 ## Create data set
 
-In order to collect training samples for the environment with the id nenv, the file "./models/Test\_setup\_nenv.g" has to exist.
+In order to collect training samples for the environment with the id nenv, the file "./models/Test_setup_nenv.g" has to exist.
 
 ```
 python3 database.py --env=nenv
@@ -31,36 +31,36 @@ python3 database.py -- rand2=0 --skip1
 
 In order to train a hierarchical policy:
 ```
-# model\_dir\_data is timestamp only (without _final). NNmode can be "minimal" (simple FF NN), "FFnew" (Classifier chain), "mixed10" (LSTM)
+# model_dir_data is timestamp only (without _final). NNmode can be "minimal" (simple FF NN), "FFnew" (Classifier chain), "mixed10" (LSTM)
 # datasetMode: 1(global coord) 2(relative coord) 3(global coord+encoder) 4(relative coord+encoder)
 # Additional training parameters can be added, see main.py
-python3 main.py --saveModel --train\_only --model\_dir\_data="20200220" --NNmode="FFnew" --datasetMode=1
+python3 main.py --saveModel --train_only --model_dir_data="20200220" --NNmode="FFnew" --datasetMode=1
 
 ```
 
-In order to use a trained hierarchical policy (the file "./models/Test\_setup\_nenv.g" has to exist):
+In order to use a trained hierarchical policy (the file "./models/Test_setup_nenv.g" has to exist):
 ```
-# model\_dir is timestamp only (without e.g. _FFnew1)
+# model_dir is timestamp only (without e.g. _FFnew1)
 # --exlude: test certain goal formulations and their combinations (here hardcoded: (on red table1))
 # Additional testing parameters can be added, see main.py
 
 # Test all objectives
 # allEnv tests a sequence of environments starting from env
-python3 main.py --model\_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --completeTesting --env=100 --allEnv
+python3 main.py --model_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --completeTesting --env=100 --allEnv
 
 # Test single objective
 # goal formulations (held object), (on object table)
-python3 main.py --model\_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --goal="(on red table1) (on blue table2)" --env=100
+python3 main.py --model_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --goal="(on red table1) (on blue table2)" --env=100
 
 ```
 
 ## Use original framework
 
-In order to use the original LGP solution (the file "./models/Test\_setup\_nenv.g" has to exist):
+In order to use the original LGP solution (the file "./models/Test_setup_nenv.g" has to exist):
 ```
 # goal formulations (held object), (on table object)
 # !! note that the order for (on table object) is reversed compared to above!!
-python3 rai\_skeleton.py --env=100 --goal="(on table1 red) (on table2  blue)"
+python3 rai_skeleton.py --env=100 --goal="(on table1 red) (on table2  blue)"
 
 ```
 
