@@ -1,3 +1,0 @@
-Instruct    hlayers_inst: 3    size_inst: 100    epochs_inst: 800    
-Grasp    hlayers_grasp: 3    size_grasp: 150    epochs_grasp: 2000    
-Place    hlayers_place: 3    size_place: 150    epochs_place: 5000    

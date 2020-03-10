@@ -1,4 +1,0 @@
-learning rate    init: 0.001    drop: 1.0    epoch_drop: 100    val_split: 0.3    reg_l2: 0.0001    
-Instruct    hlayers_inst: 2    size_inst: 64    epochs_inst: 200    
-Grasp    hlayers_grasp: 4    size_grasp: 128    epochs_grasp: 250    
-Place    hlayers_place: 4    size_place: 128    epochs_place: 250    

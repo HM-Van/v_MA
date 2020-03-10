@@ -1,5 +1,0 @@
-----Successfully reached goal 087-1: (on blue green) (on blue green) feasible 1----
-		  NN: (grasp pr2R blue)[ 1 -1 ]
-		  NN: (place pr2R blue green)[ 1 -1 ]
---------------------
-

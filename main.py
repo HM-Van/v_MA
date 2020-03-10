@@ -145,7 +145,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 	if rai_net.lgp.isTerminal() or len(rai_net.preprocessGoals())==0:
 		return skeleton, typeDecision, "Successfully reached goal", True
 
-	while True and False:
+	while True:
 		starttime=time.time()
 		tmpDes=[]
 		# Get encoded state
@@ -294,9 +294,11 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 	else:
 		feastmp = False
 
-	skeleton="(grasp pr2R obj0) (place pr2R obj0 obj1) (grasp pr2L obj2) (grasp pr2R obj1) (place pr2R obj1 obj2) (grasp pr2R obj3) (place pr2L obj2 obj3) (grasp pr2L obj4) (place pr2R obj3 obj4) (place pr2L obj4 obj5) (grasp pr2R obj6) (place pr2R obj6 obj7) (grasp pr2L obj5) (place pr2L obj5 obj6) (grasp pr2L obj7) (place pr2L obj7 tray) (grasp pr2R obj9) (place pr2R obj9 obj10) (grasp pr2R obj8) (place pr2R obj8 obj9) (grasp pr2R obj11) (place pr2R obj11 obj12) (grasp pr2R obj10) (place pr2R obj10 obj11) (grasp pr2R obj13) (place pr2R obj13 obj14) (grasp pr2L obj12) (place pr2L obj12 obj13) (grasp pr2L obj14) (place pr2L obj14 tray)"
-	rai_net.lgp.walkToRoot()
-	rai_net.lgp.walkToNode(skeleton,0)
+	if skeleton=="":
+		skeleton="(grasp pr2R obj0) (place pr2R obj0 obj1) (grasp pr2L obj2) (grasp pr2R obj1) (place pr2R obj1 obj2) (grasp pr2R obj3) (place pr2L obj2 obj3) (grasp pr2L obj4) (place pr2R obj3 obj4) (place pr2L obj4 obj5) (grasp pr2R obj6) (place pr2R obj6 obj7) (grasp pr2L obj5) (place pr2L obj5 obj6) (grasp pr2L obj7) (place pr2L obj7 tray) (grasp pr2R obj9) (place pr2R obj9 obj10) (grasp pr2R obj8) (place pr2R obj8 obj9) (grasp pr2R obj11) (place pr2R obj11 obj12) (grasp pr2R obj10) (place pr2R obj10 obj11) (grasp pr2R obj13) (place pr2R obj13 obj14) (grasp pr2L obj12) (place pr2L obj12 obj13) (grasp pr2L obj14) (place pr2L obj14 tray)"
+		#skeleton="(grasp pr2R obj0) (place pr2R obj0 obj1) (grasp pr2L obj2) (grasp pr2R obj1) (place pr2R obj1 obj2) (place pr2L obj2 obj3) (grasp pr2L obj4) (place pr2L obj4 obj5) (grasp pr2L obj3) (place pr2L obj3 obj4) (grasp pr2L obj5) (place pr2L obj5 obj6) (grasp pr2L obj7) (place pr2L obj7 tray) (grasp pr2L obj6) (place pr2L obj6 obj7) (grasp pr2L obj9) (place pr2L obj9 obj10) (grasp pr2R obj8) (place pr2R obj8 obj9) (grasp pr2R obj11) (grasp pr2L obj10) (place pr2R obj11 obj12) (place pr2L obj10 obj11) (grasp pr2R obj13) (place pr2R obj13 obj14) (grasp pr2L obj12) (place pr2L obj12 obj13) (grasp pr2L obj14) (place pr2L obj14 tray)"
+		rai_net.lgp.walkToRoot()
+		rai_net.lgp.walkToNode(skeleton,0)
 
 	if len(rai_net.preprocessGoals())>0:
 		if verbose:
@@ -310,20 +312,49 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 			# determine feasibility through seqPth optimization
 			starttime=time.time()
 			try:
-				if newLGP:
-					_ = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False)
-					if not rai_net.lgp.returnFeasible(BT.seq):
-						rai_net.lgp.nodeInfo()
-						input("seq bound infeasible")
-					else:
-						print("seq bound feasible")
-				for i in range(1):
-					_ = rai_world.runLGP(rai_net.lgp, BT.seqPath, verbose=0, view=showFinal)
+				#if newLGP:
+				#	for i in range(6):
+				#		tmpnoise=0.01-i*0.002
+				#		print("----- Noise for seq optimization "+str(tmpnoise)+" -----")
+				#		tmptime=time.time()
+				#		_ = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False, initnoise=tmpnoise)
+				#		endtime=time.time()
+				#		print("Constraint: seq ",rai_net.lgp.returnConstraint(BT.seq))
+				#		print(str(endtime-tmptime)+" sec")
+				#		if rai_net.lgp.returnFeasible(BT.seq):
+				#			print("seq bound feasible")
+				#			break
+				#		else:
+				#			print(str(i) + ": seq infeasible")
+			
+				#for i in range(11):
+				#	tmpnoise=0.02-i*0.002
+				#	print("----- Noise for seq optimization "+str(tmpnoise)+" -----")
+				#	tmptime=time.time()
+				#	_ = rai_world.runLGP(rai_net.lgp, BT.seqPath, verbose=0, view=showFinal, initnoise=tmpnoise)
+				#	endtime=time.time()
+				#	print("Constraint: seq ",rai_net.lgp.returnConstraint(BT.seq), ", seqPath ",rai_net.lgp.returnConstraint(BT.seqPath))
+				#	print(str(endtime-tmptime)+" sec")
+				#	feastmp = rai_net.lgp.returnFeasible(BT.seqPath)
+				#	if feastmp:
+				#		break
+				#	else:
+				#		print(str(i) + ": seqPath infeasible")
+
+				for i in [0, -1, 1, -2, 2 , -3, 3]:
+					tmpnoise=0.01+i*0.002
+					print("----- Noise for seq and seqPath optimization "+str(tmpnoise)+" -----")
+					tmptime=time.time()
+					if newLGP:
+						_ = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False, initnoise=tmpnoise)
+					_ = rai_world.runLGP(rai_net.lgp, BT.seqPath, verbose=0, view=showFinal, initnoise=tmpnoise)
+					endtime=time.time()
+					print("Constraint: seq ",rai_net.lgp.returnConstraint(BT.seq), ", seqPath ",rai_net.lgp.returnConstraint(BT.seqPath))
+					print(str(endtime-tmptime)+" sec")
 					feastmp = rai_net.lgp.returnFeasible(BT.seqPath)
 					if feastmp:
 						break
 					else:
-						rai_net.lgp.nodeInfo()
 						print(str(i) + ": seqPath infeasible")
 
 			except:
@@ -331,9 +362,9 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 				rai_net.K.copy(K0)
 				successmsg="KOMO failed for goal"
 			endtime=time.time()
-			print(timeHP)
-			print(timeOP)
-			print(endtime-starttime)
+			print("\nTime HP", timeHP)
+			print("Time OP next config", timeOP)
+			print("Time OP full path",endtime-starttime)
 
 	if showFinal:
 		rai_net.lgp.nodeInfo()

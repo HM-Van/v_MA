@@ -881,6 +881,8 @@ def main():
 
     parser.add_argument('--exclude', dest='exclude', action='store_true')
     parser.set_defaults(exclude=False)
+
+    parser.add_argument('--model_dir', type=str, default='')
     
     args = parser.parse_args()
     path_rai = args.rai_dir
@@ -900,6 +902,7 @@ def main():
     rand2=args.rand2
     viewConfig=args.viewConfig
     mixData=args.mixData
+    model_dir=args.model_dir
     
     """with open(path_rai+'/final2.txt', 'w') as f:
         for i in [28, 37, 46, 55, 64, 73, 82, 91, 29, 38, 47, 56, 65, 74, 83, 92, 30, 39, 48, 57, 66, 75, 84, 93, 31, 40, 49, 58, 67, 76, 85, 94, 32, 41, 50, 59, 68, 77, 86, 95, 33, 42, 51, 60, 69, 78, 87, 96, 34, 43, 52, 61, 70, 79, 88, 97, 35, 44, 53, 62, 71, 80, 89, 98, 36, 45, 54, 63, 72, 81, 90, 99]:
@@ -927,8 +930,39 @@ def main():
              f.write("python database.py --env="+str(i)+' --stop2=40 --NNmode="dataset"; python database.py --env='+str(i)+' --start2=41 --skip1 --NNmode="dataset";\ \n')
 
     input("stop")"""
+    if not model_dir=="":
+        Input=np.load(path_rai+'/dataset_new/'+model_dir+'_final/Input.npy')
+        InputPrev=np.load(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev.npy')
+        Input_feat=np.load(path_rai+'/dataset_new/'+model_dir+'_final/Input_feat.npy')
+        InputPrev_feat=np.load(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev_feat.npy')
 
-    if nenv==0:
+        print(Input.shape[0], InputPrev.shape[0], Input_feat.shape[0], InputPrev_feat.shape[0])
+
+        if InputPrev.shape[0]>160000:
+            idxSplit=int(InputPrev.shape[0]/3)
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1', InputPrev[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2', InputPrev[idxSplit:2*idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev3', InputPrev[idxSplit*2:,:,:])
+
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1_feat', InputPrev_feat[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2_feat', InputPrev_feat[idxSplit:idxSplit*2,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev3_feat', InputPrev_feat[idxSplit*2:,:,:])
+
+            print(InputPrev[:idxSplit,:,:].shape[0]+InputPrev[idxSplit:2*idxSplit,:,:].shape[0]+InputPrev[idxSplit*2:,:,:].shape[0],
+                   InputPrev_feat[:idxSplit,:,:].shape[0]+InputPrev_feat[idxSplit:2*idxSplit,:,:].shape[0]+InputPrev_feat[idxSplit*2:,:,:].shape[0] )
+        elif InputPrev.shape[0]>80000:
+            idxSplit=int(InputPrev.shape[0]/2)
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1', InputPrev[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2', InputPrev[idxSplit:,:,:])
+
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1_feat', InputPrev_feat[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2_feat', InputPrev_feat[idxSplit:,:,:])
+
+            print(InputPrev[:idxSplit,:,:].shape[0]+InputPrev[idxSplit:,:,:].shape[0],
+                   InputPrev_feat[:idxSplit,:,:].shape[0]+InputPrev_feat[idxSplit:,:,:].shape[0])
+
+
+    elif nenv==0:
         # Create data set
         concatData(path_rai+'/dataset',start2,stop2, skip1=skip1,rand2=rand2, NNmode=NNmode, mixData=mixData, exclude=exclude)
     else:

@@ -74,9 +74,9 @@ def softmaxToOnehot(a):
 	a[a<1]=0
 	return a
 
-def runLGP(lgp, bound, verbose=0, view=True): #BT.pose BT.seq BT.path
+def runLGP(lgp, bound, verbose=0, view=True, initnoise=0.01): #BT.pose BT.seq BT.path
     # Runs LGP and returns komo for bound
-	lgp.optBound(bound, True,view)#, initnoise
+	lgp.optBound(bound, True,view, initnoise)#, initnoise
 	if verbose>0:
 		print("Bound", bound, "feasible: ", not lgp.isInfeasible())
 	komo = lgp.getKOMOforBound(bound)
@@ -328,6 +328,8 @@ class RaiWorld():
                     self.tabNames.remove(obj)
                     if len(self.objNames)==self.numObj:
                         break
+
+        #input(self.logicalNames)
 
         # Encode objective
         goalState=self.encodeGoal(unfullfilled[:2])
