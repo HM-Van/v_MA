@@ -26,6 +26,7 @@ partOf
 world
 
 on
+#switchOn
 ontop
 busy     # involved in an ongoing (durative) activity
 animate  # the object is in principle movable
@@ -138,6 +139,12 @@ Rule{
   { (on A B)! (grasped A B) (held B) (busy A)}
 }
 
+#Rule{
+#  A, B
+#  { (on A B)  }
+#  { (switchOn B A)}
+#}
+
 Rule{
   A
   { (table A) (object A)}
@@ -161,6 +168,7 @@ Rule{
 #  { (ontop A C) (on B C) (on A B)! }
 #  { (ontop A C)!}
 #}
+
 
 Rule{
   A, B, C

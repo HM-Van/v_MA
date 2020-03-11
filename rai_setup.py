@@ -99,9 +99,11 @@ def rearrangeGoal(goal):
     else:
         return goal
 
+
+
 #------------------------------------------------------------------------------------------------------------------------------
 class RaiWorld():
-    def __init__(self, path_rai, nenv, setup, goalString, verbose, NNmode="minimal", maxDepth=100, datasetMode=1, view=True):
+    def __init__(self, path_rai, nenv, setup, goalString, verbose, NNmode="minimal", maxDepth=100, datasetMode=1, view=True, tray=""):
 
         # Init some variables
         self.path_rai=path_rai
@@ -141,6 +143,7 @@ class RaiWorld():
 
         # In case relative pos (mode is 2 or 4)
         self.baseName=[self.K.getFrameNames()[1]]
+        self.tray=tray
 
         # Set goal
         self.redefine(goalString)
@@ -176,7 +179,11 @@ class RaiWorld():
             goaltmp=splitStringStep(goalString, list_old=[])
             goalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])
             self.realGoalString=goalString
-            self.lgp.addTerminalRule(goalString)
+
+            if self.tray in self.tabNames_orig:
+                self.expandGoal(self.goalString_orig, self.realGoalString)
+
+            self.lgp.addTerminalRule(self.realGoalString)
             
             # Compute objective encoding
             self.goalState, _,_=self.preprocessGoalState(initState=True)
@@ -232,6 +239,48 @@ class RaiWorld():
                 NotImplementedError
         else:
             NotImplementedError
+
+    def expandGoal(self, goal, realgoal):
+        folstate = self.lgp.nodeState()
+        #print(goal)
+        #print(realgoal)
+        #input(folstate[0])
+
+        listNewGoal=[]
+
+        tmpTabList= [element for element in self.tabNames_orig if ("(on "+element in realgoal and not element==self.tray)]
+        #print("")
+        #print(tmpTabList)
+        for obj in self.objNames_orig:
+            cont=False
+            if "(held "+obj in goal: 
+                continue
+
+            #print(obj)
+            if ("(on "+obj in folstate[0] or "(ontop "+obj in folstate[0]):
+                for tab in tmpTabList:
+                    if "(on "+tab+" "+obj+")" in realgoal:
+                        listNewGoal.append("(on "+tab+" "+self.tray+")")
+                        cont=True
+                        break
+
+            if "(on "+obj in folstate[0] or "(on "+obj in goal or cont: 
+                continue
+
+            for tab in tmpTabList:
+                if "(on "+tab+" "+obj+")" in folstate[0]:
+                    listNewGoal.append("(on "+obj+" "+self.tray+")")
+
+        goalStringNew=" ".join(listNewGoal)
+        #print(listNewGoal)
+        if not goalStringNew=="":
+            self.goalString_orig=goalStringNew+" "+goal
+            goaltmp=splitStringStep(goalStringNew, list_old=[])
+            self.realGoalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])+" "+realgoal
+
+            print("Changed objective to: " + self.goalString_orig)
+            #print(self.realGoalString)
+        self.numGoal_orig=len(splitStringStep(self.goalString_orig, list_old=[],verbose=0))
 
     def preprocessGoals(self):
         goalStep = splitStringStep(self.goalString_orig, list_old=[],verbose=0)

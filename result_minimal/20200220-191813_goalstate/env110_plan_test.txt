@@ -3207,3 +3207,2694 @@
 
 -----Result for env 110-----
 
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2L obj5 obj6)[ 1 -1 ]
+		  NN: (grasp pr2R obj7)[ 1 -1 ]
+		  NN: (place pr2R obj7 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.699 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.817 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.488 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.532 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.483 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj5)[ 0 -1 ]	with prob 0.643 instead of (place pr2R obj4 obj5)
+		  MP: (grasp pr2R obj6)[ 1 -1 ]	with prob 0.803 instead of (place pr2L obj5 obj6)
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj5 obj6)
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 obj6)
+		  MP: (grasp pr2L obj7)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj7 tray)
+		  MP: (place pr2L obj7 tray)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj7 tray)
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.829 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.681 instead of (place pr2R obj10 obj11)
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.508 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (place pr2R obj11 obj12)[ 1 -1 ]	with prob 0.475 instead of (place pr2R obj12 obj13)
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.599 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj12 obj13)
+		  MP: (place pr2L obj12 obj13)[ 1 -1 ]	with prob 0.777 instead of (place pr2R obj12 obj13)
+		  MP: (grasp pr2L obj14)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj14 tray)
+		  NN: (place pr2L obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2L obj5 obj6)[ 1 -1 ]
+		  NN: (grasp pr2R obj7)[ 1 -1 ]
+		  NN: (place pr2R obj7 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.699 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.817 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.802 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2L obj5 obj6)[ 1 -1 ]
+		  NN: (grasp pr2R obj7)[ 1 -1 ]
+		  NN: (place pr2R obj7 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.689 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.816 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.802 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2L obj5 obj6)[ 1 -1 ]
+		  NN: (grasp pr2R obj7)[ 1 -1 ]
+		  NN: (place pr2R obj7 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.698 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2L obj13)[ 1 -1 ]
+		  NN: (place pr2L obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 0 -1 ]	with prob 0.814 instead of (place pr2L obj12 obj13)
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2L obj14)[ 1 -1 ]
+		  NN: (place pr2L obj14 tray)[ 0 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2L obj5 obj6)[ 1 -1 ]
+		  NN: (grasp pr2R obj7)[ 1 -1 ]
+		  NN: (place pr2R obj7 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.808 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.814 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2L obj5 obj6)[ 1 -1 ]
+		  NN: (grasp pr2R obj7)[ 1 -1 ]
+		  NN: (place pr2R obj7 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.699 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.817 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.815 instead of (grasp pr2R obj5)
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.629 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.805 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 0 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.81 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj6)[ 1 -1 ]
+		  NN: (place pr2R obj6 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.814 instead of (grasp pr2R obj5)
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.633 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.547 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 0 -1 ]	with prob 0.817 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj14)[ 1 -1 ]	with prob 0.639 instead of (place pr2R obj14 tray)
+		  NN: (grasp pr2R obj13)[ 0 -1 ]
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  MP: (place pr2L obj14 tray)[ 1 -1 ]	with prob 0.905 instead of (place pr2R obj14 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.488 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.532 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.483 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj5)[ 0 -1 ]	with prob 0.643 instead of (place pr2R obj4 obj5)
+		  MP: (grasp pr2R obj6)[ 1 -1 ]	with prob 0.803 instead of (place pr2L obj5 obj6)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.774 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2R obj6 tray)[ 1 -1 ]
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 obj6)
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.427 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (place pr2L obj9 obj10)[ 1 -1 ]	with prob 0.859 instead of (place pr2R obj9 obj10)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.744 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.79 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.433 instead of (place pr2R obj13 obj14)
+		  MP: (place pr2R obj14 tray)[ 1 -1 ]	with prob 0.541 instead of (grasp pr2R obj13)
+		  MP: (place pr2L obj13 obj14)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj13 obj14)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.488 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.532 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.483 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj5)[ 0 -1 ]	with prob 0.643 instead of (place pr2R obj4 obj5)
+		  MP: (grasp pr2R obj6)[ 1 -1 ]	with prob 0.803 instead of (place pr2L obj5 obj6)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.774 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2R obj6 tray)[ 1 -1 ]
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 obj6)
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.427 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (place pr2L obj9 obj10)[ 1 -1 ]	with prob 0.859 instead of (place pr2R obj9 obj10)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.744 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.79 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.433 instead of (place pr2R obj13 obj14)
+		  MP: (place pr2R obj14 tray)[ 1 -1 ]	with prob 0.541 instead of (grasp pr2R obj13)
+		  MP: (place pr2L obj13 obj14)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj13 obj14)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.488 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.532 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.483 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj5)[ 0 -1 ]	with prob 0.643 instead of (place pr2R obj4 obj5)
+		  MP: (grasp pr2R obj6)[ 1 -1 ]	with prob 0.803 instead of (place pr2L obj5 obj6)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.774 instead of (place pr2R obj5 obj6)
+		  NN: (place pr2R obj6 tray)[ 1 -1 ]
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 obj6)
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.814 instead of (place pr2R obj8 obj9)
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.624 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.81 instead of (place pr2R obj10 obj11)
+		  MP: (place pr2L obj10 obj11)[ 1 -1 ]	with prob 0.771 instead of (place pr2R obj10 obj11)
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.694 instead of (place pr2R obj13 obj14)
+		  NN: (place pr2L obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj12 obj13)
+		  MP: (place pr2L obj12 obj13)[ 1 -1 ]	with prob 0.758 instead of (grasp pr2L obj12)
+		  MP: (grasp pr2L obj14)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj14 tray)
+		  MP: (place pr2L obj14 tray)[ 1 -1 ]	with prob 0.78 instead of (place pr2R obj14 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 obj7) (on obj7 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.488 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.532 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.483 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj5)[ 0 -1 ]	with prob 0.643 instead of (place pr2R obj4 obj5)
+		  MP: (grasp pr2R obj6)[ 1 -1 ]	with prob 0.803 instead of (place pr2L obj5 obj6)
+		  NN: (place pr2R obj6 obj7)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj5 obj6)
+		  MP: (place pr2L obj5 obj6)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 obj6)
+		  MP: (grasp pr2L obj7)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj7 tray)
+		  MP: (place pr2L obj7 tray)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj7 tray)
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.829 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.681 instead of (place pr2R obj10 obj11)
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.508 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (place pr2R obj11 obj12)[ 1 -1 ]	with prob 0.475 instead of (place pr2R obj12 obj13)
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.599 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj13 obj14)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj12 obj13)
+		  MP: (place pr2L obj12 obj13)[ 1 -1 ]	with prob 0.777 instead of (place pr2R obj12 obj13)
+		  MP: (grasp pr2L obj14)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj14 tray)
+		  NN: (place pr2L obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 tray) (on obj4 obj5) (on obj5 obj6) (on obj6 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 obj14) (on obj14 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj3)[ 1 -1 ]
+		  NN: (place pr2L obj3 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.728 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (place pr2R obj5 obj6)[ 1 -1 ]	with prob 0.56 instead of (place pr2R obj6 tray)
+		  NN: (grasp pr2L obj6)[ 1 -1 ]
+		  MP: (place pr2L obj6 tray)[ 1 -1 ]	with prob 0.829 instead of (grasp pr2R obj6)
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.802 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.577 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2R obj13 obj14)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj14)[ 1 -1 ]
+		  NN: (place pr2R obj14 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 tray) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj3)[ 1 -1 ]
+		  NN: (place pr2L obj3 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.707 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 0 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2L obj11)[ 1 -1 ]
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.818 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2L obj13)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (place pr2L obj13 tray)[ 1 -1 ]	with prob 0.912 instead of (place pr2R obj13 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.615 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.811 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.68 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.656 instead of (place pr2R obj13 tray)
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (place pr2L obj13 tray)[ 1 -1 ]	with prob 0.924 instead of (place pr2R obj13 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.587 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.795 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.809 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.722 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 0 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.826 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 0 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.606 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.612 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.808 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.815 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.793 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.612 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.808 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.612 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.591 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.625 instead of (place pr2L obj3 obj4)
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.659 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2R obj4 obj5)[ 1 -1 ]	with prob 0.561 instead of (place pr2L obj4 obj5)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.825 instead of (place pr2R obj5 tray)
+		  MP: (place pr2L obj5 tray)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.612 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.591 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.625 instead of (place pr2L obj3 obj4)
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.659 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (place pr2R obj4 obj5)[ 1 -1 ]	with prob 0.561 instead of (place pr2L obj4 obj5)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.825 instead of (place pr2R obj5 tray)
+		  MP: (place pr2L obj5 tray)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.587 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.54 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.701 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.818 instead of (place pr2R obj3 obj4)
+		  MP: (place pr2L obj3 obj4)[ 0 -1 ]	with prob 0.776 instead of (place pr2R obj3 obj4)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj5 tray)
+		  MP: (place pr2L obj5 tray)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.587 instead of (place pr2R obj1 obj2)
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.54 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.701 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.818 instead of (place pr2R obj3 obj4)
+		  MP: (place pr2L obj3 obj4)[ 0 -1 ]	with prob 0.776 instead of (place pr2R obj3 obj4)
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj5 tray)
+		  MP: (place pr2L obj5 tray)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj5 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.587 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.795 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.815 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.826 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.734 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.821 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.52 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.587 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.795 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.815 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.784 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj3)[ 1 -1 ]
+		  NN: (grasp pr2L obj2)[ 1 -1 ]
+		  NN: (place pr2L obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.623 instead of (place pr2L obj1 obj0)
+		  NN: (place pr2R obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj1)[ 1 -1 ]
+		  MP: (place pr2L obj1 obj0)[ 1 -1 ]	with prob 0.812 instead of (grasp pr2R obj1)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) feasible 1----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.785 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj3)[ 1 -1 ]
+		  NN: (grasp pr2L obj2)[ 1 -1 ]
+		  NN: (place pr2L obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.616 instead of (place pr2L obj1 obj0)
+		  NN: (place pr2R obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj1)[ 1 -1 ]
+		  MP: (place pr2L obj1 obj0)[ 1 -1 ]	with prob 0.824 instead of (grasp pr2R obj1)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.571 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.806 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.814 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.826 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.79 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.711 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.571 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.806 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.814 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.826 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.592 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.806 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.714 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.651 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.659 instead of (place pr2R obj4 obj5)
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.814 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.832 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.661 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.816 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.828 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.661 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.816 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.829 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) feasible 1----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.8 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.457 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.595 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.573 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.492 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj1 obj0)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.777 instead of (place pr2L obj2 obj1)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj0 tray)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.661 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.816 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.828 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.569 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 tray) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 tray) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.661 instead of (place pr2R obj1 obj2)
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (place pr2L obj2 tray)[ 1 -1 ]	with prob 0.845 instead of (place pr2R obj2 tray)
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 0 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.83 instead of (place pr2L obj5 tray)
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.818 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 tray)
+		  NN: (place pr2L obj10 tray)[ 0 -1 ]
+		  NN: (grasp pr2R obj12)[ 0 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 0 -1 ]	with prob 0.824 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.823 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.8 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.457 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.595 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.573 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.492 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj1 obj0)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.777 instead of (place pr2L obj2 obj1)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj0 tray)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  MP: (place pr2R obj12 obj11)[ 1 -1 ]	with prob 0.178 instead of (place pr2R obj13 obj12)
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.813 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.811 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.803 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.426 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 0 -1 ]	with prob 0.823 instead of (place pr2L obj8 tray)
+		  NN: (place pr2R obj8 tray)[ 0 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.661 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.816 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.828 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.569 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.661 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.816 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.828 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.765 instead of (place pr2L obj13 obj12)
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.816 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.572 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.506 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.823 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.83 instead of (place pr2R obj8 tray)
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 tray) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 tray) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.655 instead of (place pr2R obj1 obj2)
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  MP: (place pr2L obj2 tray)[ 1 -1 ]	with prob 0.854 instead of (place pr2R obj2 tray)
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 0 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.828 instead of (place pr2L obj5 tray)
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj10 tray)
+		  NN: (place pr2L obj10 tray)[ 0 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 0 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 0 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.655 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.816 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.833 instead of (place pr2R obj5 tray)
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.496 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.813 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.534 instead of (place pr2L obj13 tray)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.743 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.78 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 0 -1 ]	with prob 0.534 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.785 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.825 instead of (place pr2R obj8 tray)
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.78 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 0 -1 ]	with prob 0.534 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.785 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.825 instead of (place pr2R obj8 tray)
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.78 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 0 -1 ]	with prob 0.534 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.785 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.825 instead of (place pr2R obj8 tray)
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) feasible 1----
+		  NN: (grasp pr2L obj0)[ 1 -1 ]
+		  MP: (place pr2L obj0 obj1)[ 1 -1 ]	with prob 0.508 instead of (place pr2L obj1 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.538 instead of (place pr2L obj2 obj3)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.806 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj5)[ 0 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 tray)
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.832 instead of (place pr2R obj13 obj12)
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.453 instead of (place pr2L obj13 obj12)
+		  NN: (place pr2R obj13 obj12)[ 1 -1 ]
+		  MP: (place pr2L obj12 obj11)[ 1 -1 ]	with prob 0.535 instead of (place pr2L obj11 obj10)
+		  MP: (grasp pr2R obj10)[ 0 -1 ]	with prob 0.79 instead of (place pr2L obj11 obj10)
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.819 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.541 instead of (place pr2L obj8 tray)
+		  NN: (place pr2R obj8 tray)[ 0 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2L obj0)[ 1 -1 ]
+		  MP: (place pr2L obj0 obj1)[ 1 -1 ]	with prob 0.508 instead of (place pr2L obj1 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.538 instead of (place pr2L obj2 obj3)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.806 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj5)[ 0 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 tray)
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.815 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2L obj11)[ 1 -1 ]
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.819 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 0 -1 ]	with prob 0.731 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 0 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.78 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 0 -1 ]	with prob 0.534 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.785 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.825 instead of (place pr2R obj8 tray)
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.534 instead of (place pr2L obj13 tray)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.743 instead of (place pr2R obj12 obj13)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.796 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.485 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.455 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.479 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.784 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.643 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.453 instead of (place pr2L obj9 obj10)
+		  MP: (place pr2R obj9 obj10)[ 1 -1 ]	with prob 0.505 instead of (place pr2R obj8 obj9)
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.609 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.628 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 0 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.796 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.485 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.455 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.479 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.784 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.643 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.453 instead of (place pr2L obj9 obj10)
+		  MP: (place pr2R obj9 obj10)[ 1 -1 ]	with prob 0.505 instead of (place pr2R obj8 obj9)
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.609 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.628 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 0 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.796 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.485 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.455 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.479 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.784 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.643 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.453 instead of (place pr2L obj9 obj10)
+		  MP: (place pr2R obj9 obj10)[ 1 -1 ]	with prob 0.505 instead of (place pr2R obj8 obj9)
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.609 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.628 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 0 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.814 instead of (grasp pr2R obj5)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.277 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.795 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj4 obj3)[ 0 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.496 instead of (place pr2R obj0 tray)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  NN: (grasp pr2L obj8)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.467 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.776 instead of (place pr2R obj8 obj9)
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.56 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 0 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.782 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj5 obj4)
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj3)[ 1 -1 ]	with prob 0.46 instead of (place pr2L obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.618 instead of (place pr2L obj3 obj2)
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.804 instead of (place pr2R obj3 obj2)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.556 instead of (place pr2L obj0 tray)
+		  NN: (place pr2R obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj1)[ 1 -1 ]
+		  NN: (place pr2L obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.58 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.712 instead of (place pr2R obj9 obj10)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 0 -1 ]	with prob 0.815 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.697 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.807 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.732 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.781 instead of (place pr2L obj5 obj4)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.537 instead of (place pr2R obj3 obj2)
+		  NN: (place pr2R obj4 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.564 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.516 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj1 obj0)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.776 instead of (place pr2L obj2 obj1)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj0 tray)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.829 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  MP: (place pr2L obj10 obj11)[ 1 -1 ]	with prob 0.767 instead of (place pr2R obj10 obj11)
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.557 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.796 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.485 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.455 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.479 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.784 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.769 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.192 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.821 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2L obj10)[ 1 -1 ]
+		  NN: (place pr2L obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.768 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj8 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj8)[ 0 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.814 instead of (grasp pr2R obj5)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.261 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.795 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj4 obj3)[ 1 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.714 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.794 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.809 instead of (place pr2L obj12 obj11)
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.194 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 0 -1 ]	with prob 0.812 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.819 instead of (place pr2R obj9 obj8)
+		  NN: (place pr2L obj8 tray)[ 0 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  MP: (place pr2R obj9 obj8)[ 0 -1 ]	with prob 0.82 instead of (grasp pr2L obj9)
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.782 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj5 obj4)
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.463 instead of (place pr2L obj3 obj2)
+		  NN: (place pr2L obj4 obj3)[ 1 -1 ]
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj2 obj1)
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.496 instead of (place pr2R obj2 obj1)
+		  NN: (place pr2L obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj0 tray)
+		  MP: (place pr2L obj0 tray)[ 1 -1 ]	with prob 0.829 instead of (place pr2R obj0 tray)
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 0 -1 ]	with prob 0.817 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.754 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.679 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.603 instead of (place pr2R obj10 obj9)
+		  NN: (place pr2R obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2L obj10 obj9)[ 0 -1 ]	with prob 0.894 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.804 instead of (place pr2R obj8 tray)
+		  NN: (place pr2R obj8 tray)[ 0 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.732 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.787 instead of (place pr2L obj5 obj4)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.517 instead of (place pr2R obj3 obj2)
+		  NN: (place pr2R obj4 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.512 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.522 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.77 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj3)[ 1 -1 ]
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.712 instead of (place pr2R obj9 obj10)
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.818 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.497 instead of (place pr2R obj11 obj12)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.759 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (place pr2L obj12 tray)[ 1 -1 ]	with prob 0.744 instead of (place pr2R obj12 tray)
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+--------------------
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.836 instead of (grasp pr2R obj0)
+		  MP: (place pr2L obj0 obj1)[ 1 -1 ]	with prob 0.442 instead of (place pr2L obj1 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.549 instead of (place pr2L obj2 obj3)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.816 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj3)[ 1 -1 ]
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.682 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 0 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.707 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj12 tray)
+		  NN: (place pr2R obj12 tray)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 tray) infeasible 0----
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.8 instead of (grasp pr2R obj0)
+		  MP: (place pr2R obj0 obj1)[ 1 -1 ]	with prob 0.622 instead of (place pr2R obj0 obj1)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.589 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.815 instead of (place pr2R obj1 obj2)
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.753 instead of (grasp pr2R obj0)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.796 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.485 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.455 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.479 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.784 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.769 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.192 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.821 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2L obj10)[ 1 -1 ]
+		  NN: (place pr2L obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.768 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj8 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj8)[ 0 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.814 instead of (grasp pr2R obj5)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.261 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.795 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj4 obj3)[ 1 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.714 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.794 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.809 instead of (place pr2L obj12 obj11)
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.194 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 0 -1 ]	with prob 0.812 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.819 instead of (place pr2R obj9 obj8)
+		  NN: (place pr2L obj8 tray)[ 0 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  MP: (place pr2R obj9 obj8)[ 0 -1 ]	with prob 0.82 instead of (grasp pr2L obj9)
+--------------------
+
+----KOMO failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.782 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj5 obj4)
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.463 instead of (place pr2L obj3 obj2)
+		  NN: (place pr2L obj4 obj3)[ 1 -1 ]
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.527 instead of (place pr2R obj2 obj1)
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.496 instead of (place pr2R obj2 obj1)
+		  NN: (place pr2L obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj0 tray)
+		  MP: (place pr2L obj0 tray)[ 1 -1 ]	with prob 0.829 instead of (place pr2R obj0 tray)
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 0 -1 ]	with prob 0.817 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.754 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.679 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.603 instead of (place pr2R obj10 obj9)
+		  NN: (place pr2R obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2L obj10 obj9)[ 0 -1 ]	with prob 0.894 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.804 instead of (place pr2R obj8 tray)
+		  NN: (place pr2R obj8 tray)[ 0 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.732 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.787 instead of (place pr2L obj5 obj4)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.562 instead of (place pr2R obj3 obj2)
+		  NN: (place pr2R obj4 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.577 instead of (place pr2L obj2 obj1)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 tray) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.823 instead of (place pr2L obj10 tray)
+		  NN: (place pr2R obj10 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.818 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2L obj0)[ 1 -1 ]
+		  MP: (place pr2L obj0 obj1)[ 1 -1 ]	with prob 0.508 instead of (place pr2L obj1 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.538 instead of (place pr2L obj2 obj3)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.806 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj5)[ 0 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.823 instead of (place pr2L obj5 tray)
+		  NN: (place pr2R obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  NN: (place pr2L obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.815 instead of (place pr2L obj8 obj9)
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.778 instead of (place pr2R obj11 obj12)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.694 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (place pr2L obj12 obj13)[ 1 -1 ]	with prob 0.617 instead of (place pr2R obj12 obj13)
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.823 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.647 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.809 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  MP: (place pr2L obj10 obj11)[ 1 -1 ]	with prob 0.83 instead of (grasp pr2R obj10)
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.582 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.65 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj8 obj9)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  MP: (place pr2L obj10 obj11)[ 1 -1 ]	with prob 0.83 instead of (grasp pr2R obj10)
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.551 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.65 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 0 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.539 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.514 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.796 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.833 instead of (place pr2R obj8 tray)
+		  MP: (place pr2L obj8 tray)[ 1 -1 ]	with prob 0.931 instead of (place pr2R obj8 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.65 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 0 -1 ]
+		  NN: (grasp pr2R obj11)[ 1 -1 ]
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.539 instead of (place pr2R obj10 obj9)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.514 instead of (place pr2L obj10 obj9)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2R obj10 obj9)[ 1 -1 ]	with prob 0.796 instead of (place pr2L obj10 obj9)
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.833 instead of (place pr2R obj8 tray)
+		  MP: (place pr2L obj8 tray)[ 1 -1 ]	with prob 0.931 instead of (place pr2R obj8 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.765 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.457 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.788 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj11)[ 0 -1 ]	with prob 0.647 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.571 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.765 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.457 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.788 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj11)[ 0 -1 ]	with prob 0.647 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj12 obj13)
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.765 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.457 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj8 obj9)[ 1 -1 ]	with prob 0.788 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj11)[ 0 -1 ]	with prob 0.647 instead of (place pr2L obj11 obj12)
+		  NN: (place pr2R obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 obj11)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.571 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj12)[ 1 -1 ]
+		  NN: (place pr2L obj12 obj13)[ 1 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.818 instead of (grasp pr2R obj5)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.814 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.262 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj4 obj3)[ 0 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.502 instead of (place pr2R obj0 tray)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.77 instead of (place pr2R obj8 obj9)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.463 instead of (place pr2L obj9 obj10)
+		  NN: (place pr2L obj8 obj9)[ 1 -1 ]
+		  MP: (place pr2R obj9 obj10)[ 1 -1 ]	with prob 0.547 instead of (place pr2L obj10 obj11)
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.758 instead of (place pr2R obj11 obj12)
+		  NN: (place pr2L obj11 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.82 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  NN: (grasp pr2L obj13)[ 1 -1 ]
+		  MP: (place pr2L obj13 tray)[ 1 -1 ]	with prob 0.791 instead of (place pr2R obj13 tray)
+		  NN: (grasp pr2R obj12)[ 0 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.786 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj5 obj4)
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.478 instead of (place pr2L obj3 obj2)
+		  NN: (place pr2L obj4 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.441 instead of (place pr2R obj2 obj1)
+		  NN: (place pr2R obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2L obj2 obj1)[ 1 -1 ]	with prob 0.547 instead of (place pr2L obj1 obj0)
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.556 instead of (place pr2L obj1 obj0)
+		  NN: (place pr2R obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj1)[ 1 -1 ]
+		  MP: (place pr2L obj1 obj0)[ 1 -1 ]	with prob 0.82 instead of (grasp pr2R obj1)
+		  NN: (grasp pr2R obj8)[ 1 -1 ]
+		  NN: (place pr2R obj8 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.671 instead of (place pr2R obj9 obj10)
+		  NN: (place pr2L obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.82 instead of (place pr2L obj9 obj10)
+--------------------
+
+----KOMO path failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj8 obj9) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.736 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.787 instead of (place pr2L obj5 obj4)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 obj8) (on obj9 obj10) (on obj10 obj11) (on obj11 obj12) (on obj12 obj13) (on obj13 tray) (on obj8 tray) feasible 1----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 obj8)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.809 instead of (place pr2L obj1 obj0)
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.564 instead of (place pr2R obj9 obj10)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.709 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj9 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj11 obj12)[ 1 -1 ]	with prob 0.809 instead of (place pr2R obj11 obj12)
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.822 instead of (place pr2L obj10 obj11)
+		  NN: (place pr2R obj10 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 0 -1 ]	with prob 0.658 instead of (place pr2R obj13 tray)
+		  MP: (place pr2L obj13 tray)[ 1 -1 ]	with prob 0.785 instead of (place pr2R obj13 tray)
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 0 -1 ]	with prob 0.818 instead of (place pr2R obj8 tray)
+		  NN: (place pr2L obj8 tray)[ 0 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.646 instead of (place pr2L obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.826 instead of (place pr2L obj12 obj11)
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.251 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.821 instead of (place pr2R obj9 obj8)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.493 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2L obj8 tray)[ 0 -1 ]	with prob 0.923 instead of (place pr2R obj8 tray)
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.818 instead of (grasp pr2R obj5)
+		  NN: (place pr2L obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.785 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj3 obj2)[ 1 -1 ]	with prob 0.245 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.802 instead of (place pr2R obj4 obj3)
+		  NN: (place pr2L obj4 obj3)[ 1 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.636 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.678 instead of (place pr2R obj13 obj12)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  NN: (grasp pr2R obj11)[ 0 -1 ]
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.204 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 0 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj9 obj8)
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.51 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj9 obj8)[ 1 -1 ]
+		  MP: (place pr2L obj8 tray)[ 0 -1 ]	with prob 0.853 instead of (place pr2R obj8 tray)
+--------------------
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 tray) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.786 instead of (grasp pr2R obj5)
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj5 obj4)
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (place pr2L obj4 obj3)[ 1 -1 ]	with prob 0.504 instead of (place pr2L obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.709 instead of (place pr2L obj3 obj2)
+		  NN: (place pr2R obj2 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.806 instead of (place pr2R obj3 obj2)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj1)[ 1 -1 ]
+		  MP: (place pr2L obj1 obj0)[ 1 -1 ]	with prob 0.82 instead of (grasp pr2R obj1)
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.79 instead of (place pr2R obj12 obj11)
+		  MP: (place pr2L obj11 obj10)[ 1 -1 ]	with prob 0.178 instead of (place pr2L obj12 obj11)
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.821 instead of (place pr2L obj12 obj11)
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2L obj10)[ 1 -1 ]
+		  NN: (place pr2L obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 0 -1 ]	with prob 0.748 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj8 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  MP: (place pr2L obj9 obj8)[ 0 -1 ]	with prob 0.777 instead of (place pr2R obj9 obj8)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO path failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 obj13) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.824 instead of (place pr2L tray obj0)
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.811 instead of (place pr2L obj11 obj10)
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.818 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  NN: (grasp pr2R tray)[ 0 -1 ]
+		  NN: (grasp pr2L obj8)[ 1 -1 ]
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.759 instead of (place pr2L tray obj8)
+--------------------
+
+----KOMO path failed for goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 obj13) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) (on obj13 tray) infeasible 0----
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj5 obj4) (on obj4 obj3) (on obj3 obj2) (on obj2 obj1) (on obj1 obj0) (on obj0 obj13) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) feasible 1----
+		  NN: (grasp pr2R obj5)[ 1 -1 ]
+		  NN: (place pr2R obj5 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.798 instead of (place pr2R obj4 obj3)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.479 instead of (place pr2L obj4 obj3)
+		  MP: (place pr2R obj4 obj3)[ 1 -1 ]	with prob 0.534 instead of (place pr2R obj3 obj2)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.501 instead of (place pr2L obj2 obj1)
+		  NN: (place pr2L obj3 obj2)[ 1 -1 ]
+		  MP: (place pr2R obj2 obj1)[ 1 -1 ]	with prob 0.482 instead of (place pr2R obj1 obj0)
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.786 instead of (place pr2R obj1 obj0)
+		  NN: (place pr2L obj0 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.824 instead of (place pr2L tray obj0)
+		  NN: (place pr2R obj1 obj0)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.823 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.822 instead of (place pr2L obj12 obj11)
+		  MP: (place pr2R obj11 obj10)[ 1 -1 ]	with prob 0.241 instead of (place pr2R obj12 obj11)
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.819 instead of (place pr2R obj12 obj11)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  NN: (grasp pr2R obj10)[ 1 -1 ]
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.808 instead of (place pr2R obj9 obj8)
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+		  NN: (grasp pr2R obj9)[ 1 -1 ]
+		  NN: (place pr2R obj9 obj8)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.65 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 obj13)[ 1 -1 ]
+		  MP: (grasp pr2R obj12)[ 1 -1 ]	with prob 0.808 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2R obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.715 instead of (place pr2R obj11 obj10)
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.465 instead of (place pr2L obj11 obj10)
+		  NN: (place pr2R obj11 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj10 obj9)[ 1 -1 ]	with prob 0.607 instead of (place pr2L obj9 obj8)
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.708 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj8 tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  MP: (place pr2L obj9 obj8)[ 1 -1 ]	with prob 0.83 instead of (grasp pr2R obj9)
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+--------------------
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.833 instead of (grasp pr2R obj0)
+		  NN: (place pr2L obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.518 instead of (place pr2L obj2 obj3)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2R obj4)[ 1 -1 ]
+		  NN: (place pr2R obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj4)
+		  NN: (place pr2L obj3 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 obj13)
+		  NN: (place pr2R obj5 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.807 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.804 instead of (place pr2L obj11 obj10)
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.82 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  NN: (grasp pr2R obj8)[ 1 -1 ]
+		  NN: (place pr2R obj8 tray)[ 0 -1 ]
+		  NN: (grasp pr2L obj9)[ 1 -1 ]
+		  MP: (place pr2L obj9 obj8)[ 1 -1 ]	with prob 0.821 instead of (grasp pr2R obj9)
+		  NN: (grasp pr2R obj13)[ 1 -1 ]
+		  NN: (place pr2R obj13 tray)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.803 instead of (grasp pr2R obj0)
+		  MP: (grasp pr2L obj1)[ 1 -1 ]	with prob 0.643 instead of (place pr2R obj0 obj1)
+		  NN: (place pr2L obj1 obj2)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.598 instead of (place pr2R obj3 obj4)
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.689 instead of (place pr2L obj3 obj4)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----KOMO failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.65 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj13)[ 1 -1 ]
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 obj13)
+		  NN: (place pr2R obj5 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.793 instead of (place pr2L obj11 obj10)
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.82 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  NN: (grasp pr2R tray)[ 1 -1 ]
+		  NN: (grasp pr2L obj8)[ 1 -1 ]
+		  NN: (place pr2L obj8 tray)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.765 instead of (place pr2L tray obj8)
+		  NN: (place pr2L obj9 obj8)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.833 instead of (grasp pr2R obj0)
+		  NN: (place pr2L obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.555 instead of (place pr2L obj2 obj3)
+		  NN: (place pr2R obj2 obj3)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.803 instead of (grasp pr2R obj0)
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.75 instead of (grasp pr2R obj0)
+		  MP: (place pr2L obj0 obj2)[ 1 -1 ]	with prob 0.41 instead of (place pr2L obj1 obj2)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj1) (on obj1 obj2) (on obj2 obj3) (on obj3 obj4) (on obj4 obj5) (on obj5 obj13) (on obj13 obj12) (on obj12 obj11) (on obj11 obj10) (on obj10 obj9) (on obj9 obj8) (on obj9 obj8) (on obj8 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.65 instead of (place pr2R obj1 obj2)
+		  NN: (place pr2L obj2 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.813 instead of (place pr2L obj1 obj2)
+		  NN: (place pr2R obj1 obj2)[ 1 -1 ]
+		  NN: (grasp pr2L obj4)[ 1 -1 ]
+		  NN: (place pr2L obj4 obj5)[ 1 -1 ]
+		  MP: (grasp pr2R obj3)[ 1 -1 ]	with prob 0.817 instead of (place pr2L obj3 obj4)
+		  NN: (place pr2R obj3 obj4)[ 1 -1 ]
+		  NN: (grasp pr2L obj13)[ 1 -1 ]
+		  NN: (place pr2L obj13 obj12)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 obj13)
+		  NN: (place pr2R obj5 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.822 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj12 obj11)[ 1 -1 ]
+		  MP: (grasp pr2R obj10)[ 1 -1 ]	with prob 0.793 instead of (place pr2L obj11 obj10)
+		  NN: (place pr2R obj10 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.82 instead of (place pr2R obj11 obj10)
+		  NN: (place pr2L obj11 obj10)[ 1 -1 ]
+		  MP: (grasp pr2R obj9)[ 1 -1 ]	with prob 0.833 instead of (place pr2L obj9 obj8)
+		  NN: (place pr2R obj9 obj8)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj8 tray)
+		  MP: (place pr2L obj8 tray)[ 1 -1 ]	with prob 0.929 instead of (place pr2R obj8 tray)
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj8) (on obj1 obj9) (on obj2 obj10) (on obj3 obj11) (on obj4 obj12) (on obj5 obj13) feasible 1----
+		  NN: (grasp pr2L obj0)[ 1 -1 ]
+		  MP: (place pr2L obj0 obj8)[ 1 -1 ]	with prob 0.796 instead of (grasp pr2R obj0)
+		  NN: (grasp pr2R obj1)[ 1 -1 ]
+		  NN: (place pr2R obj1 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj2)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj2 obj10)
+		  MP: (place pr2L obj2 obj10)[ 1 -1 ]	with prob 0.799 instead of (grasp pr2R obj2)
+		  NN: (grasp pr2R obj3)[ 1 -1 ]
+		  NN: (place pr2R obj3 obj11)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj4 obj12)
+		  MP: (place pr2L obj4 obj12)[ 1 -1 ]	with prob 0.821 instead of (grasp pr2R obj4)
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 obj13)
+		  NN: (place pr2R obj5 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj8) (on obj8 obj1) (on obj1 obj9) (on obj9 obj2) (on obj2 obj10) (on obj10 obj3) (on obj3 obj11) (on obj11 obj4) (on obj4 obj12) (on obj12 obj5) (on obj5 obj13) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj8)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.77 instead of (place pr2R obj1 obj9)
+		  NN: (place pr2L obj8 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.576 instead of (place pr2L obj9 obj2)
+		  NN: (place pr2R obj1 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.746 instead of (place pr2R obj2 obj10)
+		  NN: (place pr2L obj9 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.518 instead of (place pr2L obj10 obj3)
+		  NN: (place pr2R obj2 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj3 obj11)
+		  NN: (place pr2L obj10 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.507 instead of (place pr2L obj11 obj4)
+		  NN: (place pr2R obj11 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj11)
+		  MP: (place pr2L obj3 obj11)[ 1 -1 ]	with prob 0.83 instead of (grasp pr2R obj3)
+		  MP: (grasp pr2R obj12)[ 0 -1 ]	with prob 0.825 instead of (place pr2L obj4 obj12)
+		  NN: (place pr2R obj12 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj4 obj12)
+		  MP: (place pr2L obj4 obj12)[ 1 -1 ]	with prob 0.826 instead of (grasp pr2R obj4)
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.824 instead of (place pr2L obj5 obj13)
+		  NN: (place pr2R obj5 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj8) (on obj8 obj1) (on obj1 obj9) (on obj9 obj2) (on obj2 obj10) (on obj10 obj3) (on obj3 obj11) (on obj11 obj4) (on obj4 obj12) (on obj12 obj5) (on obj5 obj13) (on obj13 tray) feasible 1----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj8)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.77 instead of (place pr2R obj1 obj9)
+		  NN: (place pr2L obj8 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.576 instead of (place pr2L obj9 obj2)
+		  NN: (place pr2R obj1 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.746 instead of (place pr2R obj2 obj10)
+		  NN: (place pr2L obj9 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.518 instead of (place pr2L obj10 obj3)
+		  NN: (place pr2R obj2 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.811 instead of (place pr2R obj3 obj11)
+		  NN: (place pr2L obj10 obj3)[ 1 -1 ]
+		  MP: (grasp pr2R obj11)[ 1 -1 ]	with prob 0.507 instead of (place pr2L obj11 obj4)
+		  NN: (place pr2R obj11 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj3 obj11)
+		  MP: (place pr2L obj3 obj11)[ 1 -1 ]	with prob 0.83 instead of (grasp pr2R obj3)
+		  MP: (grasp pr2R obj12)[ 0 -1 ]	with prob 0.825 instead of (place pr2L obj4 obj12)
+		  NN: (place pr2R obj12 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj4)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj4 obj12)
+		  MP: (place pr2L obj4 obj12)[ 1 -1 ]	with prob 0.826 instead of (grasp pr2R obj4)
+		  MP: (grasp pr2R obj13)[ 1 -1 ]	with prob 0.585 instead of (place pr2L obj13 tray)
+		  NN: (place pr2R obj13 tray)[ 0 -1 ]
+		  NN: (grasp pr2L obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 obj13)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 110-----
+
+----Successfully reached goal : (on obj0 obj8) (on obj8 obj1) (on obj1 obj9) (on obj9 obj2) (on obj2 obj10) (on obj10 tray) (on obj3 obj11) (on obj11 obj4) (on obj4 obj12) (on obj12 obj5) (on obj5 obj13) (on obj13 tray) infeasible 0----
+		  NN: (grasp pr2R obj0)[ 1 -1 ]
+		  NN: (place pr2R obj0 obj8)[ 1 -1 ]
+		  MP: (grasp pr2L obj8)[ 1 -1 ]	with prob 0.77 instead of (place pr2R obj1 obj9)
+		  NN: (place pr2L obj8 obj1)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.576 instead of (place pr2L obj9 obj2)
+		  NN: (place pr2R obj1 obj9)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.746 instead of (place pr2R obj2 obj10)
+		  NN: (place pr2L obj9 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj2)[ 1 -1 ]	with prob 0.594 instead of (place pr2L obj10 tray)
+		  NN: (place pr2R obj2 obj10)[ 1 -1 ]
+		  MP: (grasp pr2L obj10)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj10 tray)
+		  NN: (place pr2L obj10 tray)[ 1 -1 ]
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.761 instead of (place pr2L obj11 obj4)
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.744 instead of (place pr2R obj11 obj4)
+		  MP: (place pr2L obj3 obj11)[ 1 -1 ]	with prob 0.19 instead of (place pr2L obj11 obj4)
+		  MP: (place pr2R obj4 obj12)[ 1 -1 ]	with prob 0.309 instead of (place pr2R obj11 obj4)
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.82 instead of (place pr2R obj11 obj4)
+		  NN: (place pr2L obj11 obj4)[ 1 -1 ]
+		  MP: (grasp pr2L obj5)[ 1 -1 ]	with prob 0.533 instead of (place pr2L obj12 obj5)
+		  NN: (grasp pr2R obj12)[ 1 -1 ]
+		  NN: (place pr2R obj12 obj5)[ 1 -1 ]
+		  NN: (place pr2L obj5 obj13)[ 0 -1 ]
+		  MP: (grasp pr2L obj13)[ 0 -1 ]	with prob 0.803 instead of (place pr2L obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 0 -1 ]
+--------------------
+
+----Successfully reached goal : (on obj0 obj8) (on obj8 obj1) (on obj1 obj9) (on obj9 obj2) (on obj2 obj10) (on obj10 tray) (on obj3 obj11) (on obj11 obj4) (on obj4 obj12) (on obj12 obj5) (on obj5 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.793 instead of (grasp pr2R obj0)
+		  NN: (place pr2L obj0 obj8)[ 1 -1 ]
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.554 instead of (place pr2L obj8 obj1)
+		  NN: (place pr2R obj8 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.691 instead of (place pr2R obj1 obj9)
+		  NN: (place pr2L obj9 obj2)[ 0 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.812 instead of (place pr2L obj1 obj9)
+		  NN: (place pr2R obj1 obj9)[ 1 -1 ]
+		  NN: (grasp pr2L obj10)[ 1 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+		  NN: (place pr2R obj2 obj10)[ 1 -1 ]
+		  MP: (place pr2L obj10 tray)[ 1 -1 ]	with prob 0.864 instead of (place pr2R obj10 tray)
+		  MP: (grasp pr2R obj4)[ 1 -1 ]	with prob 0.576 instead of (place pr2L obj11 obj4)
+		  MP: (grasp pr2L obj3)[ 1 -1 ]	with prob 0.806 instead of (place pr2R obj11 obj4)
+		  NN: (place pr2L obj3 obj11)[ 1 -1 ]
+		  MP: (place pr2R obj4 obj12)[ 1 -1 ]	with prob 0.699 instead of (place pr2L obj4 obj12)
+		  MP: (grasp pr2L obj11)[ 1 -1 ]	with prob 0.824 instead of (place pr2R obj11 obj4)
+		  NN: (place pr2L obj11 obj4)[ 1 -1 ]
+		  MP: (grasp pr2R obj5)[ 1 -1 ]	with prob 0.633 instead of (place pr2L obj12 obj5)
+		  NN: (place pr2R obj5 obj13)[ 1 -1 ]
+		  MP: (grasp pr2L obj12)[ 1 -1 ]	with prob 0.826 instead of (place pr2R obj12 obj5)
+		  NN: (place pr2L obj12 obj5)[ 1 -1 ]
+		  MP: (grasp pr2L obj13)[ 1 -1 ]	with prob 0.797 instead of (place pr2L obj13 tray)
+		  NN: (place pr2L obj13 tray)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj8) (on obj8 obj1) (on obj1 obj9) (on obj9 obj2) (on obj2 obj10) (on obj10 tray) (on obj3 obj11) (on obj11 obj4) (on obj4 obj12) (on obj12 obj5) (on obj5 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2R obj0)[ 1 -1 ]	with prob 0.763 instead of (grasp pr2R obj0)
+		  MP: (place pr2R obj0 obj8)[ 1 -1 ]	with prob 0.602 instead of (place pr2R obj0 obj8)
+		  MP: (grasp pr2R obj8)[ 1 -1 ]	with prob 0.696 instead of (place pr2R obj1 obj9)
+		  NN: (place pr2R obj8 obj1)[ 1 -1 ]
+		  MP: (grasp pr2L obj9)[ 1 -1 ]	with prob 0.668 instead of (place pr2R obj1 obj9)
+		  NN: (place pr2L obj9 obj2)[ 1 -1 ]
+		  MP: (grasp pr2R obj1)[ 1 -1 ]	with prob 0.81 instead of (place pr2L obj1 obj9)
+		  NN: (place pr2R obj1 obj9)[ 1 -1 ]
+		  NN: (grasp pr2L obj10)[ 1 -1 ]
+		  NN: (grasp pr2R obj2)[ 1 -1 ]
+--------------------
+
+----KOMO path failed for goal : (on obj0 obj8) (on obj8 obj1) (on obj1 obj9) (on obj9 obj2) (on obj2 obj10) (on obj10 tray) (on obj3 obj11) (on obj11 obj4) (on obj4 obj12) (on obj12 obj5) (on obj5 obj13) (on obj13 tray) infeasible 0----
+		  MP: (grasp pr2L obj0)[ 1 -1 ]	with prob 0.714 instead of (grasp pr2R obj0)
+--------------------
+

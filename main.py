@@ -123,7 +123,7 @@ def printResult(rai_net, skeleton):
 	print("")
 
 def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_tree=False, showFinal=True, waitTime=0, cheat_feas=False, feasThresh=0.4, planOnly=False,
-					infeasibleSkeletons=[], depthSkeletons=[], tries=0, verbose=True, newLGP=True):
+					infeasibleSkeletons=[], depthSkeletons=[], tries=0, verbose=True, newLGP=True, maxTimeOP=0):
 
 	skeleton=""
 	tmpskeleton=""
@@ -297,6 +297,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 	if skeleton=="":
 		skeleton="(grasp pr2R obj0) (place pr2R obj0 obj1) (grasp pr2L obj2) (grasp pr2R obj1) (place pr2R obj1 obj2) (grasp pr2R obj3) (place pr2L obj2 obj3) (grasp pr2L obj4) (place pr2R obj3 obj4) (place pr2L obj4 obj5) (grasp pr2R obj6) (place pr2R obj6 obj7) (grasp pr2L obj5) (place pr2L obj5 obj6) (grasp pr2L obj7) (place pr2L obj7 tray) (grasp pr2R obj9) (place pr2R obj9 obj10) (grasp pr2R obj8) (place pr2R obj8 obj9) (grasp pr2R obj11) (place pr2R obj11 obj12) (grasp pr2R obj10) (place pr2R obj10 obj11) (grasp pr2R obj13) (place pr2R obj13 obj14) (grasp pr2L obj12) (place pr2L obj12 obj13) (grasp pr2L obj14) (place pr2L obj14 tray)"
 		#skeleton="(grasp pr2R obj0) (place pr2R obj0 obj1) (grasp pr2L obj2) (grasp pr2R obj1) (place pr2R obj1 obj2) (place pr2L obj2 obj3) (grasp pr2L obj4) (place pr2L obj4 obj5) (grasp pr2L obj3) (place pr2L obj3 obj4) (grasp pr2L obj5) (place pr2L obj5 obj6) (grasp pr2L obj7) (place pr2L obj7 tray) (grasp pr2L obj6) (place pr2L obj6 obj7) (grasp pr2L obj9) (place pr2L obj9 obj10) (grasp pr2R obj8) (place pr2R obj8 obj9) (grasp pr2R obj11) (grasp pr2L obj10) (place pr2R obj11 obj12) (place pr2L obj10 obj11) (grasp pr2R obj13) (place pr2R obj13 obj14) (grasp pr2L obj12) (place pr2L obj12 obj13) (grasp pr2L obj14) (place pr2L obj14 tray)"
+				
 		rai_net.lgp.walkToRoot()
 		rai_net.lgp.walkToNode(skeleton,0)
 
@@ -341,12 +342,12 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 				#	else:
 				#		print(str(i) + ": seqPath infeasible")
 
-				for i in [0, -1, 1, -2, 2 , -3, 3]:
+				for i in [0, -1, 1, -2, 2 , -3, 3, -4, 4, -5, 5]:
 					tmpnoise=0.01+i*0.002
 					print("----- Noise for seq and seqPath optimization "+str(tmpnoise)+" -----")
 					tmptime=time.time()
-					if newLGP:
-						_ = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False, initnoise=tmpnoise)
+					#if newLGP:
+					_ = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False, initnoise=tmpnoise)
 					_ = rai_world.runLGP(rai_net.lgp, BT.seqPath, verbose=0, view=showFinal, initnoise=tmpnoise)
 					endtime=time.time()
 					print("Constraint: seq ",rai_net.lgp.returnConstraint(BT.seq), ", seqPath ",rai_net.lgp.returnConstraint(BT.seqPath))
@@ -356,6 +357,13 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 						break
 					else:
 						print(str(i) + ": seqPath infeasible")
+
+					if endtime-starttime>maxTimeOP:
+						print("Optimzation time "+str(endtime-starttime)+ " > "+ str(maxTimeOP))
+						break
+
+					if i==0 and rai_net.lgp.returnConstraint(BT.seqPath)>3.5:
+						break
 
 			except:
 				print("Can not solve komo for skeleton:", skeleton)
@@ -442,6 +450,9 @@ def main():
 	parser.add_argument('--startSub', type=int, default=1)
 	parser.add_argument('--maxDepth', type=int, default=20)
 	parser.add_argument('--maxTries', type=int, default=1)
+	parser.add_argument('--maxTimeOP', type=float, default=0.0)
+
+	parser.add_argument('--tray', type=str, default="")
 	
 	args = parser.parse_args()
 	path_rai = args.rai_dir
@@ -490,6 +501,8 @@ def main():
 	# Testing parameters
 	maxDepth=args.maxDepth # maximum depth before reattempting
 	maxTries=args.maxTries # maximum tries
+	maxTimeOP=args.maxTimeOP
+	tray=args.tray
 
 	cheat_goalstate= args.cheat_goalstate # adapts goal state if one goal formulation is satisfied
 	cheat_tree=args.cheat_tree # always evaluate heuristic for all high-level actions
@@ -518,8 +531,8 @@ def main():
 
 	#-------------------------------------------------------------------------------------------------------------------------	
 	print("Setting up basic Config and FOL for env: "+str(nenv))
-	rai=rai_world.RaiWorld(path_rai, nenv, setup, goalString, verbose, maxDepth=maxDepth, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
-
+	rai=rai_world.RaiWorld(path_rai, nenv, setup, goalString, verbose, maxDepth=maxDepth, NNmode=NNmode, datasetMode=dataMode, view=viewConfig, tray = tray)
+	goalString=rai.goalString_orig
 	print("\nModel and dataset")
 	if saveModel:
 		# Train model using data set from model_dir_data
@@ -598,7 +611,8 @@ def main():
 							print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 							
 							# Find skeleton
-							skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal, waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, tries=tries, newLGP=newLGP)
+							skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal, waitTime=waitTime, planOnly=planOnly,
+																						infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, tries=tries, newLGP=newLGP, maxTimeOP=maxTimeOP)
 							
 							if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
 								# If maximum depth reached: label all partial skeletons infeasible
@@ -688,7 +702,8 @@ def main():
 						rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
 						print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 
-						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, tries=tries, newLGP=newLGP)
+						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly,
+																					infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, tries=tries, newLGP=newLGP, maxTimeOP=maxTimeOP)
 						if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
 							# If maximum depth reached: label all partial skeletons infeasible
 							depthSkeletons= depthSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
@@ -752,7 +767,8 @@ def main():
 			for tries in range(maxTries):
 				# Set objective
 				rai.resetFit(cheatGoalState=cheat_goalstate, goal=goalString)
-				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, planOnly=planOnly, infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, verbose=True, showFinal=showFinal, newLGP=newLGP)
+				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, planOnly=planOnly,
+																			infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, verbose=True, showFinal=showFinal, newLGP=newLGP, maxTimeOP=maxTimeOP)
 
 				if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":
 					# If maximum depth reached: label all partial skeletons infeasible
