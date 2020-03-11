@@ -1891,6 +1891,11 @@ def main():
         #        print()
         #        num+=1
 
+        for i in range(len(test)):
+            for j in range(i,len(test)):
+                if not i==j:
+                    print('"'+test[i]+' '+test[j]+'"'+' , '+'"'+test[i]+' '+test[j]+'",')
+
     
 
 if __name__ == "__main__":

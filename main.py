@@ -374,7 +374,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 			print("Time OP next config", timeOP)
 			print("Time OP full path",endtime-starttime)
 
-	if showFinal:
+	if showFinal and feastmp:
 		rai_net.lgp.nodeInfo()
 		
 	rai_net.lgp.walkToRoot()

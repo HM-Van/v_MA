@@ -10,6 +10,8 @@ import rai_policy2 as NNencoder
 
 import time
 
+from collections import Counter
+
 def splitCommandStep(stringNew, verbose=0):
     # Extracts every word from a command
     split_str = stringNew.split(" ")
@@ -98,6 +100,18 @@ def rearrangeGoal(goal):
         return goaltmp[0]+" "+goaltmp[2][:-1]+" "+goaltmp[1]+")"
     else:
         return goal
+
+def most_frequent(List): 
+    counter = 0
+    num = List[0] 
+    
+    for i in List: 
+        curr_frequency = List.count(i) 
+        if(curr_frequency> counter): 
+            counter = curr_frequency 
+            num = i 
+
+    return num 
 
 
 
@@ -226,7 +240,7 @@ class RaiWorld():
 
         self.listLog=[listGr, listObj, listTab]
 
-        if self.NNmode in ["minimal", "dataset", "mixed", "FFchain", "mixed2", "mixed0", "FFnew", "mixed3", "final", "mixed10"]:
+        if self.NNmode in ["minimal", "dataset", "mixed", "FFchain", "mixed2", "mixed0", "FFnew", "mixed3", "final", "mixed10", "stack"]:
             if self.setup=="minimal":
                 return logicalNamesFinal, logicalTypesencoded , grNames, objNames, tabNames
             else:
@@ -247,31 +261,107 @@ class RaiWorld():
         #input(folstate[0])
 
         listNewGoal=[]
+        listDoubleGoal=[]
+        goalStep = splitStringStep(self.goalString_orig, list_old=[],verbose=0)
+        #goalStepReal = splitStringStep(self.realGoalString, list_old=[],verbose=0)
+        #pureTab = [i for i in self.tabNames_orig if i not in self.objNames_orig]
+        #input(pureTab)
 
-        tmpTabList= [element for element in self.tabNames_orig if ("(on "+element in realgoal and not element==self.tray)]
+        tmpTabList= [element for element in self.objNames_orig if ("(on "+element in realgoal and not element==self.tray)]
         #print("")
-        #print(tmpTabList)
+        #input(tmpTabList)
         for obj in self.objNames_orig:
             cont=False
             if "(held "+obj in goal: 
                 continue
 
-            #print(obj)
             if ("(on "+obj in folstate[0] or "(ontop "+obj in folstate[0]):
+                # Check if something in on or ontop of object
                 for tab in tmpTabList:
-                    if "(on "+tab+" "+obj+")" in realgoal:
-                        listNewGoal.append("(on "+tab+" "+self.tray+")")
+                    if "(on "+tab+" "+obj+")" in realgoal and "(on "+obj+" "+tab in folstate[0]:
+                        #print(obj+" "+tab+" 1")
+                        # if one goal is to be for object to be on a table and if this table is ontop another object
+                        if "(on "+tab in goal:
+                            # if another goal is for table to be on another table
+                            # ensure this goal is satisfied early
+                            res = [i for i in goalStep if "(on "+tab in i]
+                            listDoubleGoal.append(res[0])
+                        
+                        else:
+                            # if table is not included in objective
+                            # place on predefined tray
+                            listNewGoal.append("(on "+tab+" "+self.tray+")")
                         cont=True
                         break
+                    elif "(on "+tab+" "+obj+")" in realgoal and "(ontop "+obj+" "+tab in folstate[0]:
+                        # find the lowest object in stack to place on tray
+                        inittab=tab
+                        currenttab=tab
+                        for it in range(len(self.tabNames_orig)):
+                            res = [i for i in goalStep if "(on "+currenttab in i]
+                            #print(res, currenttab, goalStep)
+                            if res==[]:
+                                break
 
-            if "(on "+obj in folstate[0] or "(on "+obj in goal or cont: 
+                            split_str = res[0].split(" ")
+                            currenttab=split_str[-1][:-1]
+                            #print(currenttab)
+                            if it>0 and currenttab==inittab:
+                                input("!---cannot be solved---!")
+                                break                        
+            
+                        listNewGoal.append("(on "+currenttab+" "+self.tray+")")
+
+
+            if "(on "+obj in folstate[0] or "(ontop "+obj in folstate[0] or cont: 
                 continue
 
+            # print(obj)
+            # if held not in goal and nothing is on obj (has been done before)
+            # tmpTabList: objects on which something has to be place
             for tab in tmpTabList:
-                if "(on "+tab+" "+obj+")" in folstate[0]:
+                # if obj is on obj on which something has to be placed
+                if "(on "+tab+" "+obj+")" in folstate[0] and "(on "+obj in goal:
+                    # Satisfy this early
+                    res = [i for i in goalStep if "(on "+obj in i]
+                    listDoubleGoal.append(res[0])
+
+                elif "(on "+tab+" "+obj+")" in folstate[0]:
+                    # place object on tray
                     listNewGoal.append("(on "+obj+" "+self.tray+")")
 
-        goalStringNew=" ".join(listNewGoal)
+        if len(listDoubleGoal)>0:
+            # Rearrange objectives that are satisfies early
+            ListofWords=[]
+            for goals in listDoubleGoal:
+                wordsingoal = goals.split(" ")
+                ListofWords.append(wordsingoal[1])
+                ListofWords.append(wordsingoal[-1][:-1])
+            
+            
+            freqword = (most_frequent(ListofWords))
+            idxfrq0=[]
+            idxfrq1=[]
+            idxoth=[]
+            for i in range(len(listDoubleGoal)):
+                if freqword in listDoubleGoal[i]:
+                    if "(on "+freqword in listDoubleGoal[i]:
+                        idxfrq1.append(i)
+                    else:
+                        idxfrq0.append(i)
+                else:
+                    idxoth.append(i)
+
+            listDoubleGoal = [listDoubleGoal[i] for i in idxfrq0+idxfrq1+idxoth]
+            listDoubleGoal = listDoubleGoal + [listDoubleGoal[-1]]
+
+        if len(listNewGoal+listDoubleGoal)==1:
+            listNewGoal=listNewGoal+listNewGoal
+        
+        
+        #    listDoubleGoal=listDoubleGoal+listDoubleGoal
+
+        goalStringNew=" ".join(listNewGoal+listDoubleGoal)
         #print(listNewGoal)
         if not goalStringNew=="":
             self.goalString_orig=goalStringNew+" "+goal
@@ -279,7 +369,7 @@ class RaiWorld():
             self.realGoalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])+" "+realgoal
 
             print("Changed objective to: " + self.goalString_orig)
-            #print(self.realGoalString)
+            #input(self.realGoalString)
         self.numGoal_orig=len(splitStringStep(self.goalString_orig, list_old=[],verbose=0))
 
     def preprocessGoals(self):
@@ -440,7 +530,7 @@ class RaiWorld():
 
     def encodeState(self):
         # Encode state
-        if self.NNmode=="final":
+        if self.NNmode in ["final", stack]:
             # For data set: global coordinates and relative to base
             return [self.K.get7dLogical(self.logicalNames, len(self.logicalNames))[:,0:3], self.encodeFeatures2()]
         elif self.dataMode in [1,3]:
@@ -460,7 +550,7 @@ class RaiWorld():
         # Input encoding
         if goalState is None:
             goalState=self.goalState
-        if self.NNmode=="final":
+        if self.NNmode in ["final", "stack"]:
             # For data set: global coordinates and relative to base
             return [np.concatenate((goalState,np.reshape(envState[0], (1,-1))), axis=1), np.concatenate((goalState,np.reshape(envState[1], (1,-1))), axis=1)]
         else:

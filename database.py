@@ -1,6 +1,7 @@
 import numpy as np
 import rai_setup
 import minimal_experiment as expert
+import new_experiment0 as expertStack
 
 import sys
 import os
@@ -116,16 +117,22 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
     for nset in range(start,stop+1):
         # Get solutions
         if mode==2:
-            solutions, goalString, numLoops = expert.getData(nset=nset, nenv=nenv)
+            if rai.NNmode in ["stack"]:
+                solutions, goalString, numLoops = expertStack.getData(nset=nset, nenv=nenv-200)
+            else:
+                solutions, goalString, numLoops = expert.getData(nset=nset, nenv=nenv)
         elif mode==1:
-            solutions, goalString, numLoops = expert.getData1(nset=nset, nenv=nenv)
+            if rai.NNmode in ["stack"]:
+                solutions, goalString, numLoops = expertStack.getData1(nset=nset, nenv=nenv-200)
+            else:
+                solutions, goalString, numLoops = expert.getData1(nset=nset, nenv=nenv)
 
         if numLoops==0:
             print("No solution for env "+str(nenv)+" set "+str(nset))
             continue
         
         # Check if file already exists
-        if rai.NNmode=="final" and os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(mode+1)+'Input.npy'):
+        if rai.NNmode in ["final", "stack"] and os.path.isfile(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(mode+1)+'Input.npy'):
             print("Already trained env "+str(nenv)+" set "+str(nset))
             continue
 
@@ -136,8 +143,9 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*(numLogicalType+3+4+4)
         elif rai.NNmode in ["dataset"]:
             input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*2
-        elif rai.NNmode in ["mixed0", "mixed3", "mixed2", "final"]:
+        elif rai.NNmode in ["mixed0", "mixed3", "mixed2", "final", "stack"]:
             input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*3
+            print(input_size)
         else:
             NotImplementedError
 
@@ -152,7 +160,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             prevInputArray = np.zeros((numLoops,4,input_size), dtype=float)
             if rai.NNmode in ["mixed3", "mixed2"]:
                 feasibleArray = np.zeros((numLoops,2), dtype=int)  # act skeleton
-        elif rai.NNmode == "final":
+        elif rai.NNmode in ["final", "stack"]:
             logArray = np.zeros((numLoops,numLogicalType,len(rai.logicalNames)), dtype=int)
 
             prevInputArray = np.zeros((numLoops,4,input_size), dtype=float)
@@ -177,7 +185,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             rai.lgp.walkToRoot()
             
             # Continue if infeasible for certain modes
-            if not rai.NNmode in ["mixed3", "mixed2", "final"]:
+            if not rai.NNmode in ["mixed3", "mixed2", "final", "stack"]:
                 rai.lgp.walkToNode(commandList[-1],0)
                 rai.K.copy(K0)
                 komo = rai_setup.runLGP(rai.lgp, BT.path, verbose=0, view=False)
@@ -197,7 +205,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             j=0
             #init previous input for this solution
             prevInput = np.zeros((1,4,input_size), dtype=float)
-            if rai.NNmode=="final":
+            if rai.NNmode in ["final", "stack"]:
                 prevInput2 = np.zeros((1,4,input_size), dtype=float)
 
             for command, clist in zip(commandStep,commandList):
@@ -223,9 +231,9 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                                 input("failed!: "+command+"\t"+clist)
                             i=i+1
 
-                    elif rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final"]:
+                    elif rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
                             # Encode input
-                            if rai.NNmode=="final":
+                            if rai.NNmode in ["final", "stack"]:
                                 [inputArray[i,:], inputArray2[i,:]]=rai.encodeInput(envState, goalState=goalState)
                             else:
                                 inputArray[i,:]=rai.encodeInput(envState, goalState=goalState)
@@ -233,7 +241,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                             # Add to previous input = Sequence of input
                             prevInput[0,j,:] = inputArray[i,:]
                             prevInputArray[i,:,:]=prevInput[0,:,:]
-                            if rai.NNmode=="final":
+                            if rai.NNmode in ["final", "stack"]:
                                 prevInput2[0,j,:] = inputArray2[i,:]
                                 prevInputArray2[i,:,:]=prevInput2[0,:,:]
 
@@ -254,7 +262,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                 rai.lgp.walkToRoot()
                 rai.lgp.walkToNode(clist,0)
                 rai.K.copy(K0)
-                if rai.NNmode=="final":
+                if rai.NNmode in ["final", "stack"]:
                     # Solve LGP for seq/seqPath
                     komo = rai_setup.runLGP(rai.lgp, BT.seq, verbose=0, view=False)
                     komo = rai_setup.runLGP(rai.lgp, BT.seqPath, verbose=0, view=False)
@@ -281,7 +289,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
 
                 komo.getKFromKomo(rai.K, komo.getPathFrames(rai.logicalNames).shape[0]-1)
 
-            if rai.NNmode in ["mixed3", "mixed2", "final"]:
+            if rai.NNmode in ["mixed3", "mixed2", "final", "stack"]:
                 # Set feasibility for skeleton
                 feasibleArray[i_start:i,1]=solfeas
             
@@ -299,7 +307,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             print("No feasible solution for env "+str(nenv)+" set "+str(nset))
             continue
         
-        if rai.NNmode in ["mixed3", "mixed2", "final"]:
+        if rai.NNmode in ["mixed3", "mixed2", "final", "stack"]:
             print(str((np.where(~feasibleArray[:,1:2].any(axis=1))[0].shape[0])/mode)+" infeasible solutions")
         else:
             print(str((numLoops-i)/mode)+" infeasible solutions")
@@ -310,9 +318,9 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
         logArray=np.delete(logArray, list(range(i, numLoops)), axis=0)
 
 
-        if rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final"]:
+        if rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
             prevInputArray=np.delete(prevInputArray, list(range(i, numLoops)), axis=0)
-            if rai.NNmode=="final":
+            if rai.NNmode in ["final", "stack"]:
                 inputArray2=np.delete(inputArray, list(range(i, numLoops)), axis=0)
                 prevInputArray2=np.delete(prevInputArray, list(range(i, numLoops)), axis=0)
 
@@ -336,11 +344,11 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Instruction', instrArray)
             np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Logicals', logArray)
 
-            if rai.NNmode in ["3d", "mixed2", "mixed0", "mixed3", "final"]:
+            if rai.NNmode in ["3d", "mixed2", "mixed0", "mixed3", "final", "stack"]:
                 np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'InputPrev', prevInputArray)
-                if rai.NNmode in ["mixed3", "mixed2", "final"]:
+                if rai.NNmode in ["mixed3", "mixed2", "stack"]:
                     np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Feasible', feasibleArray)
-                    if rai.NNmode=="final":
+                    if rai.NNmode in ["final", "stack"]:
                         np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Input2',inputArray2)
                         np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'InputPrev2', prevInputArray2)
 
@@ -903,6 +911,11 @@ def main():
     viewConfig=args.viewConfig
     mixData=args.mixData
     model_dir=args.model_dir
+
+    #with open(path_rai+'/stack.txt', 'w') as f:
+    #    for i in range(201,221):
+    #        f.write("python database.py --env="+str(i)+' --stop1=13 --NNmode="stack" --skip2; python database.py --env='+str(i)+' --stop2=8 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=9 --stop2=14 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=15 --stop2=20 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=21 --stop2=26 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=27 --stop2=31 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=32 --stop2=36 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=37 --stop2=41 --skip1 --NNmode="stack"; ')
+    #input("test")
     
     """with open(path_rai+'/final2.txt', 'w') as f:
         for i in [28, 37, 46, 55, 64, 73, 82, 91, 29, 38, 47, 56, 65, 74, 83, 92, 30, 39, 48, 57, 66, 75, 84, 93, 31, 40, 49, 58, 67, 76, 85, 94, 32, 41, 50, 59, 68, 77, 86, 95, 33, 42, 51, 60, 69, 78, 87, 96, 34, 43, 52, 61, 70, 79, 88, 97, 35, 44, 53, 62, 71, 80, 89, 98, 36, 45, 54, 63, 72, 81, 90, 99]:
