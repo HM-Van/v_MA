@@ -53,7 +53,7 @@ def encodeAction(commandString, grNames, objNames, tabNames):
 
 	else:
 		logEn = np.zeros((1, 1))
-		input("\nNot implemented")
+		print("\nNot implemented")
 
 	return instructionEn, logEn
 
@@ -92,7 +92,7 @@ def encodeAction3D(commandString, allNames): # !!!!! switches order: grasp objec
 
     else:
         logEn = np.zeros((1, 1))
-        input("\nNot implemented")
+        print("\nNot implemented")
 
     return instructionEn, logEn
 
@@ -146,8 +146,12 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
         elif rai.NNmode in ["mixed0", "mixed3", "mixed2", "final", "stack"]:
             input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*3
             print(input_size)
+            if input_size==41:
+                break
         else:
             NotImplementedError
+        
+        print(expertStack.getEnvInfo(nenv-200,"r"),expertStack.getEnvInfo(nenv-200,"g"),expertStack.getEnvInfo(nenv-200,"b"))
 
         # Init arrays for data set 
         inputArray = np.zeros((numLoops,input_size), dtype=float)
@@ -228,7 +232,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                             try:
                                 instrArray[i,:], logArray[i,:] = encodeAction(command,rai.grNames, rai.objNames, rai.tabNames)
                             except:
-                                input("failed!: "+command+"\t"+clist)
+                                print("failed!: "+command+"\t"+clist)
                             i=i+1
 
                     elif rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
@@ -252,7 +256,7 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                                     j=j+1
 
                             except:
-                                input("failed!: "+command+"\t"+clist)
+                                print("failed!: "+command+"\t"+clist)
 
                             i=i+1
                     
@@ -260,7 +264,10 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
 
                 # Got to node in tree: partial skeleton
                 rai.lgp.walkToRoot()
-                rai.lgp.walkToNode(clist,0)
+                try:
+                    rai.lgp.walkToNode(clist,0)
+                except:
+                    break
                 rai.K.copy(K0)
                 if rai.NNmode in ["final", "stack"]:
                     # Solve LGP for seq/seqPath
@@ -363,8 +370,10 @@ def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2):
     # Hard-coded: arrays of length of all logic types
     grNames=[0,1]
     objNames=[2,3,4]
-    tabNames=[2,3,4,5,6]
-    logicalNames=[0,1,2,3,4,5,6]
+    tabNames=[2,3,4,5]
+    logicalNames=[0,1,2,3,4,5]
+    #tabNames=[2,3,4,5,6]
+    #logicalNames=[0,1,2,3,4,5,6]
 
     # Init input size: for NNmode=="final"
     input_size = (numGoalInstruct + len(objNames)+len(tabNames))*numGoal + len(logicalNames)*3
@@ -433,6 +442,11 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 6,14,27,28,44,49,60,71,77,84,95]
                 #34,43,54,63,72,81,90,96, 2, 4, 13, 25, 1, 18, 20]
 
+    elif NNmode=="stack":
+        #envSets=list(range(201,253))
+        envSets= [i for i in range(201,253) if not i%4==0]
+        arrSets=[29, 26,3, 31,4, 22,28, 6, 12,37, 18,35, 14]
+
     elif mixData:
         # Data set expansion
         arrSets=[6,7,21,27,32,62,68]#45 #67, 52 #71, 20 #12 61
@@ -461,11 +475,13 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 6,14,27,28,44,49,60,71,77,84,95,
                 34,43,54,63,72,81,90,96]
 
+
+
     # Create folder name
     now=datetime.datetime.now()
     timestamp=str(now.year)+str(now.month).zfill(2)+str(now.day).zfill(2)+"-"+str(now.hour).zfill(2)+str(now.minute).zfill(2)+str(now.second).zfill(2)
 
-    if NNmode=="final":
+    if NNmode in ["final", "stack"]:
         path_dB=path_dB+"_new"
 
     if NNmode=="dataset":
@@ -486,14 +502,14 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         old2=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Instruction.npy')
         old3=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Logicals.npy')
 
-        if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final"]:
+        if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
             # deprecated
             #old4=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InstructionPrev.npy')
             #old5=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'LogicalsPrev.npy')
             old6=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InputPrev.npy')
-            if NNmode in ["mixed3", "mixed2","final"]:
+            if NNmode in ["mixed3", "mixed2","final", "stack"]:
                 old7=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Feasible.npy')
-            if NNmode=="final":
+            if NNmode in ["final", "stack"]:
                 old8=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Input2.npy')
                 old9=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InputPrev2.npy')
 
@@ -520,6 +536,8 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
 
     for nenv in envSets:
     # For all initial configurations
+        #if nenv%4==0:
+        #    continue
 
         # Check if init config exists
         if not(os.path.exists(path_dB+'/env'+str(nenv).zfill(3)+appendName)):
@@ -541,7 +559,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 continue
             
             # if data set expansion: with cjance of 50%, chose objective that has full skeleton
-            if mixData and random.random()>0.5:
+            if mixData and random.random()>0.5 and NNmode in ["final"]:
                 if nset==32 and expert.getEnvInfo(nenv,"g")==1:
                     nset=33
                 elif nset==71 and expert.getEnvInfo(nenv,"b")==2:
@@ -593,14 +611,14 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
             new2=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Instruction.npy')
             new3=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Logicals.npy')
 
-            if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final"]:
+            if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
                 # Deprecated
                 #new4=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InstructionPrev.npy')
                 #new5=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'LogicalsPrev.npy')
                 new6=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InputPrev.npy')
-                if NNmode in ["mixed3", "mixed2", "final"]:
+                if NNmode in ["mixed3", "mixed2", "final", "stack"]:
                     new7=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Feasible.npy')
-                    if NNmode=="final":
+                    if NNmode in ["final", "stack"]:
                         new8=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input2.npy')
                         new9=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InputPrev2.npy')
 
@@ -624,7 +642,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                             new8=np.concatenate((new8,new8), axis=0)
                             new9=np.concatenate((new9,new9), axis=0)
 
-                        if NNmode in ["final"]:
+                        if NNmode in ["final", "stack"]:
                             # Skip if for some reason dimensions do not match
                             try:
                                 assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InstructionPrev"+str(new1.shape[0])+" != "+str(new2.shape[0])
@@ -658,7 +676,10 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         
         if not skip1:
             listSet.append("|")
-            if mixData:
+            if NNmode in ["stack"]:
+                set1=range(1,13)
+            
+            elif mixData:
                 # randomly select one objects
                 set1_tmp=[[1,2,3,4,15],[6,7,8,10,5],[11,12,13,14,9]]
                 set1 = set1_tmp[random.randint(0,2)]
@@ -679,15 +700,15 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 new2=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Instruction.npy')
                 new3=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Logicals.npy')
 
-                if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3","final"]:
+                if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3","final", "stack"]:
                     # Deprecated
                     #new4=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InstructionPrev.npy')
                     #new5=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'LogicalsPrev.npy')
                     new6=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InputPrev.npy')
-                    if NNmode in ["mixed3", "mixed2","final"]:
+                    if NNmode in ["mixed3", "mixed2","final", "stack"]:
                         new7=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Feasible.npy')
                         
-                        if NNmode=="final":
+                        if NNmode in ["final", "stack"]:
                             new8=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input2.npy')
                             new9=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InputPrev2.npy')
 
@@ -717,7 +738,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         print("")
 
 
-    if NNmode in ["mixed3", "mixed2", "final"]:
+    if NNmode in ["mixed3", "mixed2", "final", "stack"]:
         # Get feasible and infeasible samples
 
         infeasible=np.where(~old7[:,1:2].any(axis=1))[0]
@@ -743,7 +764,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         #new5=new5[infeasible,:,:,:] #logprev
         new6=new6[infeasible,:,:] #inputprev
         new7=new7[infeasible,:] #infeas
-        if NNmode=="final":
+        if NNmode in ["final", "stack"]:
             new8=old8
             new9=old9
             old8=old8[feasible,:]
@@ -755,11 +776,11 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     assert old1.shape[0] == old2.shape[0], "Inconsistent dimensions Instruction: "+str(old1.shape)[0]+" != "+str(old2.shape[0])
     assert old1.shape[0] == old3.shape[0], "Inconsistent dimensions Logicals"+str(old1.shape)[0]+" != "+str(old3.shape[0])
 
-    if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final"]:
+    if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
         #assert old1.shape[0] == old4.shape[0], "Inconsistent dimensions InstructionPrev"+str(old1.shape)[0]+" != "+str(old4.shape[0])
         #assert old1.shape[0] == old5.shape[0], "Inconsistent dimensions LogicalsPrev"+str(old1.shape)[0]+" != "+str(old5.shape[0])
         assert old1.shape[0] == old6.shape[0], "Inconsistent dimensions InputPrev"+str(old1.shape)[0]+" != "+str(old6.shape[0])
-        if NNmode in ["mixed3", "mixed2","final"]:
+        if NNmode in ["mixed3", "mixed2","final", "stack"]:
             assert old1.shape[0] == old7.shape[0], "Inconsistent dimensions Feasible"+str(old1.shape)[0]+" != "+str(old7.shape[0])
             assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Infeasible"+str(new1.shape)[0]+" != "+str(old7.shape[0])
             assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InfeasibleInstr"+str(new1.shape)[0]+" != "+str(new2.shape[0])
@@ -767,7 +788,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
             #assert new1.shape[0] == new4.shape[0], "Inconsistent dimensions InfeasibleInstrPrev"+str(old1.shape)[0]+" != "+str(new4.shape[0])
             #assert new1.shape[0] == new5.shape[0], "Inconsistent dimensions InfeasibleLogPrev"+str(old1.shape)[0]+" != "+str(new5.shape[0])
             assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InfeasibleInputPrev"+str(old1.shape)[0]+" != "+str(new6.shape[0])
-            if NNmode=="final":
+            if NNmode in ["final", "stack"]:
                 assert old1.shape[0] == old8.shape[0], "Inconsistent dimensions Input2"+str(old1.shape)[0]+" != "+str(old8.shape[0])
                 assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions InfeasibleInput2"+str(new1.shape)[0]+" != "+str(old8.shape[0])
                 assert old1.shape[0] == old9.shape[0], "Inconsistent dimensions InputPrev2"+str(old1.shape)[0]+" != "+str(old9.shape[0])
@@ -782,8 +803,8 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     np.save(path_dB+'/'+timestamp+appendName+'/Instruction', old2)
     np.save(path_dB+'/'+timestamp+appendName+'/Logicals', old3)
 
-    if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3","final"]:
-        if NNmode in ["mixed3", "mixed2","final"]:
+    if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3","final", "stack"]:
+        if NNmode in ["mixed3", "mixed2","final", "stack"]:
             np.save(path_dB+'/'+timestamp+appendName+'/Feasible', old7)
             np.save(path_dB+'/'+timestamp+appendName+'/InputInfeasible', new1)
             np.save(path_dB+'/'+timestamp+appendName+'/InFeasible', new7)
@@ -792,13 +813,26 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
             #np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInstrPrev', new4)
             #np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleLogPrev', new5)
             np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev', new6)
-            if NNmode=="final":
+            if NNmode in ["final", "stack"]:
                 np.save(path_dB+'/'+timestamp+appendName+'/Input_feat',old8)
                 np.save(path_dB+'/'+timestamp+appendName+'/InputInfeasible_feat', new8)
                 np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev_feat', new9)
 
-
         if old1.shape[0]>80000:
+            idxSplit=int(old1.shape[0]/3)
+            #print(old5.shape)
+            #print(old6.shape)
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev1', old5[:idxSplit,:,:,:])
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev2', old5[idxSplit:,:,:,:])
+            np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1', old6[:idxSplit,:,:])
+            np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2', old6[idxSplit:2*idxSplit,:,:])
+            np.save(path_dB+'/'+timestamp+appendName+'/InputPrev3', old6[2*idxSplit:,:,:])
+            if NNmode in ["final", "stack"]:
+                np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1_feat', old9[:idxSplit,:,:])
+                np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2_feat', old9[idxSplit:2*idxSplit,:,:])
+                np.save(path_dB+'/'+timestamp+appendName+'/InputPrev3_feat', old9[2*idxSplit:,:,:])
+
+        elif old1.shape[0]>80000:
             idxSplit=int(old1.shape[0]/2)
             #print(old5.shape)
             #print(old6.shape)
@@ -806,13 +840,13 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
             #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev2', old5[idxSplit:,:,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1', old6[:idxSplit,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2', old6[idxSplit:,:,:])
-            if NNmode=="final":
+            if NNmode in ["final", "stack"]:
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1_feat', old9[:idxSplit,:,:])
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2_feat', old9[idxSplit:,:,:])
         else:
             #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev', old5)
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev', old6)
-            if NNmode=="final":
+            if NNmode in ["final", "stack"]:
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev_feat', old9)
 
     # Create Summary
@@ -834,7 +868,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                     f.write(str(i).rjust(3)+"\t".expandtabs(2))
             f.write("\n")
 
-    if NNmode in ["mixed3", "mixed2", "final"]:
+    if NNmode in ["mixed3", "mixed2", "final", "stack"]:
         tmpstr=" feasible and "+str(new1.shape[0])+" infeasible"
     else:
         tmpstr=""
@@ -913,8 +947,8 @@ def main():
     model_dir=args.model_dir
 
     #with open(path_rai+'/stack.txt', 'w') as f:
-    #    for i in range(201,221):
-    #        f.write("python database.py --env="+str(i)+' --stop1=13 --NNmode="stack" --skip2; python database.py --env='+str(i)+' --stop2=8 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=9 --stop2=14 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=15 --stop2=20 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=21 --stop2=26 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=27 --stop2=31 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=32 --stop2=36 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=37 --stop2=41 --skip1 --NNmode="stack"; ')
+    #    for i in range(201,253):
+    #        f.write("python database.py --env="+str(i)+' --stop1=12 --NNmode="stack" --skip2; python database.py --env='+str(i)+' --stop2=8 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=9 --stop2=14 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=15 --stop2=20 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=21 --stop2=26 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=27 --stop2=31 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=32 --stop2=36 --skip1 --NNmode="stack"; python database.py --env='+str(i)+' --start2=37 --stop2=42 --skip1 --NNmode="stack"; ')
     #input("test")
     
     """with open(path_rai+'/final2.txt', 'w') as f:

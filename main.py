@@ -14,7 +14,7 @@ from libry import *
 import tensorflow as tf
 
 import rai_setup as rai_world
-import minimal_experiment
+#import minimal_experiment as expert
 
 import datetime
 import time
@@ -365,6 +365,9 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 					if i==0 and rai_net.lgp.returnConstraint(BT.seqPath)>3.5:
 						break
 
+					time.sleep(1)
+
+
 			except:
 				print("Can not solve komo for skeleton:", skeleton)
 				rai_net.K.copy(K0)
@@ -520,9 +523,14 @@ def main():
 	startSub=args.startSub
 	start0=start
 
-	if not dataMode in [1,2,3,4]:
+	if not dataMode in [1,2,3,4,5,6,7,8]:
 		planOnly=False
 		NotImplementedError
+
+	if dataMode in [5,6,7,8]:
+		import new_experiment0 as expert
+	else:
+		import minimal_experiment as expert
 	
 	# Objectives to exclude
 	obg = [[],[]]#[[15], [10,20,30,39,48,53,58,63,68]]
@@ -558,6 +566,9 @@ def main():
 				elif nenv in range(106,109):
 					rangeEnv=range(nenv,109)
 					#rangeEnv=range(nenv,110)
+				elif dataMode in [5,6,7,8]:
+					rangeEnv=[4,8,12,16,20,24,28,32,36,40,44,48,52]
+					rangeEnv=rangeEnv[rangeEnv.index(nenv-200):]
 				else:
 					rangeEnv=[29,38,46,56,64,73,82,91,
 							32,39,48,57,65,75,83,93]#,
@@ -578,15 +589,19 @@ def main():
 				summary=[[],[],[],[],[]] #optimal feasible infeasible-op infeasible no
 
 				start=start0
-				rai.nenv=nenv
+				if dataMode in [5,6,7,8]:
+					envadd=200
+				else:
+					envadd=0
+				rai.nenv=nenv+envadd
 				path=createResults(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, start=start0, planOnly=planOnly)
-				if 2*(start-1) < len(minimal_experiment.Sets):
+				if 2*(start-1) < len(expert.Sets):
 					# Test objectives consisting of 3 goal formulations twice - once for each sequence
 					numGoal=start-1
 
 					if not startSub==1:
 						numGoal+=1
-					for i in range(2*(start-1)+startSub-1,len(minimal_experiment.Sets)):
+					for i in range(2*(start-1)+startSub-1,len(expert.Sets)):
 						if i%2==0:
 							numGoal+=1
 							strgoal=str(numGoal).zfill(3)+"-1"
@@ -597,13 +612,16 @@ def main():
 							#print("skip "+str(numGoal))
 							continue
 
-						goal=minimal_experiment.Sets[i]
+						goal=expert.Sets[i]
 
 						infeasibleSkeletons=[]
 						depthSkeletons=[]
 
 						# Reload configuration
-						rai.redefine(goal, nenv=nenv)
+						if dataMode in [5,6,7,8]:
+							rai.redefine(goal, nenv=nenv+200)
+						else:
+							rai.redefine(goal, nenv=nenv)
 
 						for tries in range(maxTries):
 							# Set objective
@@ -635,7 +653,7 @@ def main():
 							skeletonPrev=skeleton
 							strgoalPrev=strgoal
 							if successmsg=="Successfully reached goal":
-								solutions, _, _ = minimal_experiment.getData(nenv=nenv, nset=numGoal)
+								solutions, _, _ = expert.getData(nenv=nenv, nset=numGoal)
 								if not solutions ==[]:
 									if not feasible:
 										if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
@@ -646,6 +664,10 @@ def main():
 										idxsol=0
 									else:
 										idxsol=1
+									
+									if not skeleton in solutions:
+										strgoalPrev=strgoalPrev+"_checkStack"
+
 							else:
 								summary[4].append(strgoal)
 								idxsol=4
@@ -661,8 +683,10 @@ def main():
 								summary[idxsol].append(strgoalPrev)
 
 							if successmsg=="Successfully reached goal":
-								solutions, _, _ = minimal_experiment.getData(nenv=nenv, nset=numGoal)
+								solutions, _, _ = expert.getData(nenv=nenv, nset=numGoal)
 								if not solutions ==[]:
+									if not skeleton in solutions:
+										strgoal=strgoal+"_checkStack"
 									if not feasible:
 										if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 											summary[2].append(strgoal)
@@ -681,9 +705,9 @@ def main():
 					start=0
 				else:
 					numGoal=start-1
-					start=(start-1)-len(minimal_experiment.Sets)/2
+					start=(start-1)-len(expert.Sets)/2
 
-				for i in range(int(start),len(minimal_experiment.test)):
+				for i in range(int(start),len(expert.test)):
 					# Test goal formulation
 					numGoal+=1
 					if exclude and not i+1 in or1[0]+og2[0]+obg[0]:
@@ -691,11 +715,14 @@ def main():
 
 					strgoal=str(numGoal).zfill(3)+"-1"
 
-					goal= minimal_experiment.test[i]+" "+minimal_experiment.test[i]
+					goal= expert.test[i]+" "+expert.test[i]
 					infeasibleSkeletons=[]
 					depthSkeletons=[]
 					# Reload configuration
-					rai.redefine(goal, nenv=nenv)
+					if dataMode in [5,6,7,8]:
+						rai.redefine(goal, nenv=nenv+200)
+					else:
+						rai.redefine(goal, nenv=nenv)
 
 					for tries in range(maxTries):
 						# Set objective
@@ -720,8 +747,10 @@ def main():
 
 					# Assign to: optimal feasible infeasible-op infeasible no
 					if successmsg=="Successfully reached goal":
-						solutions, _, _ = minimal_experiment.getData1(nenv=nenv, nset=i+1)
+						solutions, _, _ = expert.getData1(nenv=nenv, nset=i+1)
 						if not solutions ==[]:
+							if not skeleton in solutions:
+								strgoal=strgoal+"_checkStack"
 							if not feasible:
 								if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 									summary[2].append(strgoal)

@@ -1,4 +1,4 @@
-Include = 'Test_setup.g'
+Include = 'Test_setupStack.g'
 
 #env202
 body red {type:ssBox size:[.15 .15 .15 .02] color:[1. 0. 0.], contact, logical={ object, table }}

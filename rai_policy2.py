@@ -126,7 +126,7 @@ class FeedForwardNN():
                 ):
 
         # Encoder: Currently not used
-        if mode in [3,4]:
+        if mode in [3,4,7,8]:
             self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal.h5', compile=False)
             print("goalEncoder loaded")
 
@@ -231,7 +231,7 @@ class FeedForwardNN():
 
         inputs0=keras.Input(shape=(self.goallength,), name="goal")
         inputs1 = keras.Input(shape=(self.inputlength-self.goallength,), name="state")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs=self.goalEncoder(inputs0)
         else:
             inputs=inputs0
@@ -251,7 +251,7 @@ class FeedForwardNN():
 
         inputs0=keras.Input(shape=(self.goallength,), name="goal")
         inputs1 = keras.Input(shape=(self.inputlength-self.goallength,), name="state")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs=self.goalEncoder(inputs0)
         else:
             inputs=inputs0
@@ -273,7 +273,7 @@ class FeedForwardNN():
 
         inputs0=keras.Input(shape=(self.goallength,), name="goal")
         inputs1 = keras.Input(shape=(self.inputlength-self.goallength,), name="state")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs=self.goalEncoder(inputs0)
         else:
             inputs=inputs0
@@ -297,15 +297,15 @@ class FeedForwardNN():
 
     def reshapeInput(self, path_rai, model_dir):
         # Preprocess input
-        if self.mode in [1,2,3,4]:
+        if self.mode in [1,2,3,4,5,6,7,8]:
             Dappend="_new"
         else:
             Dappend=""
             NotImplementedError
 
-        if self.mode in [2,4]:
+        if self.mode in [2,4,6,8]:
             NPappend="_feat"
-        elif self.mode in [1,3]:
+        elif self.mode in [1,3,5,7]:
             NPappend=""
         else:
             NotImplementedError
@@ -341,6 +341,10 @@ class FeedForwardNN():
             Setappend=""
             if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
+                Dappend="_new"
+                Setappend="_"+str(self.mode)
+            elif self.mode in [5,6,7,8]:
+                model_dir=model_dir+"_stack/"
                 Dappend="_new"
                 Setappend="_"+str(self.mode)
             else:
@@ -477,7 +481,7 @@ class ClassifierMixed():
                 batch_size=32
                 ):
 
-        if mode in [3,4]:
+        if mode in [3,4,7,8]:
             self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal.h5', compile=False)
             print("goalEncoder loaded")
 
@@ -487,6 +491,8 @@ class ClassifierMixed():
         self.inputlength=inputlength
         self.numInstruct=numInstruct
         self.numLogicals=numLogicals
+
+        print(self.inputlength, self.goallength)
 
         # Instruction parameters
         self.epochs_inst=epochs_inst
@@ -574,7 +580,7 @@ class ClassifierMixed():
         self.params.append(param)
         
         inputs00=keras.Input(shape=(1,self.goallength), name="goal")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs0=self.goalEncoder(inputs00)
         else:
             inputs0=inputs00
@@ -604,7 +610,7 @@ class ClassifierMixed():
         self.params.append(param)
 
         inputs00=keras.Input(shape=(self.goallength,), name="goal")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs0=self.goalEncoder(inputs00)
         else:
             inputs0=inputs00
@@ -631,7 +637,7 @@ class ClassifierMixed():
         self.params.append(param)
 
         inputs00=keras.Input(shape=(self.goallength,), name="goal")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs0=self.goalEncoder(inputs00)
         else:
             inputs0=inputs00
@@ -653,15 +659,15 @@ class ClassifierMixed():
 
     #------------------Train and save Model---------------
     def reshapeInput(self, path_rai, model_dir):
-        if self.mode in [1,2,3,4]:
+        if self.mode in [1,2,3,4,5,6,7,8]:
             Dappend="_new"
         else:
             Dappend=""
             NotImplementedError
 
-        if self.mode in [2,4]:
+        if self.mode in [2,4,6,8]:
             NPappend="_feat"
-        elif self.mode in [1,3]:
+        elif self.mode in [1,3,5,7]:
             NPappend=""
         else:
             NPappend=""
@@ -751,6 +757,10 @@ class ClassifierMixed():
             Setappend=""
             if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
+                Dappend="_new"
+                Setappend="_"+str(self.mode)
+            if self.mode in [5,6,7,8]:
+                model_dir=model_dir+"_stack"
                 Dappend="_new"
                 Setappend="_"+str(self.mode)
             else:
@@ -918,7 +928,7 @@ class ClassifierChainNew():
                 goallength=20,
                 batch_size=32
                 ):
-        if mode in [3,4]:
+        if mode in [3,4,7,8]:
             self.goalEncoder=tf.keras.models.load_model(path_rai+'/logs/encoder/encoderGoal.h5', compile=False)
             print("goalEncoder loaded")
 
@@ -928,6 +938,8 @@ class ClassifierChainNew():
         self.inputlength=inputlength
         self.numInstruct=numInstruct
         self.numLogicals=numLogicals
+
+        print(self.inputlength, self.goallength)
 
         # Instruction parameters
         self.epochs_inst=epochs_inst
@@ -1011,7 +1023,7 @@ class ClassifierChainNew():
 
         inputs0=keras.Input(shape=(self.goallength,), name="goal")
         inputs1 = keras.Input(shape=(self.inputlength-self.goallength,), name="state")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs=self.goalEncoder(inputs0)
         else:
             inputs=inputs0
@@ -1030,7 +1042,7 @@ class ClassifierChainNew():
         self.params.append(param)
 
         inputs00=keras.Input(shape=(self.goallength,), name="goal")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs0=self.goalEncoder(inputs00)
         else:
             inputs0=inputs00
@@ -1057,7 +1069,7 @@ class ClassifierChainNew():
         self.params.append(param)
 
         inputs00=keras.Input(shape=(self.goallength,), name="goal")
-        if self.mode in [3,4]:
+        if self.mode in [3,4,7,8]:
             inputs0=self.goalEncoder(inputs00)
         else:
             inputs0=inputs00
@@ -1082,15 +1094,15 @@ class ClassifierChainNew():
 
     def reshapeInput(self, path_rai, model_dir):
 
-        if self.mode in [1,2,3,4]:
+        if self.mode in [1,2,3,4,5,6,7,8]:
             Dappend="_new"
         else:
             Dappend=""
             NotImplementedError
 
-        if self.mode in [2,4]:
+        if self.mode in [2,4,6,8]:
             NPappend="_feat"
-        elif self.mode in [1,3]:
+        elif self.mode in [1,3,5,7]:
             NPappend=""
         else:
             NotImplementedError
@@ -1136,6 +1148,10 @@ class ClassifierChainNew():
             Setappend=""
             if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
+                Dappend="_new"
+                Setappend="_"+str(self.mode)
+            elif self.mode in [5,6,7,8]:
+                model_dir=model_dir+"_stack/"
                 Dappend="_new"
                 Setappend="_"+str(self.mode)
             else:

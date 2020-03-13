@@ -144,6 +144,8 @@ class RaiWorld():
             self.logicalNames, self.logicalType , self.grNames, self.objNames, self.tabNames=self.preprocessLogicalState()
             if datasetMode in [1,2,3,4]:
                 self.goallength=(self.numGoalInstruct + self.numObj+5)*self.numGoal
+            elif datasetMode in [5,6,7,8]:
+                self.goallength=(self.numGoalInstruct + self.numObj+4)*self.numGoal
 
         # Extract original symbols (in case there are more than 3 objects)
         self.objNames_orig=self.objNames.copy()
@@ -170,7 +172,7 @@ class RaiWorld():
             printInit=False
             del self.K
             del self.lgp
-            time.sleep(1)
+            time.sleep(2)
             self.nenv=nenv
             self.K=Config()
             self.K.addFile(self.path_rai+'/rai-robotModels/pr2/pr2.g')
@@ -382,6 +384,10 @@ class RaiWorld():
             # Find unsatisfied goal formulations
             if not real in folstate[0]:
                 unfullfilled.append(goal)
+                ##If stacking mode
+                #split_str = stringNew.split(" ")
+                #len(unfullfilled)<2 if "(on "+split_str[-1][:-1] in folstate[0]:
+                    #unfullfilled.append(unfullfilled[0])
         return unfullfilled
 
     def restartLGP(self, init=False):
@@ -530,13 +536,13 @@ class RaiWorld():
 
     def encodeState(self):
         # Encode state
-        if self.NNmode in ["final", stack]:
+        if self.NNmode in ["final", "stack"]:
             # For data set: global coordinates and relative to base
             return [self.K.get7dLogical(self.logicalNames, len(self.logicalNames))[:,0:3], self.encodeFeatures2()]
-        elif self.dataMode in [1,3]:
+        elif self.dataMode in [1,3,5,7]:
             # Global coordinates
             return self.K.get7dLogical(self.logicalNames, len(self.logicalNames))[:,0:3]
-        elif self.dataMode in [2,4]:
+        elif self.dataMode in [2,4,6,8]:
             # Coordinates relative to base
             return self.encodeFeatures2()
         else:
@@ -654,7 +660,7 @@ class RaiWorld():
                                 epochs_grasp=epochs_grasp, n_layers_grasp=n_layers_grasp, size_grasp=n_size_grasp,
                                 epochs_place=epochs_place, n_layers_place=n_layers_place, size_place=n_size_place,
                                 lr=lr, lr_drop=lr_drop, epoch_drop=epoch_drop, val_split=val_split, mode=self.dataMode,
-                                listLog=self.listLog, reg0=reg0, batch_size=batch_size
+                                listLog=self.listLog, reg0=reg0, batch_size=batch_size, goallength=self.goallength
                                 )
 
             modelInstructHist, modelGraspHist, modelPlaceHist=self.rai_net.train(self.path_rai, model_dir)
@@ -679,7 +685,7 @@ class RaiWorld():
                                 epochs_place=epochs_place, n_layers_place=n_layers_place, size_place=n_size_place,
                                 lr=lr, lr_drop=lr_drop, epoch_drop=epoch_drop, clipnorm=clipnorm, val_split=val_split,
                                 reg=reg, listLog=self.listLog, mode=self.dataMode,
-                                n_layers_inst2=n_layers_inst2, reg0=reg0, batch_size=batch_size
+                                n_layers_inst2=n_layers_inst2, reg0=reg0, batch_size=batch_size, goallength=self.goallength
                                 )
             modelInstructHist, modelGraspObjHist, modelGraspGrpHist, modelPlaceObjHist, modelPlaceGrpHist=self.rai_net.train(self.path_rai, model_dir)
             self.model_dir=self.rai_net.timestamp.split("_")[0]
@@ -694,7 +700,7 @@ class RaiWorld():
                                 epochs_grasp=epochs_grasp, n_layers_grasp=n_layers_grasp, size_grasp=n_size_grasp,
                                 epochs_place=epochs_place, n_layers_place=n_layers_place, size_place=n_size_place,
                                 lr=lr, lr_drop=lr_drop, epoch_drop=epoch_drop, clipnorm=clipnorm, val_split=val_split,
-                                reg0=reg0, listLog=self.listLog, mode=self.dataMode, batch_size=batch_size
+                                reg0=reg0, listLog=self.listLog, mode=self.dataMode, batch_size=batch_size, goallength=self.goallength
                                 )
             modelInstructHist, modelGraspObjHist, modelGraspGrpHist, modelPlaceObjHist, modelPlaceGrpHist=self.rai_net.train(self.path_rai, model_dir)
             self.model_dir = self.rai_net.timestamp.split("_")[0]
