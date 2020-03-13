@@ -348,7 +348,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 					tmptime=time.time()
 					#if newLGP:
 					_ = rai_world.runLGP(rai_net.lgp, BT.seq, verbose=0, view=False, initnoise=tmpnoise)
-					_ = rai_world.runLGP(rai_net.lgp, BT.seqPath, verbose=0, view=showFinal, initnoise=tmpnoise)
+					komo = rai_world.runLGP(rai_net.lgp, BT.seqPath, verbose=0, view=showFinal, initnoise=tmpnoise)
 					endtime=time.time()
 					print("Constraint: seq ",rai_net.lgp.returnConstraint(BT.seq), ", seqPath ",rai_net.lgp.returnConstraint(BT.seqPath))
 					print(str(endtime-tmptime)+" sec")
@@ -379,7 +379,10 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 	if showFinal and feastmp:
 		rai_net.lgp.nodeInfo()
-		
+		komo.getKFromKomo(rai_net.K, komo.getPathFrames(rai_net.logicalNames).shape[0]-1)
+		input("Results")
+
+	
 	rai_net.lgp.walkToRoot()
 	rai_net.K.copy(K0)
 
@@ -616,6 +619,7 @@ def main():
 
 						infeasibleSkeletons=[]
 						depthSkeletons=[]
+						skeleton=""
 
 						# Reload configuration
 						if dataMode in [5,6,7,8]:

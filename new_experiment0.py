@@ -146,13 +146,41 @@ def getData1(nset=1, nenv=1):
         if getEnvInfo(nenv,"red") in [2]:
             solutions=[]
             numLoops=0
+        
+        elif getEnvInfo(nenv,"green") in [1] and getEnvInfo(nenv,"blue") in [2]: # bgr
+            solutions=["(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2R red green) (place pr2L green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2R green table1) (place pr2L red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2L red green) (place pr2R green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (place pr2L red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red green) (place pr2R green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2R green table1) (place pr2L red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green table1) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2R red green) (place pr2L green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red green)",
+                        
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2R red green) (place pr2L green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2R green table1) (place pr2L red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2L red green) (place pr2R green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (place pr2L red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red green) (place pr2R green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2R green table1) (place pr2L red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green table1) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2R red green) (place pr2L green table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red green)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red green)"]
+            numLoops=1*24*6
 
         elif getEnvInfo(nenv,"blue") in [2]:
             solutions=[ "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (place pr2L red green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red green)"]
-            numLoops=2*4*4
+            numLoops=1*4*4
         
         elif getEnvInfo(nenv,"green") in [0] or (getEnvInfo(nenv,"green") in [3] and getEnvInfo(nenv,"blue") in [0]): # gt or gbt 
             solutions=["(grasp pr2R red) (place pr2R red green)",
@@ -179,13 +207,41 @@ def getData1(nset=1, nenv=1):
         if getEnvInfo(nenv,"red") in [3]:
             solutions=[]
             numLoops=0
+
+        elif getEnvInfo(nenv,"blue") in [1] and getEnvInfo(nenv,"green") in [3]: # gbr
+            solutions=["(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2R red blue) (place pr2L blue table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2L blue table1) (place pr2R red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2R blue table1) (place pr2L red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2L red blue) (place pr2R blue table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (place pr2L red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red blue) (place pr2R blue table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2R blue table1) (place pr2L red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue table1) (place pr2R red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2R red blue) (place pr2L blue table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red blue)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red blue)",
+                        
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2R red blue) (place pr2L blue table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2L blue table1) (place pr2R red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2R blue table1) (place pr2L red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2L red blue) (place pr2R blue table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (place pr2L red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red blue) (place pr2R blue table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2R blue table1) (place pr2L red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue table1) (place pr2R red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2R red blue) (place pr2L blue table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red blue)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red blue)"]
+            numLoops=1*24*6
         
         elif getEnvInfo(nenv,"green") in [3]:
             solutions=[ "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (place pr2L red blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red blue)"]
-            numLoops=2*4*4
+            numLoops=1*4*4
 
         elif getEnvInfo(nenv,"blue") in [0] or (getEnvInfo(nenv,"blue") in [2] and getEnvInfo(nenv,"green") in [0]): # bt or bgt 
             solutions=["(grasp pr2R red) (place pr2R red blue)",
@@ -230,13 +286,41 @@ def getData1(nset=1, nenv=1):
         if getEnvInfo(nenv,"green") in [1]:
             solutions=[]
             numLoops=0
+
+        elif getEnvInfo(nenv,"red") in [2] and getEnvInfo(nenv,"blue") in [1]: # brg
+            solutions=["(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2R green red) (place pr2L red table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2L red table1) (place pr2R green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2R red table1) (place pr2L green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2L green red) (place pr2R red table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (place pr2L green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green red) (place pr2R red table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2R red table1) (place pr2L green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red table1) (place pr2R green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2R green red) (place pr2L red table1)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green red)",
+                        
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2R green red) (place pr2L red table1)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2L red table1) (place pr2R green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2R red table1) (place pr2L green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2L green red) (place pr2R red table1)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (place pr2L green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green red) (place pr2R red table1)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2R red table1) (place pr2L green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red table1) (place pr2R green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2R green red) (place pr2L red table1)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green red)"]
+            numLoops=1*24*6
         
         elif getEnvInfo(nenv,"blue") in [1]:
             solutions=[ "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green red)"]
-            numLoops=2*4*4
+            numLoops=1*4*4
 
         elif getEnvInfo(nenv,"red") in [0] or (getEnvInfo(nenv,"red") in [3] and getEnvInfo(nenv,"blue") in [0]): # rt or rbt 
             solutions=["(grasp pr2R green) (place pr2R green red)",
@@ -263,12 +347,41 @@ def getData1(nset=1, nenv=1):
         if getEnvInfo(nenv,"green") in [3]:
             solutions=[]
             numLoops=0
+
+        elif getEnvInfo(nenv,"blue") in [2] and getEnvInfo(nenv,"red") in [3]: # rbg
+            solutions=["(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2R green blue) (place pr2L blue table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (place pr2R green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2R blue table1) (place pr2L green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2L green blue) (place pr2R blue table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green blue) (place pr2R blue table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2R blue table1) (place pr2L green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue table1) (place pr2R green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2R green blue) (place pr2L blue table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green blue)",
+                        
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2R green blue) (place pr2L blue table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (place pr2R green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2R blue table1) (place pr2L green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2L green blue) (place pr2R blue table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green blue) (place pr2R blue table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2R blue table1) (place pr2L green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue table1) (place pr2R green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2R green blue) (place pr2L blue table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green blue)"]
+            numLoops=1*24*6
+
         elif getEnvInfo(nenv,"red") in [3]:
             solutions=[ "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (place pr2L green blue)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green blue)"]
-            numLoops=2*4*4
+            numLoops=1*4*4
 
         elif getEnvInfo(nenv,"blue") in [0] or (getEnvInfo(nenv,"blue") in [1] and getEnvInfo(nenv,"red") in [0]): # bt or brt 
             solutions=["(grasp pr2R green) (place pr2R green blue)",
@@ -313,12 +426,40 @@ def getData1(nset=1, nenv=1):
             solutions=[]
             numLoops=0
         
+        elif getEnvInfo(nenv,"red") in [3] and getEnvInfo(nenv,"green") in [1]: # grb
+            solutions=["(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2R blue red) (place pr2L red table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2L red table1) (place pr2R blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2R red table1) (place pr2L blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2L blue red) (place pr2R red table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (place pr2L blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue red) (place pr2R red table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2R red table1) (place pr2L blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red table1) (place pr2R blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2R blue red) (place pr2L red table1)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue red)",
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue red)",
+                        
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2R blue red) (place pr2L red table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2L red table1) (place pr2R blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2R red table1) (place pr2L blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2L blue red) (place pr2R red table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (place pr2L blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue red) (place pr2R red table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2R red table1) (place pr2L blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red table1) (place pr2R blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2R blue red) (place pr2L red table1)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue red)",
+                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue red)"]
+            numLoops=1*24*6
+        
         elif getEnvInfo(nenv,"green") in [1]:
             solutions=[ "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue red)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (place pr2R blue red)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue red)"]
-            numLoops=2*4*4
+            numLoops=1*4*4
         
         elif getEnvInfo(nenv,"red") in [0] or (getEnvInfo(nenv,"red") in [2] and getEnvInfo(nenv,"green") in [0]): # rt or rgt 
             solutions=["(grasp pr2R blue) (place pr2R blue red)",
@@ -346,12 +487,40 @@ def getData1(nset=1, nenv=1):
             solutions=[]
             numLoops=0
 
+        elif getEnvInfo(nenv,"green") in [3] and getEnvInfo(nenv,"red") in [2]: # rgb
+            solutions=["(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2R blue green) (place pr2L green table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2L green table1) (place pr2R blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (place pr2L blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2L blue green) (place pr2R green table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (place pr2L blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue green) (place pr2R green table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2R green table1) (place pr2L blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green table1) (place pr2R blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2R blue green) (place pr2L green table1)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue green)",
+                        
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2R blue green) (place pr2L green table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2L green table1) (place pr2R blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (place pr2L blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2L blue green) (place pr2R green table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (place pr2L blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue green) (place pr2R green table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2R green table1) (place pr2L blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green table1) (place pr2R blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2R blue green) (place pr2L green table1)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue green)"]
+            numLoops=1*24*6
+
         elif getEnvInfo(nenv,"red") in [2]:
             solutions=[ "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue green)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (place pr2L blue green)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue green)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue green)"]
-            numLoops=2*4*4
+            numLoops=1*4*4
         
         elif getEnvInfo(nenv,"green") in [0] or (getEnvInfo(nenv,"green") in [1] and getEnvInfo(nenv,"red") in [0]): # gt or grt 
             solutions=["(grasp pr2R blue) (place pr2R blue green)",
@@ -409,18 +578,14 @@ def getData(nset=1, nenv=1):
         if getEnvInfo(nenv,"red") in [3] and getEnvInfo(nenv,"blue") in [2] or getEnvInfo(nenv,"blue") in [1]:
             solutions=["(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2L green red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2R green red)",
-                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (place pr2R green red) (grasp pr2R red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2R green red)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green red)",
-                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green red) (grasp pr2R red)",
                         
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2L green red)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2R green red)",
-                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green red) (grasp pr2R red)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2R green red)",
-                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green red)",
-                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (place pr2L green red) (grasp pr2R red)"]
-            numLoops=2*12*5
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2L green red)"]
+            numLoops=2*8*5
 
         elif getEnvInfo(nenv,"red") in [2]:
             solutions=["(grasp pr2R red) (grasp pr2L green) (place pr2L green red)",
@@ -444,7 +609,14 @@ def getData(nset=1, nenv=1):
     elif nset==4:
         goalString=["(held red) (on green blue)", "(on green blue) (held red)"]
 
-        if getEnvInfo(nenv,"red") in [3]:
+        if getEnvInfo(nenv,"blue") in [2] and getEnvInfo(nenv,"red") in [3]: # rbg
+            solutions=[ "(grasp pr2L red) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2R blue) (grasp pr2L red) (place pr2R blue table1) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (place pr2L green blue)",
+                        "(grasp pr2L blue) (grasp pr2R red) (place pr2L blue table1) (grasp pr2L green) (place pr2L green blue)"]
+            numLoops=2*4*5
+
+        elif getEnvInfo(nenv,"red") in [3]:
             solutions=[ "(grasp pr2R red) (grasp pr2L green) (place pr2L green blue)",
                         "(grasp pr2L red) (grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2L green) (grasp pr2R red) (place pr2L green blue)",
@@ -519,18 +691,14 @@ def getData(nset=1, nenv=1):
         if getEnvInfo(nenv,"red") in [2] and getEnvInfo(nenv,"green") in [3] or getEnvInfo(nenv,"green") in [1]:
             solutions=["(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2R blue red)",
-                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (place pr2R blue red) (grasp pr2R red)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2R blue red)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue red)",
-                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue red) (grasp pr2R red)",
                         
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2R blue red)",
-                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue red) (grasp pr2R red)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2R blue red)",
-                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue red)",
-                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (place pr2L blue red) (grasp pr2R red)"]
-            numLoops=2*12*5
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2L blue red)"]
+            numLoops=2*8*5
         elif getEnvInfo(nenv,"red") in [3]:
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2L blue red)",
                         "(grasp pr2R blue) (grasp pr2L red) (place pr2R blue red)",
@@ -553,7 +721,14 @@ def getData(nset=1, nenv=1):
     elif nset==8:
         goalString=["(held red) (on blue green)", "(on blue green) (held red)"]
 
-        if getEnvInfo(nenv,"red") in [2]:
+        if getEnvInfo(nenv,"green") in [3] and getEnvInfo(nenv,"red") in [2]: # rgb
+            solutions=[ "(grasp pr2L red) (grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2R green) (grasp pr2L red) (place pr2R green table1) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2R red) (grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue green)",
+                        "(grasp pr2L green) (grasp pr2R red) (place pr2L green table1) (grasp pr2L blue) (place pr2L blue green)"]
+            numLoops=2*4*5
+
+        elif getEnvInfo(nenv,"red") in [2]:
             solutions=[ "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue green)",
                         "(grasp pr2L red) (grasp pr2R blue) (place pr2R blue green)",
                         "(grasp pr2L blue) (grasp pr2R red) (place pr2L blue green)",
@@ -1033,18 +1208,14 @@ def getData(nset=1, nenv=1):
         if getEnvInfo(nenv,"green") in [3] and getEnvInfo(nenv,"blue") in [1] or getEnvInfo(nenv,"blue") in [2]:
             solutions=["(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2L red green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2R red green)",
-                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2R red) (place pr2R red green) (grasp pr2R green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2R red green)",
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red green)",
-                        "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red green) (grasp pr2R green)",
                         
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R green) (grasp pr2L red) (place pr2L red green)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (grasp pr2L green) (place pr2R red green)",
-                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red green) (grasp pr2R green)",
                         "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L green) (grasp pr2R red) (place pr2R red green)",
-                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red green)",
-                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (place pr2L red green) (grasp pr2R green)"]
-            numLoops=2*12*5
+                        "(grasp pr2R blue) (place pr2R blue table1) (grasp pr2L red) (grasp pr2R green) (place pr2L red green)"]
+            numLoops=2*8*5
         
         elif getEnvInfo(nenv,"green") in [1]:
             solutions=["(grasp pr2R green) (grasp pr2L red) (place pr2L red green)",
@@ -1252,11 +1423,17 @@ def getData(nset=1, nenv=1):
         #(held red) (on green blue)
         goalString=["(on red green) (held blue)", "(held blue) (on red green)"]
         
-        if getEnvInfo(nenv,"blue") in [2]:
-            solutions=[ "(grasp pr2R blue) (grasp pr2L red) (place pr2L blue green)",
-                        "(grasp pr2L blue) (grasp pr2R red) (place pr2R blue green)",
-                        "(grasp pr2L red) (grasp pr2R blue) (place pr2L blue green)",
-                        "(grasp pr2R red) (grasp pr2L blue) (place pr2R blue green)"]
+        if getEnvInfo(nenv,"green") in [1] and getEnvInfo(nenv,"blue") in [2]: # bgr
+            solutions=[ "(grasp pr2L blue) (grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red green)",
+                        "(grasp pr2R green) (grasp pr2L blue) (place pr2R green table1) (grasp pr2R red) (place pr2R red green)",
+                        "(grasp pr2R blue) (grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red green)",
+                        "(grasp pr2L green) (grasp pr2R blue) (place pr2L green table1) (grasp pr2L red) (place pr2L red green)"]
+            numLoops=2*4*5
+        elif getEnvInfo(nenv,"blue") in [2]:
+            solutions=[ "(grasp pr2R blue) (grasp pr2L red) (place pr2R blue green)",
+                        "(grasp pr2L blue) (grasp pr2R red) (place pr2L blue green)",
+                        "(grasp pr2L red) (grasp pr2R blue) (place pr2R blue green)",
+                        "(grasp pr2R red) (grasp pr2L blue) (place pr2L blue green)"]
             numLoops=2*4*3
         elif getEnvInfo(nenv,"green") in [0] or (getEnvInfo(nenv,"green") in [3] and getEnvInfo(nenv,"blue") in [0]): # gt or gbt 
             solutions=["(grasp pr2R red) (grasp pr2L blue) (place pr2R red green)",
@@ -1489,11 +1666,17 @@ def getData(nset=1, nenv=1):
         goalString=["(on red blue) (held green)", "(held green) (on red blue)"]
         #goalString=["(on r.ed b.lue) (held g.reen)", "(held g.reen) (on r.ed b.lue)"]
         # red green 1 2
-        if getEnvInfo(nenv,"green") in [3]:
-            solutions=[ "(grasp pr2R green) (grasp pr2L red) (place pr2L green blue)",
-                        "(grasp pr2L green) (grasp pr2R red) (place pr2R green blue)",
-                        "(grasp pr2L red) (grasp pr2R green) (place pr2L green blue)",
-                        "(grasp pr2R red) (grasp pr2L green) (place pr2R green blue)"]
+        if getEnvInfo(nenv,"green") in [3] and getEnvInfo(nenv,"blue") in [1]: # gbr
+            solutions=[ "(grasp pr2L green) (grasp pr2R blue) (place pr2R blue table1) (grasp pr2R red) (place pr2R red blue)",
+                        "(grasp pr2R blue) (grasp pr2L green) (place pr2R blue table1) (grasp pr2R red) (place pr2R red blue)",
+                        "(grasp pr2R green) (grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red) (place pr2L red blue)",
+                        "(grasp pr2L blue) (grasp pr2R green) (place pr2L blue table1) (grasp pr2L red) (place pr2L red blue)"]
+            numLoops=2*4*5
+        elif getEnvInfo(nenv,"green") in [3]:
+            solutions=[ "(grasp pr2R green) (grasp pr2L red) (place pr2R green blue)",
+                        "(grasp pr2L green) (grasp pr2R red) (place pr2L green blue)",
+                        "(grasp pr2L red) (grasp pr2R green) (place pr2R green blue)",
+                        "(grasp pr2R red) (grasp pr2L green) (place pr2L green blue)"]
             numLoops=2*4*3
         elif getEnvInfo(nenv,"red") in [3]:
             solutions=["(grasp pr2R green)","(grasp pr2L green)"]
@@ -1723,18 +1906,14 @@ def getData(nset=1, nenv=1):
         if getEnvInfo(nenv,"blue") in [2] and getEnvInfo(nenv,"green") in [1] or getEnvInfo(nenv,"green") in [3]:
             solutions=["(grasp pr2L green) (place pr2L green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2L red blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2R red blue)",
-                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2R red) (place pr2R red blue) (grasp pr2R blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2R red blue)",
                         "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red blue)",
-                        "(grasp pr2L green) (place pr2L green table1) (grasp pr2L red) (place pr2L red blue) (grasp pr2R blue)",
                         
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R blue) (grasp pr2L red) (place pr2L red blue)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (grasp pr2L blue) (place pr2R red blue)",
-                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2R red) (place pr2R red blue) (grasp pr2R blue)",
                         "(grasp pr2R green) (place pr2R green table1) (grasp pr2L blue) (grasp pr2R red) (place pr2R red blue)",
-                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red blue)",
-                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (place pr2L red blue) (grasp pr2R blue)"]
-            numLoops=2*12*5
+                        "(grasp pr2R green) (place pr2R green table1) (grasp pr2L red) (grasp pr2R blue) (place pr2L red blue)"]
+            numLoops=2*8*5
 
         elif getEnvInfo(nenv,"blue") in [1]:
             solutions=["(grasp pr2R blue) (grasp pr2L red) (place pr2L red blue)",
@@ -1966,11 +2145,17 @@ def getData(nset=1, nenv=1):
 
     elif nset==31:
         goalString=["(held green) (on blue red)", "(on blue red) (held green)"]
-        if getEnvInfo(nenv,"green") in [1]:
-            solutions=[ "(grasp pr2R green) (grasp pr2L blue) (place pr2L green red)",
-                        "(grasp pr2L green) (grasp pr2R blue) (place pr2R green red)",
-                        "(grasp pr2L blue) (grasp pr2R green) (place pr2L green red)",
-                        "(grasp pr2R blue) (grasp pr2L green) (place pr2R green red)"]
+        if getEnvInfo(nenv,"green") in [1] and getEnvInfo(nenv,"red") in [3]: # grb
+            solutions=[ "(grasp pr2L green) (grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue red)",
+                        "(grasp pr2R red) (grasp pr2L green) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue red)",
+                        "(grasp pr2R green) (grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue red)",
+                        "(grasp pr2L red) (grasp pr2R green) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue red)"]
+            numLoops=2*4*5
+        elif getEnvInfo(nenv,"green") in [1]:
+            solutions=[ "(grasp pr2R green) (grasp pr2L blue) (place pr2R green red)",
+                        "(grasp pr2L green) (grasp pr2R blue) (place pr2L green red)",
+                        "(grasp pr2L blue) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2R blue) (grasp pr2L green) (place pr2L green red)"]
             numLoops=2*4*3
         elif getEnvInfo(nenv,"red") in [0] or (getEnvInfo(nenv,"red") in [2] and getEnvInfo(nenv,"green") in [0]): #rbt or rgt 
             solutions=["(grasp pr2R blue) (grasp pr2L green) (place pr2R blue red)",
@@ -2223,7 +2408,13 @@ def getData(nset=1, nenv=1):
 
     elif nset==36:
         goalString=["(on green red) (held blue)", "(held blue) (on green red)"]
-        if getEnvInfo(nenv,"blue") in [1]:
+        if getEnvInfo(nenv,"blue") in [1] and getEnvInfo(nenv,"red") in [2]: # brg
+            solutions=[ "(grasp pr2L blue) (grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2R red) (grasp pr2L blue) (place pr2R red table1) (grasp pr2R green) (place pr2R green red)",
+                        "(grasp pr2R blue) (grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green red)",
+                        "(grasp pr2L red) (grasp pr2R blue) (place pr2L red table1) (grasp pr2L green) (place pr2L green red)"]
+            numLoops=2*4*5
+        elif getEnvInfo(nenv,"blue") in [1]:
             solutions=[ "(grasp pr2R blue) (grasp pr2L green) (place pr2R blue red)",
                         "(grasp pr2L blue) (grasp pr2R green) (place pr2L blue red)",
                         "(grasp pr2L green) (grasp pr2R blue) (place pr2R blue red)",
@@ -2464,18 +2655,14 @@ def getData(nset=1, nenv=1):
         elif getEnvInfo(nenv,"blue") in [1] and getEnvInfo(nenv,"red") in [2] or getEnvInfo(nenv,"red") in [3]:
             solutions=["(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2L green blue)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2R green blue)",
-                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (place pr2R green blue) (grasp pr2R blue)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green blue)",
-                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (place pr2L green blue) (grasp pr2R blue)",
                         
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2L green blue)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2R green blue)",
-                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (place pr2R green blue) (grasp pr2R blue)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2R green blue)",
-                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green blue)",
-                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (place pr2L green blue) (grasp pr2R blue)"]
-            numLoops=2*12*5
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2L green blue)"]
+            numLoops=2*8*5
 
         elif getEnvInfo(nenv,"blue") in [2]:
             solutions=["(grasp pr2R blue) (grasp pr2L green) (place pr2L green blue)",
@@ -2690,18 +2877,14 @@ def getData(nset=1, nenv=1):
         elif getEnvInfo(nenv,"green") in [1] and getEnvInfo(nenv,"red") in [3] or getEnvInfo(nenv,"red") in [2]:
             solutions=["(grasp pr2L red) (place pr2L red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2L blue green)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2R blue green)",
-                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2R blue) (place pr2R blue green) (grasp pr2R green)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2R blue green)",
                         "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue green)",
-                        "(grasp pr2L red) (place pr2L red table1) (grasp pr2L blue) (place pr2L blue green) (grasp pr2R green)",
                         
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R green) (grasp pr2L blue) (place pr2L blue green)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (grasp pr2L green) (place pr2R blue green)",
-                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2R blue) (place pr2R blue green) (grasp pr2R green)",
                         "(grasp pr2R red) (place pr2R red table1) (grasp pr2L green) (grasp pr2R blue) (place pr2R blue green)",
-                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue green)",
-                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (place pr2L blue green) (grasp pr2R green)"]
-            numLoops=2*12*5
+                        "(grasp pr2R red) (place pr2R red table1) (grasp pr2L blue) (grasp pr2R green) (place pr2L blue green)"]
+            numLoops=2*8*5
         
         elif getEnvInfo(nenv,"green") in [3]:
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2L blue green)",
