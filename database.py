@@ -445,8 +445,9 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     elif NNmode=="stack":
         #envSets=list(range(201,253))
         envSets= [i for i in range(201,253) if not i%4==0]
-        arrSets=[29, 26,3, 31,4, 22,28, 6, 12,37, 18,35, 14]
-
+        #arrSets=[29, 26,3, 31,4, 22,28, 6, 12,37, 18,35, 14]
+        #arrSets=[26,3, 31,4, 22,28, 6, 12,37, 14]
+        arrSets=[29, 26,3, 31,4, 22,28, 6, 18,35, 14]#12,37, 
     elif mixData:
         # Data set expansion
         arrSets=[6,7,21,27,32,62,68]#45 #67, 52 #71, 20 #12 61
@@ -717,6 +718,21 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                                 new2= np.tile(new2,(3,1))
                                 #new4= np.tile(new4,(3,1,1))
                                 new7= np.tile(new7,(3,1))
+
+                            if NNmode in ["final", "stack"]:
+                                # Skip if for some reason dimensions do not match
+                                try:
+                                    assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InstructionPrev"+str(new1.shape[0])+" != "+str(new2.shape[0])
+                                    assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(new1.shape[0])+" != "+str(new3.shape[0])
+                                    assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InputPrev"+str(new1.shape[0])+" != "+str(new6.shape[0])
+                                    assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Feasible"+str(new1.shape[0])+" != "+str(new7.shape[0])
+                        
+                                    assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions Input2"+str(new1.shape[0])+" != "+str(new8.shape[0])
+                                    assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InputPrev2"+str(new1.shape[0])+" != "+str(new9.shape[0])
+                                except:
+                                    print("skip    env "+str(nenv)+" set "+str(nset).zfill(2)+" as inconsistent")
+                                    listNoSet.append(str(nset).zfill(2))
+                                    continue
 
                             # Concatenate arrays
                             old8=np.concatenate((old8,new8), axis=0)
@@ -1014,13 +1030,14 @@ def main():
         concatData(path_rai+'/dataset',start2,stop2, skip1=skip1,rand2=rand2, NNmode=NNmode, mixData=mixData, exclude=exclude)
     else:
         # Get training samples
-        rai=rai_setup.RaiWorld(path_rai, nenv, setup, "", verbose, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
+        if not skip1:
+            rai=rai_setup.RaiWorld(path_rai, nenv, setup, "", verbose, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
 
         print("Finished loading. Train env "+str(nenv))
         if not skip1:
             dataSet(path_rai+'/dataset_new', rai, nenv, start1, stop1, mode=1)
 
-        if not skip2:
+        if not skip2 and False:
             dataSet(path_rai+'/dataset_new', rai, nenv, start2, stop2, mode=2)
     
 

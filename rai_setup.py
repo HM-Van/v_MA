@@ -184,7 +184,10 @@ class RaiWorld():
 
         if self.setup=="minimal":
             # Load LGP
-            self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace2.g", printInit)
+            if self.dataMode in [1,2,3,4]:
+                self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace2.g", printInit)
+            elif self.dataMode in [5,6,7,8]:
+                self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace3.g", printInit)
 
         self.goalString_orig=goalString
         self.numGoal_orig=len(splitStringStep(self.goalString_orig, list_old=[],verbose=0))
@@ -257,21 +260,14 @@ class RaiWorld():
             NotImplementedError
 
     def expandGoal(self, goal, realgoal):
+        # Expand objective to ensure no object is blocked
         folstate = self.lgp.nodeState()
-        #print(goal)
-        #print(realgoal)
-        #input(folstate[0])
-
         listNewGoal=[]
         listDoubleGoal=[]
         goalStep = splitStringStep(self.goalString_orig, list_old=[],verbose=0)
-        #goalStepReal = splitStringStep(self.realGoalString, list_old=[],verbose=0)
-        #pureTab = [i for i in self.tabNames_orig if i not in self.objNames_orig]
-        #input(pureTab)
 
+        # Table = Objects on which something has to be placed
         tmpTabList= [element for element in self.objNames_orig if ("(on "+element in realgoal and not element==self.tray)]
-        #print("")
-        #input(tmpTabList)
         for obj in self.objNames_orig:
             cont=False
             if "(held "+obj in goal: 
@@ -282,9 +278,9 @@ class RaiWorld():
                 for tab in tmpTabList:
                     if "(on "+tab+" "+obj+")" in realgoal and "(on "+obj+" "+tab in folstate[0]:
                         #print(obj+" "+tab+" 1")
-                        # if one goal is to be for object to be on a table and if this table is ontop another object
+                        # if one goal is to be for object to be on a table and if this table is directly on this object
                         if "(on "+tab in goal:
-                            # if another goal is for table to be on another table
+                            # if another goal is for table to be on another target
                             # ensure this goal is satisfied early
                             res = [i for i in goalStep if "(on "+tab in i]
                             listDoubleGoal.append(res[0])
@@ -296,23 +292,33 @@ class RaiWorld():
                         cont=True
                         break
                     elif "(on "+tab+" "+obj+")" in realgoal and "(ontop "+obj+" "+tab in folstate[0]:
-                        # find the lowest object in stack to place on tray
+                        # if one goal is to be for object to be on a table and if this table is somewhere ontop this object
+                        # find the lowest object of target stack to place on tray
+
+                        # TODO this
                         inittab=tab
                         currenttab=tab
                         for it in range(len(self.tabNames_orig)):
-                            res = [i for i in goalStep if "(on "+currenttab in i]
+                            res = [i for i in goalStep if "(on "+currenttab in i and ("(ontop "+inittab+" "+currenttab in folstate[0] or "(on "+inittab+" "+currenttab)]
                             #print(res, currenttab, goalStep)
                             if res==[]:
                                 break
 
                             split_str = res[0].split(" ")
+                            if split_str[-1][:-1] not in self.objNames_orig: # if target not object
+                                break
+
                             currenttab=split_str[-1][:-1]
                             #print(currenttab)
                             if it>0 and currenttab==inittab:
                                 input("!---cannot be solved---!")
-                                break                        
-            
-                        listNewGoal.append("(on "+currenttab+" "+self.tray+")")
+                                break
+                        if "(on "+currenttab in goal:
+                            res = [i for i in goalStep if "(on "+currenttab in i]
+                            listDoubleGoal.append(res[0])          
+                                      
+                        else:
+                            listNewGoal.append("(on "+currenttab+" "+self.tray+")")
 
 
             if "(on "+obj in folstate[0] or "(ontop "+obj in folstate[0] or cont: 
@@ -365,35 +371,69 @@ class RaiWorld():
 
         goalStringNew=" ".join(listNewGoal+listDoubleGoal)
         #print(listNewGoal)
-        if not goalStringNew=="":
-            self.goalString_orig=goalStringNew+" "+goal
-            goaltmp=splitStringStep(goalStringNew, list_old=[])
-            self.realGoalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])+" "+realgoal
+        if self.dataMode in [1,2,3,4]:
+            if not goalStringNew=="":
+                self.goalString_orig=goalStringNew+" "+goal
+                goaltmp=splitStringStep(goalStringNew, list_old=[])
+                self.realGoalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])+" "+realgoal
 
-            print("Changed objective to: " + self.goalString_orig)
-            #input(self.realGoalString)
-        self.numGoal_orig=len(splitStringStep(self.goalString_orig, list_old=[],verbose=0))
+                #print("Changed objective to: " + self.goalString_orig)
+                #input(self.realGoalString)
+            self.numGoal_orig=len(splitStringStep(self.goalString_orig, list_old=[],verbose=0))
 
-    def preprocessGoals(self):
-        goalStep = splitStringStep(self.goalString_orig, list_old=[],verbose=0)
-        goalStepReal = splitStringStep(self.realGoalString, list_old=[],verbose=0)
+            return  self.goalString_orig, self.realGoalString
+
+        elif self.dataMode in [5,6,7,8]:
+            if not goalStringNew=="":
+                goalString_orig=goalStringNew+" "+goal
+                goaltmp=splitStringStep(goalStringNew, list_old=[])
+                realGoalString=" ".join([rearrangeGoal(goal) for goal in goaltmp])+" "+realgoal
+
+                #print("Changed objective to: " + self.goalString_orig)
+            else:
+                goalString_orig=self.goalString_orig
+                realGoalString=self.realGoalString
+            self.numGoal_orig=len(splitStringStep(goalString_orig, list_old=[],verbose=0))
+
+            #print(goal)
+            #input(goalString_orig)
+
+            return goalString_orig, realGoalString
+
+    def preprocessGoals(self, cheat_goalstate=True):
+
+        if self.dataMode in [1,2,3,4]:
+            goalString_orig, realGoalString=self.goalString_orig, self.realGoalString
+        elif self.dataMode in [5,6,7,8]:
+            goalString_orig, realGoalString=self.expandGoal(self.goalString_orig, self.realGoalString)
+
+        goalStep = splitStringStep(goalString_orig, list_old=[],verbose=0)
+        goalStepReal = splitStringStep(realGoalString, list_old=[],verbose=0)
         folstate = self.lgp.nodeState()
         unfullfilled=[]
-
-        for goal, real in zip(goalStep, goalStepReal):
-            # Find unsatisfied goal formulations
-            if not real in folstate[0]:
-                unfullfilled.append(goal)
-                ##If stacking mode
-                #split_str = stringNew.split(" ")
-                #len(unfullfilled)<2 if "(on "+split_str[-1][:-1] in folstate[0]:
-                    #unfullfilled.append(unfullfilled[0])
+        if len(goalStep)==2 and not cheat_goalstate:
+            unfullfilled=goalStep
+        else:
+            for goal, real in zip(goalStep, goalStepReal):
+                # Find unsatisfied goal formulations
+                if not real in folstate[0]:
+                    unfullfilled.append(goal)
+                    ##If stacking mode
+                    #split_str = stringNew.split(" ")
+                    #len(unfullfilled)<2 if "(on "+split_str[-1][:-1] in folstate[0]:
+                        #unfullfilled.append(unfullfilled[0])
+        #print(unfullfilled)
+        #print(goalStep)
+        #input(folstate)
         return unfullfilled
 
     def restartLGP(self, init=False):
         folstate = self.lgp.nodeState()
         if init or not ("(held" in folstate[0]):
-            self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace2.g", False, 0)
+            if self.dataMode in [1,2,3,4]:
+                self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace2.g", False,0)
+            elif self.dataMode in [5,6,7,8]:
+                self.lgp=self.K.lgp(self.path_rai+"/models/fol-pickAndPlace3.g", False,0)
             self.lgp.addTerminalRule(self.realGoalString,0)
             return True
             
@@ -408,7 +448,7 @@ class RaiWorld():
             if len(unfullfilled)==1:
                 unfullfilled=[unfullfilled[0], unfullfilled[0]]
         else:
-            unfullfilled=self.preprocessGoals()
+            unfullfilled=self.preprocessGoals(cheat_goalstate=cheatGoalState)
         
         changed=False
         goalString_prev=self.goalString

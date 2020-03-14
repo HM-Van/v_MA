@@ -386,7 +386,7 @@ def getData1(nset=1, nenv=1):
         elif getEnvInfo(nenv,"blue") in [0] or (getEnvInfo(nenv,"blue") in [1] and getEnvInfo(nenv,"red") in [0]): # bt or brt 
             solutions=["(grasp pr2R green) (place pr2R green blue)",
                         "(grasp pr2L green) (place pr2L green blue)"]
-            numLoops=1*2*4
+            numLoops=1*2*2
         
         elif getEnvInfo(nenv,"blue") in [2] or (getEnvInfo(nenv,"blue") in [1] and getEnvInfo(nenv,"red") in [2]): # bg or brg
             solutions=["(grasp pr2R green) (grasp pr2L blue) (place pr2R green blue) (place pr2L blue table1)",
@@ -2208,7 +2208,7 @@ def getData(nset=1, nenv=1):
                         "(grasp pr2L blue) (place pr2L blue table1) (grasp pr2L red)"]
             numLoops=2*8*3
         elif getEnvInfo(nenv,"blue") in [0]:
-            solutions=["(grasp pr2R red)","(grasp pr2L red)"]
+            solutions=["(grasp pr2R blue)","(grasp pr2L blue)"]
             numLoops=2*2*1
 
     elif nset==33:

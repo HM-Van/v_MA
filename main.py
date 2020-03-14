@@ -36,6 +36,9 @@ def createResults(rai_net, cheat_goalstate=False,cheat_tree=False, start=1, plan
 		if cheat_tree:
 			append_folder=append_folder+"_tree"
 
+		if not rai_net.tray=="":
+			append_folder=append_folder+"_tray"
+
 		# Create dir
 		path=rai_net.path_rai+'/result_minimal/'+rai_net.model_dir+append_folder
 		if not(os.path.exists(path)):
@@ -150,7 +153,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 		tmpDes=[]
 		# Get encoded state
 		envState=rai_net.encodeState()
-		if cheat_goalstate or rai_net.numGoal_orig>2:
+		if cheat_goalstate or rai_net.numGoal_orig>2 or not rai_net.tray=="":
 			# Get (possibly new) encoded objective
 			goals_tmp, _, change=rai_net.preprocessGoalState(cheatGoalState=cheat_goalstate)
 			# Get encoded input
@@ -531,6 +534,7 @@ def main():
 		NotImplementedError
 
 	if dataMode in [5,6,7,8]:
+		print("here")
 		import new_experiment0 as expert
 	else:
 		import minimal_experiment as expert
@@ -629,7 +633,7 @@ def main():
 
 						for tries in range(maxTries):
 							# Set objective
-							rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
+							rai.resetFit(cheatGoalState=cheat_goalstate, goal=rai.goalString_orig)
 							print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 							
 							# Find skeleton
@@ -668,9 +672,6 @@ def main():
 										idxsol=0
 									else:
 										idxsol=1
-									
-									if not skeleton in solutions:
-										strgoalPrev=strgoalPrev+"_checkStack"
 
 							else:
 								summary[4].append(strgoal)
@@ -689,8 +690,6 @@ def main():
 							if successmsg=="Successfully reached goal":
 								solutions, _, _ = expert.getData(nenv=nenv, nset=numGoal)
 								if not solutions ==[]:
-									if not skeleton in solutions:
-										strgoal=strgoal+"_checkStack"
 									if not feasible:
 										if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 											summary[2].append(strgoal)
@@ -730,7 +729,7 @@ def main():
 
 					for tries in range(maxTries):
 						# Set objective
-						rai.resetFit(cheatGoalState=cheat_goalstate, goal=goal)
+						rai.resetFit(cheatGoalState=cheat_goalstate, goal=rai.goalString_orig)
 						print("----Test Goal "+strgoal+": '"+rai.goalString_orig+"' for env "+str(rai.nenv)+"----\n")
 
 						skeleton, typeDecision,successmsg, feasible=buildSkeleton(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, showFinal=showFinal,waitTime=waitTime, planOnly=planOnly,
@@ -753,8 +752,6 @@ def main():
 					if successmsg=="Successfully reached goal":
 						solutions, _, _ = expert.getData1(nenv=nenv, nset=i+1)
 						if not solutions ==[]:
-							if not skeleton in solutions:
-								strgoal=strgoal+"_checkStack"
 							if not feasible:
 								if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 									summary[2].append(strgoal)
@@ -768,7 +765,7 @@ def main():
 						summary[4].append(strgoal)
 				
 				# Write summary
-				with open(path+'/Summaryenv'+str(nenv).zfill(3)+append_test+'.txt', 'a+') as f:
+				with open(path+'/Summaryenv'+str(rai.nenv).zfill(3)+append_test+'.txt', 'a+') as f:
 					f.write(rai.NNmode+", datamode "+str(rai.dataMode)+", maxDepth "+str(rai.maxDepth)+", maxTries "+str(maxTries)+"\n\n" )
 					f.write("----Optimal Solution ("+str(len(summary[0]))+")----\n")
 					for elem in summary[0]:
@@ -794,7 +791,7 @@ def main():
 			infeasibleSkeletons=[]
 			depthSkeletons=[]
 			teststep=1
-			#input("Press enter to continue")
+			input("Press enter to continue")
 			time.sleep(1)
 			starttime=time.time()
 			for tries in range(maxTries):

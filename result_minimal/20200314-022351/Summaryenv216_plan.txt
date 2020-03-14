@@ -1,0 +1,24 @@
+FFnew, datamode 5, maxDepth 10, maxTries 4
+
+----Optimal Solution (75)----
+001-2	001-1	002-2	002-1	003-2	003-1	004-2	004-1	005-2	005-1	006-2	006-1	007-2	007-1	008-2	008-1	009-2	009-1	012-1	012-2	013-2	013-1	014-2	014-1	015-2	015-1	017-1_checkStack	018-2	018-1	019-2	019-1	020-2_checkStack	020-1_checkStack	021-2	021-1	022-2_checkStack	024-2	025-1	025-2	026-1	026-2	027-1_checkStack	027-2_checkStack	028-2	028-1	029-2	029-1	030-2	030-1	031-2	031-1	032-2_checkStack	032-1_checkStack	033-2	033-1	034-2	034-1	036-1	036-2	037-1	037-2	038-2_checkStack	039-1	039-2_checkStack	040-2	040-1	041-1	041-2	043-1	045-1	047-1	050-1	051-1	052-1	053-1	
+----Feasible Solution (11)----
+011-2_checkStack	011-1_checkStack	022-1_checkStack	023-1_checkStack	023-2_checkStack	024-1_checkStack	038-1_checkStack	042-2_checkStack	042-1_checkStack	046-1_checkStack	049-1_checkStack	
+----Infeasible-op Solution (0)----
+
+----Infeasible Solution (0)----
+
+----No Solution (1)----
+017-2	
+FFnew, datamode 5, maxDepth 10, maxTries 6
+
+----Optimal Solution (2)----
+017-2_checkStack	017-1_checkStack	
+----Feasible Solution (0)----
+
+----Infeasible-op Solution (0)----
+
+----Infeasible Solution (0)----
+
+----No Solution (0)----
+

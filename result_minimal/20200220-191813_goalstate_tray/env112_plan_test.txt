@@ -1,0 +1,66 @@
+
+
+-----Result for env 112-----
+
+----KOMO path failed for goal : (on red yellow) (on green cyan) (on blue red) (on orange green) infeasible 0----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  MP: (grasp pr2L blue)                                                          [ 1 -1 ]	with prob 0.674 instead of (place pr2R blue red)
+--------------------
+
+
+
+-----Result for env 112-----
+
+
+
+-----Result for env 112-----
+
+----Successfully reached goal : (on red yellow) (on green cyan) (on blue red) (on orange green) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red yellow)[ 1 -1 ]
+		  NN: (grasp pr2L green)[ 0 -1 ]
+		  NN: (place pr2L green cyan)[ 0 -1 ]
+		  NN: (grasp pr2R blue)[ 0 -1 ]
+		  NN: (place pr2R blue red)[ 0 -1 ]
+		  MP: (grasp pr2R orange)[ 0 -1 ]	with prob 0.746 instead of (place pr2R orange green)
+		  NN: (place pr2R orange green)[ 0 -1 ]
+--------------------
+
+
+
+-----Result for env 112-----
+
+----Successfully reached goal : (on blue red) (on red yellow) (on orange green) (on orange green) (on red yellow) (on green cyan) (on blue red) (on orange green) feasible 1----
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.362 instead of (place pr2L blue red)
+		  NN: (place pr2R blue red)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.699 instead of (place pr2R red yellow)
+		  NN: (place pr2R red yellow)[ 1 -1 ]
+		  NN: (grasp pr2L orange)[ 1 -1 ]
+		  MP: (place pr2L orange green)[ 1 -1 ]	with prob 0.714 instead of (grasp pr2R orange)
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (place pr2R green cyan)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 112-----
+
+
+
+-----Result for env 112-----
+
+----Successfully reached goal : (on blue red) (on red yellow) (on orange green) (on orange green) (on red yellow) (on green cyan) (on blue red) (on orange green) feasible 1----
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.362 instead of (place pr2L blue red)
+		  NN: (place pr2R blue red)[ 1 -1 ]
+		  MP: (grasp pr2R red)[ 1 -1 ]	with prob 0.699 instead of (place pr2R red yellow)
+		  NN: (place pr2R red yellow)[ 1 -1 ]
+		  NN: (grasp pr2L orange)[ 1 -1 ]
+		  MP: (place pr2L orange green)[ 1 -1 ]	with prob 0.714 instead of (grasp pr2R orange)
+		  NN: (grasp pr2R green)[ 1 -1 ]
+		  NN: (place pr2R green cyan)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 112-----
+
