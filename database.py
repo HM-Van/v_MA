@@ -445,9 +445,9 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     elif NNmode=="stack":
         #envSets=list(range(201,253))
         envSets= [i for i in range(201,253) if not i%4==0]
-        #arrSets=[29, 26,3, 31,4, 22,28, 6, 12,37, 18,35, 14]
-        #arrSets=[26,3, 31,4, 22,28, 6, 12,37, 14]
-        arrSets=[29, 26,3, 31,4, 22,28, 6, 18,35, 14]#12,37, 
+        arrSets=[29, 26,3, 31,4, 22,28, 6, 12,37, 18,35, 14]
+        ##arrSets=[26,3, 31,4, 22,28, 6, 12,37, 14]
+        ##arrSets=[29, 26,3, 31,4, 22,28, 6, 18,35, 14]#12,37, 
     elif mixData:
         # Data set expansion
         arrSets=[6,7,21,27,32,62,68]#45 #67, 52 #71, 20 #12 61
@@ -1030,14 +1030,14 @@ def main():
         concatData(path_rai+'/dataset',start2,stop2, skip1=skip1,rand2=rand2, NNmode=NNmode, mixData=mixData, exclude=exclude)
     else:
         # Get training samples
-        if not skip1:
-            rai=rai_setup.RaiWorld(path_rai, nenv, setup, "", verbose, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
+
+        rai=rai_setup.RaiWorld(path_rai, nenv, setup, "", verbose, NNmode=NNmode, datasetMode=dataMode, view=viewConfig)
 
         print("Finished loading. Train env "+str(nenv))
         if not skip1:
             dataSet(path_rai+'/dataset_new', rai, nenv, start1, stop1, mode=1)
 
-        if not skip2 and False:
+        if not skip2:
             dataSet(path_rai+'/dataset_new', rai, nenv, start2, stop2, mode=2)
     
 

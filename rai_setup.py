@@ -400,18 +400,21 @@ class RaiWorld():
 
             return goalString_orig, realGoalString
 
-    def preprocessGoals(self, cheat_goalstate=True):
+    def preprocessGoals(self, cheat_goalstate=True, check = False):
 
-        if self.dataMode in [1,2,3,4]:
+        if self.dataMode in [1,2,3,4] or self.tray=="" or check:
             goalString_orig, realGoalString=self.goalString_orig, self.realGoalString
-        elif self.dataMode in [5,6,7,8]:
+        elif self.dataMode in [5,6,7,8] and not self.tray=="":
+            #print("here")
             goalString_orig, realGoalString=self.expandGoal(self.goalString_orig, self.realGoalString)
+        else:
+            NotImplementedError
 
         goalStep = splitStringStep(goalString_orig, list_old=[],verbose=0)
         goalStepReal = splitStringStep(realGoalString, list_old=[],verbose=0)
         folstate = self.lgp.nodeState()
         unfullfilled=[]
-        if len(goalStep)==2 and not cheat_goalstate:
+        if len(goalStep)==2 and not cheat_goalstate and not check:
             unfullfilled=goalStep
         else:
             for goal, real in zip(goalStep, goalStepReal):

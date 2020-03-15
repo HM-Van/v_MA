@@ -10,4 +10,4 @@ body blue {type:ssBox size:[.15 .15 .15 .02] color:[0. 0. 1.], contact, logical=
 
 joint joint0(table1 red){type=rigid, Q:<t(0. 0.3 .15)>}
 joint joint1 (table1 green) {type=rigid, Q:<t(0.2 -0.45 .15)>}
-joint joint2(red blue) {joint:rigid, Q:<t(-0.05 -.6 .15)>}
+joint joint2(red blue) {joint:rigid, Q:<t(-0.05 -.06 .15)>}

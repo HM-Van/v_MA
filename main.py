@@ -145,7 +145,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 
 	successmsg="Failed to reach goal"
 
-	if rai_net.lgp.isTerminal() or len(rai_net.preprocessGoals())==0:
+	if rai_net.lgp.isTerminal() or len(rai_net.preprocessGoals(check=True))==0:
 		return skeleton, typeDecision, "Successfully reached goal", True
 
 	while True:
@@ -276,7 +276,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 			time.sleep(waitTime)
 		
 		# Stop if terminal
-		if rai_net.lgp.isTerminal() or len(rai_net.preprocessGoals())==0:
+		if rai_net.lgp.isTerminal() or len(rai_net.preprocessGoals(check=True))==0:
 			rai_net.K.copy(K0)
 			if newLGP:
 				rai_net.restartLGP()
@@ -304,7 +304,7 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 		rai_net.lgp.walkToRoot()
 		rai_net.lgp.walkToNode(skeleton,0)
 
-	if len(rai_net.preprocessGoals())>0:
+	if len(rai_net.preprocessGoals(check=True))>0:
 		if verbose:
 			print("--!! Goal not reached !!--")
 		feastmp=False
@@ -742,7 +742,7 @@ def main():
 							infeasibleSkeletons= infeasibleSkeletons + rai_world.splitStringPath(skeleton, list_old=[])
 						
 						# Write results to txt file
-						writeResults(rai,skeleton,typeDecision,successmsg,path, goalnumber_string=strgoal, planOnly=planOnly, feasible=feasible)
+						writeResults(rai,skeleton,typeDecision,successmsg,path, goalnumber_string=strgoal, planOnly=planOnly, feasible=feasible, tries=tries)
 						if feasible:
 							break
 					# Print results to console
