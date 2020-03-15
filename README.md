@@ -12,6 +12,7 @@ In order to collect training samples for the environment with the id nenv, the f
 ```
 # --NNmode: "final" (initial setup) or "stack" (modified setup)
 # --env: enironment to test
+
 python3 database.py --env=nenv --NNmode="final"
  
 ```
@@ -19,15 +20,23 @@ python3 database.py --env=nenv --NNmode="final"
 The training samples can then be combined into a data set:
 ```
 # --NNmode can be "final" (initial setup), "stack" (modified setup)
+
+#----------------------------------------------------------------
 # --mixData for data set expansion for 7 predefined objectives
 # If --rand2>7, radomly selected objectives are added
 # --skip1: only trains objectives consisting of two goal formulations.
+
 python3 database.py --mixData -- rand2=0 --skip1 --NNmode="final"
 
+#----------------------------------------------------------------
 # Exclude certain goal formulations and their combinations (here hardcoded: (on red table1))
+
 python3 database.py --exclude --NNmode="final"
 
+#----------------------------------------------------------------
+# 
 #  If --rand2=0, select 40 hardcoded objectives. If --rand2>0, select randomly rand2 objectives
+
 python3 database.py -- rand2=0 --skip1 --NNmode="final"
 
 ```
@@ -45,6 +54,7 @@ In order to train a hierarchical policy (the file "./models/Test_setup_nenv.g" h
 
 python3 main.py --saveModel --train_only --model_dir_data="20200220" --NNmode="FFnew" --datasetMode=1 --env=100
 
+#----------------------------------------------------------------
 # Additional training parameters can be added, see main.py, e.g.
 # --train_only: model is only trained and not tested for specific objectives
 # --epochs_inst: number of epochs for training
@@ -63,16 +73,19 @@ In order to use a trained hierarchical policy (the file "./models/Test_setup_nen
 # --datasetMode fot modified setup: 5(global coord) 6(relative coord) 7(global coord+encoder) 8(relative coord+encoder)
 # --env: env to evaluate
 
+#----------------------------------------------------------------
 # Test all objectives
 # --completeTesting: tests all objectives
 # --allEnv: tests a sequence of environments starting from env
 python3 main.py --model_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --completeTesting --env=100 --allEnv
 
+#----------------------------------------------------------------
 # Test single objective
 # goal formulations (held object), (on object table)
 # --goal: sequence of goal formulations
 python3 main.py --model_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --goal="(on red table1) (on blue table2)" --env=100
 
+#----------------------------------------------------------------
 # Additional testing parameters can be added, see main.py, e.g.
 # --exlude: test certain goal formulations and their combinations (here hardcoded: (on red table1))
 # --cheat_goalstate: objective gets adapted to only consist of unsatisfied goal formulations
@@ -94,6 +107,7 @@ In order to use the original LGP solution (the file "./models/Test_setup_nenv.g"
 # goal formulations (held object), (on table object)
 # !! note that the order for (on table object) is reversed compared to above!!
 # Currently does not stop automatically. Either stops once memory limit is reached or after ctrl+c
+
 python3 rai_skeleton.py --env=100 --goal="(on table1 red) (on table2  blue)"
 
 ```
