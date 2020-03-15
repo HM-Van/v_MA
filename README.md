@@ -34,8 +34,8 @@ python3 database.py --mixData -- rand2=0 --skip1 --NNmode="final"
 python3 database.py --exclude --NNmode="final"
 
 #----------------------------------------------------------------
-# 
-#  If --rand2=0, select 40 hardcoded objectives. If --rand2>0, select randomly rand2 objectives
+# Combine objectives without data set expansion
+# If --rand2=0, select 40 hardcoded objectives. If --rand2>0, select randomly rand2 objectives
 
 python3 database.py -- rand2=0 --skip1 --NNmode="final"
 
@@ -77,12 +77,14 @@ In order to use a trained hierarchical policy (the file "./models/Test_setup_nen
 # Test all objectives
 # --completeTesting: tests all objectives
 # --allEnv: tests a sequence of environments starting from env
+
 python3 main.py --model_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --completeTesting --env=100 --allEnv
 
 #----------------------------------------------------------------
 # Test single objective
 # goal formulations (held object), (on object table)
 # --goal: sequence of goal formulations
+
 python3 main.py --model_dir="2020002021-152316" --NNmode="FFnew" --datasetMode=1 --goal="(on red table1) (on blue table2)" --env=100
 
 #----------------------------------------------------------------
