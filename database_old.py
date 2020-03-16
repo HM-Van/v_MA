@@ -137,19 +137,31 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             continue
 
         # Init input size
-        if rai.NNmode in ["final", "stack"]:
+        if rai.NNmode=="minimal":
+            input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*(numLogicalType+3)
+        elif rai.NNmode in ["full", "3d"]:
+            input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*(numLogicalType+3+4+4)
+        elif rai.NNmode in ["dataset"]:
+            input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*2
+        elif rai.NNmode in ["mixed0", "mixed3", "mixed2", "final", "stack"]:
             input_size = (numGoalInstruct + len(rai.objNames)+len(rai.tabNames))*numGoal + len(rai.logicalNames)*3
         else:
             NotImplementedError
         
-        if rai.NNmode in ["stack"]:
-            print(expertStack.getEnvInfo(nenv-200,"r"),expertStack.getEnvInfo(nenv-200,"g"),expertStack.getEnvInfo(nenv-200,"b"))
+        print(expertStack.getEnvInfo(nenv-200,"r"),expertStack.getEnvInfo(nenv-200,"g"),expertStack.getEnvInfo(nenv-200,"b"))
 
         # Init arrays for data set 
         inputArray = np.zeros((numLoops,input_size), dtype=float)
         instrArray = np.zeros((numLoops,numActInstruct), dtype=int)
 
-        if rai.NNmode in ["final", "stack"]:
+        if rai.NNmode in ["minimal", "full"]:
+            logArray = np.zeros((numLoops,len(rai.grNames)+len(rai.objNames)+len(rai.tabNames)), dtype=int)
+        elif rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3"]:
+            logArray = np.zeros((numLoops,numLogicalType,len(rai.logicalNames)), dtype=int)
+            prevInputArray = np.zeros((numLoops,4,input_size), dtype=float)
+            if rai.NNmode in ["mixed3", "mixed2"]:
+                feasibleArray = np.zeros((numLoops,2), dtype=int)  # act skeleton
+        elif rai.NNmode in ["final", "stack"]:
             logArray = np.zeros((numLoops,numLogicalType,len(rai.logicalNames)), dtype=int)
 
             prevInputArray = np.zeros((numLoops,4,input_size), dtype=float)
@@ -172,6 +184,20 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             commandStep= rai_setup.splitStringStep(sol, list_old=[],verbose=0)
 
             rai.lgp.walkToRoot()
+            
+            # Continue if infeasible for certain modes
+            if not rai.NNmode in ["mixed3", "mixed2", "final", "stack"]:
+                rai.lgp.walkToNode(commandList[-1],0)
+                rai.K.copy(K0)
+                komo = rai_setup.runLGP(rai.lgp, BT.path, verbose=0, view=False)
+
+                if rai.lgp.returnFeasible(BT.path):
+                    rai.lgp.walkToRoot()
+                    rai.K.copy(K0)
+                else:
+                    rai.lgp.walkToRoot() 
+                    print(sol+" infeasible")
+                    continue
 
             print("env "+str(nenv)+", set "+str(nset)+": "+sol)
             i_start=i
@@ -182,8 +208,6 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             prevInput = np.zeros((1,4,input_size), dtype=float)
             if rai.NNmode in ["final", "stack"]:
                 prevInput2 = np.zeros((1,4,input_size), dtype=float)
-            else:
-                NotImplementedError
 
             for command, clist in zip(commandStep,commandList):
                 # For each high-level action
@@ -197,13 +221,23 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                     goalStep = rai_setup.splitStringStep(goal, list_old=[],verbose=0)
                     goalState= rai.encodeGoal(goalStep)
 
-                    if rai.NNmode in ["final", "stack"]:
+                    if rai.NNmode in ["minimal", "full"]:
+                            # Encode input
+                            inputArray[i,:]=rai.encodeInput(envState, goalState=goalState)
+                            
+                            # Encode output
+                            try:
+                                instrArray[i,:], logArray[i,:] = encodeAction(command,rai.grNames, rai.objNames, rai.tabNames)
+                            except:
+                                print("failed!: "+command+"\t"+clist)
+                            i=i+1
+
+                    elif rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
                             # Encode input
                             if rai.NNmode in ["final", "stack"]:
                                 [inputArray[i,:], inputArray2[i,:]]=rai.encodeInput(envState, goalState=goalState)
                             else:
                                 inputArray[i,:]=rai.encodeInput(envState, goalState=goalState)
-                                NotImplementedError
 
                             # Add to previous input = Sequence of input
                             prevInput[0,j,:] = inputArray[i,:]
@@ -244,9 +278,22 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                         if clist==commandList[-1]:
                             solfeas=1
 
+                else:
+                    # Solve LGP for path
+                    komo = rai_setup.runLGP(rai.lgp, BT.path, verbose=0, view=False)
+                    if rai.NNmode in ["mixed3", "mixed2"]:
+                        if rai.lgp.returnFeasible(BT.path):
+                            feasibleArray[i-1,0]=1
+                            if mode==2:
+                                # Set feasibility for action
+                                feasibleArray[i-2,0]=1
+
+                            if clist==commandList[-1]:
+                                solfeas=1
+
                 komo.getKFromKomo(rai.K, komo.getPathFrames(rai.logicalNames).shape[0]-1)
 
-            if rai.NNmode in ["final", "stack"]:
+            if rai.NNmode in ["mixed3", "mixed2", "final", "stack"]:
                 # Set feasibility for skeleton
                 feasibleArray[i_start:i,1]=solfeas
             
@@ -264,36 +311,52 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
             print("No feasible solution for env "+str(nenv)+" set "+str(nset))
             continue
         
-        if rai.NNmode in ["final", "stack"]:
+        if rai.NNmode in ["mixed3", "mixed2", "final", "stack"]:
             print(str((np.where(~feasibleArray[:,1:2].any(axis=1))[0].shape[0])/mode)+" infeasible solutions")
+        else:
+            print(str((numLoops-i)/mode)+" infeasible solutions")
 
         # Delete 0 rows
         inputArray=np.delete(inputArray, list(range(i, numLoops)), axis=0)
         instrArray=np.delete(instrArray, list(range(i, numLoops)), axis=0)
         logArray=np.delete(logArray, list(range(i, numLoops)), axis=0)
 
-        if rai.NNmode in ["final", "stack"]:
+
+        if rai.NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
             prevInputArray=np.delete(prevInputArray, list(range(i, numLoops)), axis=0)
-            inputArray2=np.delete(inputArray, list(range(i, numLoops)), axis=0)
-            prevInputArray2=np.delete(prevInputArray, list(range(i, numLoops)), axis=0)
+            if rai.NNmode in ["final", "stack"]:
+                inputArray2=np.delete(inputArray, list(range(i, numLoops)), axis=0)
+                prevInputArray2=np.delete(prevInputArray, list(range(i, numLoops)), axis=0)
 
         # Save data set
-        if mode==2:
-            tmpZero=3
-        elif mode==1:
-            tmpZero=2
+        if rai.NNmode in ["dataset"]:
+            if mode==2:
+                tmpZero=3
+            elif mode==1:
+                tmpZero=2
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+'/set'+str(nset).zfill(tmpZero)+'Input',inputArray)
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+'/set'+str(nset).zfill(tmpZero)+'Instruction', instrArray)
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+'/set'+str(nset).zfill(tmpZero)+'Logicals', logArray)
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+'/set'+str(nset).zfill(tmpZero)+'InputPrev', prevInputArray)
 
-        np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Input',inputArray)
-        np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Instruction', instrArray)
-        np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Logicals', logArray)
+        else:
+            if mode==2:
+                tmpZero=3
+            elif mode==1:
+                tmpZero=2
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Input',inputArray)
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Instruction', instrArray)
+            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Logicals', logArray)
 
-        if rai.NNmode in ["final", "stack"]:
-            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'InputPrev', prevInputArray)
-            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Feasible', feasibleArray)
-            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Input2',inputArray2)
-            np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'InputPrev2', prevInputArray2)
+            if rai.NNmode in ["3d", "mixed2", "mixed0", "mixed3", "final", "stack"]:
+                np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'InputPrev', prevInputArray)
+                if rai.NNmode in ["mixed3", "mixed2", "stack"]:
+                    np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Feasible', feasibleArray)
+                    if rai.NNmode in ["final", "stack"]:
+                        np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'Input2',inputArray2)
+                        np.save(path_dB+'/env'+str(nenv).zfill(3)+"_"+rai.NNmode+'/set'+str(nset).zfill(tmpZero)+'InputPrev2', prevInputArray2)
 
-def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2, NNmode="final"):
+def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2):
     # Init arrays
     finalInput=Input
     finalLogicals=Logicals
@@ -304,12 +367,10 @@ def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2, NNmode
     # Hard-coded: arrays of length of all logic types
     grNames=[0,1]
     objNames=[2,3,4]
-    if NNmode=="stack":
-        tabNames=[2,3,4,5]
-        logicalNames=[0,1,2,3,4,5]
-    elif NNmode=="final":
-        tabNames=[2,3,4,5,6]
-        logicalNames=[0,1,2,3,4,5,6]
+    tabNames=[2,3,4,5]
+    logicalNames=[0,1,2,3,4,5]
+    #tabNames=[2,3,4,5,6]
+    #logicalNames=[0,1,2,3,4,5,6]
 
     # Init input size: for NNmode=="final"
     input_size = (numGoalInstruct + len(objNames)+len(tabNames))*numGoal + len(logicalNames)*3
@@ -339,6 +400,12 @@ def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2, NNmode
         # Permutations: obj in state
         Logidx=list(range(len(grNames)))+[x + len(grNames) for x in switch]+list(range(len(grNames)+len(objNames), len(logicalNames)))
         finalLogicals = np.concatenate((finalLogicals, Logicals[:,:,Logidx]), axis=0)
+
+        #print(Inputidx)
+        #print(finalInput)
+        #print(Logidx)
+        #print(finalLogicals)
+        #input(switch)
     
     # duplicate if small number of samples
     if Input.shape[0]<=48 and mode==2:
@@ -353,6 +420,13 @@ def offsetDataSet(Input, Logicals, prevInput, Input2, prevInput2, mode=2, NNmode
     return finalInput, finalLogicals, finalprevInput, finalInput2, finalprevInput2
 
 def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixData=False, exclude=False):
+
+    #if rand2>0 and rand2<numSets:
+    #    arrSets=np.arange(1,numSets+1)
+    #    np.random.shuffle(arrSets)
+    #    arrSets=arrSets[0:rand2]
+    #else:
+    #    arrSets=np.arange(start,stop+1)
 
     obg = [[],[]]#[[15], [10,20,30,39,48,53,58,63,68]]
     or1 = [[2], [11,12,13,14,15,16,17,18,19,20]]
@@ -369,7 +443,8 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         #envSets=list(range(201,253))
         envSets= [i for i in range(201,253) if not i%4==0]
         arrSets=[29, 26,3, 31,4, 22,28, 6, 12,37, 18,35, 14]
-
+        ##arrSets=[26,3, 31,4, 22,28, 6, 12,37, 14]
+        ##arrSets=[29, 26,3, 31,4, 22,28, 6, 18,35, 14]#12,37, 
     elif mixData:
         # Data set expansion
         arrSets=[6,7,21,27,32,62,68]#45 #67, 52 #71, 20 #12 61
@@ -404,10 +479,13 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     now=datetime.datetime.now()
     timestamp=str(now.year)+str(now.month).zfill(2)+str(now.day).zfill(2)+"-"+str(now.hour).zfill(2)+str(now.minute).zfill(2)+str(now.second).zfill(2)
 
-    if NNmode in ["final", "stack"] and True:
+    if NNmode in ["final", "stack"]:
         path_dB=path_dB+"_new"
 
-    appendName="_"+NNmode
+    if NNmode=="dataset":
+        appendName=""
+    else:
+        appendName="_"+NNmode
 
     # Lists for summary
     listEnv, listNoEnv=[],[]
@@ -422,30 +500,35 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         old2=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Instruction.npy')
         old3=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Logicals.npy')
 
-        if NNmode in ["final", "stack"]:
+        if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
+            # deprecated
+            #old4=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InstructionPrev.npy')
+            #old5=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'LogicalsPrev.npy')
             old6=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InputPrev.npy')
-            old7=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Feasible.npy')
-            old8=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Input2.npy')
-            old9=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InputPrev2.npy')
+            if NNmode in ["mixed3", "mixed2","final", "stack"]:
+                old7=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Feasible.npy')
+            if NNmode in ["final", "stack"]:
+                old8=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'Input2.npy')
+                old9=np.load(path_dB+'/env'+str(envSets[0]).zfill(3)+appendName+'/set'+str(start).zfill(3)+'InputPrev2.npy')
 
-            if mixData:
-                old1, old3, old6, old8, old9 = offsetDataSet(old1, old3, old6, old8, old9, NNmode=NNmode)
-                old2= np.tile(old2,(6,1))
-                #old4= np.tile(old4,(6,1,1))
-                old7= np.tile(old7,(6,1))
-                if old2.shape[0]<=48*6:
-                    # Duplicate if few samples
+                if mixData:
+                    old1, old3, old6, old8, old9 = offsetDataSet(old1, old3, old6, old8, old9)
+                    old2= np.tile(old2,(6,1))
+                    #old4= np.tile(old4,(6,1,1))
+                    old7= np.tile(old7,(6,1))
+                    if old2.shape[0]<=48*6:
+                        # Duplicate if few samples
+                        old2=np.concatenate((old2,old2), axis=0)
+                        #old4=np.concatenate((old4,old4), axis=0)
+                        old7=np.concatenate((old7,old7), axis=0)
+                elif old2.shape[0]<=48:
+                    old1=np.concatenate((old1,old1), axis=0)
                     old2=np.concatenate((old2,old2), axis=0)
-                    #old4=np.concatenate((old4,old4), axis=0)
+                    old3=np.concatenate((old3,old3), axis=0)
+                    old6=np.concatenate((old6,old6), axis=0)
                     old7=np.concatenate((old7,old7), axis=0)
-            elif old2.shape[0]<=48:
-                old1=np.concatenate((old1,old1), axis=0)
-                old2=np.concatenate((old2,old2), axis=0)
-                old3=np.concatenate((old3,old3), axis=0)
-                old6=np.concatenate((old6,old6), axis=0)
-                old7=np.concatenate((old7,old7), axis=0)
-                old8=np.concatenate((old8,old8), axis=0)
-                old9=np.concatenate((old9,old9), axis=0)
+                    old8=np.concatenate((old8,old8), axis=0)
+                    old9=np.concatenate((old9,old9), axis=0)
         break
 
 
@@ -473,7 +556,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 listSet.append(str(nset).zfill(3))
                 continue
             
-            # if data set expansion: with chance of 50%, chose objective that has full skeleton
+            # if data set expansion: with cjance of 50%, chose objective that has full skeleton
             if mixData and random.random()>0.5 and NNmode in ["final"]:
                 if nset==32 and expert.getEnvInfo(nenv,"g")==1:
                     nset=33
@@ -526,53 +609,60 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
             new2=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Instruction.npy')
             new3=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Logicals.npy')
 
-            if NNmode in ["final", "stack"]:
+            if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
+                # Deprecated
+                #new4=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InstructionPrev.npy')
+                #new5=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'LogicalsPrev.npy')
                 new6=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InputPrev.npy')
-                new7=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Feasible.npy')
-                new8=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input2.npy')
-                new9=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InputPrev2.npy')
+                if NNmode in ["mixed3", "mixed2", "final", "stack"]:
+                    new7=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Feasible.npy')
+                    if NNmode in ["final", "stack"]:
+                        new8=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'Input2.npy')
+                        new9=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(3)+'InputPrev2.npy')
 
-                if mixData:
-                    new1, new3, new6, new8, new9 = offsetDataSet(new1, new3, new6, new8, new9, NNmode=NNmode)
-                    new2= np.tile(new2,(6,1))
-                    #new4= np.tile(new4,(6,1,1))
-                    new7= np.tile(new7,(6,1))
-                    #print(new2.shape)
-                    if new2.shape[0]<=48*6:
-                        # Duplicate if few samples
-                        new2=np.concatenate((new2,new2), axis=0)
-                        #new4=np.concatenate((new4,new4), axis=0)
-                        new7=np.concatenate((new7,new7), axis=0)
-                elif new2.shape[0]<=48:
-                    new1=np.concatenate((new1,new1), axis=0)
-                    new2=np.concatenate((new2,new2), axis=0)
-                    new3=np.concatenate((new3,new3), axis=0)
-                    new6=np.concatenate((new6,new6), axis=0)
-                    new7=np.concatenate((new7,new7), axis=0)
-                    new8=np.concatenate((new8,new8), axis=0)
-                    new9=np.concatenate((new9,new9), axis=0)
+                        if mixData:
+                            new1, new3, new6, new8, new9 = offsetDataSet(new1, new3, new6, new8, new9)
+                            new2= np.tile(new2,(6,1))
+                            #new4= np.tile(new4,(6,1,1))
+                            new7= np.tile(new7,(6,1))
+                            #print(new2.shape)
+                            if new2.shape[0]<=48*6:
+                                # Duplicate if few samples
+                                new2=np.concatenate((new2,new2), axis=0)
+                                #new4=np.concatenate((new4,new4), axis=0)
+                                new7=np.concatenate((new7,new7), axis=0)
+                        elif new2.shape[0]<=48:
+                            new1=np.concatenate((new1,new1), axis=0)
+                            new2=np.concatenate((new2,new2), axis=0)
+                            new3=np.concatenate((new3,new3), axis=0)
+                            new6=np.concatenate((new6,new6), axis=0)
+                            new7=np.concatenate((new7,new7), axis=0)
+                            new8=np.concatenate((new8,new8), axis=0)
+                            new9=np.concatenate((new9,new9), axis=0)
 
-                if NNmode in ["final", "stack"]:
-                    # Skip if for some reason dimensions do not match
-                    try:
-                        assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InstructionPrev"+str(new1.shape[0])+" != "+str(new2.shape[0])
-                        assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(new1.shape[0])+" != "+str(new3.shape[0])
-                        assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InputPrev"+str(new1.shape[0])+" != "+str(new6.shape[0])
-                        assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Feasible"+str(new1.shape[0])+" != "+str(new7.shape[0])
-            
-                        assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions Input2"+str(new1.shape[0])+" != "+str(new8.shape[0])
-                        assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InputPrev2"+str(new1.shape[0])+" != "+str(new9.shape[0])
-                    except:
-                        print("skip    env "+str(nenv)+" set "+str(nset).zfill(3)+" as inconsistent")
-                        listNoSet.append(str(nset).zfill(3))
-                        continue
+                        if NNmode in ["final", "stack"]:
+                            # Skip if for some reason dimensions do not match
+                            try:
+                                assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InstructionPrev"+str(new1.shape[0])+" != "+str(new2.shape[0])
+                                assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(new1.shape[0])+" != "+str(new3.shape[0])
+                                assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InputPrev"+str(new1.shape[0])+" != "+str(new6.shape[0])
+                                assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Feasible"+str(new1.shape[0])+" != "+str(new7.shape[0])
+                    
+                                assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions Input2"+str(new1.shape[0])+" != "+str(new8.shape[0])
+                                assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InputPrev2"+str(new1.shape[0])+" != "+str(new9.shape[0])
+                            except:
+                                print("skip    env "+str(nenv)+" set "+str(nset).zfill(3)+" as inconsistent")
+                                listNoSet.append(str(nset).zfill(3))
+                                continue
 
-                # Concatenate arrays
-                old8=np.concatenate((old8,new8), axis=0)
-                old9=np.concatenate((old9,new9), axis=0)
+                        # Concatenate arrays
+                        old8=np.concatenate((old8,new8), axis=0)
+                        old9=np.concatenate((old9,new9), axis=0)
 
-                old7=np.concatenate((old7,new7), axis=0)
+                    old7=np.concatenate((old7,new7), axis=0)
 
+                #old4=np.concatenate((old4,new4), axis=0)
+                #old5=np.concatenate((old5,new5), axis=0)
                 old6=np.concatenate((old6,new6), axis=0)
 
             old1=np.concatenate((old1,new1), axis=0)
@@ -608,40 +698,47 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
                 new2=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Instruction.npy')
                 new3=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Logicals.npy')
 
-                if NNmode in ["final", "stack"]:
+                if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3","final", "stack"]:
+                    # Deprecated
+                    #new4=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InstructionPrev.npy')
+                    #new5=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'LogicalsPrev.npy')
                     new6=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InputPrev.npy')
-                    new7=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Feasible.npy')
-                    
-                    new8=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input2.npy')
-                    new9=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InputPrev2.npy')
-
-                    if mixData:
-                        new1, new3, new6, new8, new9 = offsetDataSet(new1, new3, new6, new8, new9, mode=1, NNmode=NNmode)
-                        new2= np.tile(new2,(3,1))
-                        #new4= np.tile(new4,(3,1,1))
-                        new7= np.tile(new7,(3,1))
-
-                    if NNmode in ["final", "stack"]:
-                        # Skip if for some reason dimensions do not match
-                        try:
-                            assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InstructionPrev"+str(new1.shape[0])+" != "+str(new2.shape[0])
-                            assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(new1.shape[0])+" != "+str(new3.shape[0])
-                            assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InputPrev"+str(new1.shape[0])+" != "+str(new6.shape[0])
-                            assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Feasible"+str(new1.shape[0])+" != "+str(new7.shape[0])
-                
-                            assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions Input2"+str(new1.shape[0])+" != "+str(new8.shape[0])
-                            assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InputPrev2"+str(new1.shape[0])+" != "+str(new9.shape[0])
-                        except:
-                            print("skip    env "+str(nenv)+" set "+str(nset).zfill(2)+" as inconsistent")
-                            listNoSet.append(str(nset).zfill(2))
-                            continue
-
-                    # Concatenate arrays
-                    old8=np.concatenate((old8,new8), axis=0)
-                    old9=np.concatenate((old9,new9), axis=0)
+                    if NNmode in ["mixed3", "mixed2","final", "stack"]:
+                        new7=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Feasible.npy')
                         
-                    old7=np.concatenate((old7,new7), axis=0)
+                        if NNmode in ["final", "stack"]:
+                            new8=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'Input2.npy')
+                            new9=np.load(path_dB+'/env'+str(nenv).zfill(3)+appendName+'/set'+str(nset).zfill(2)+'InputPrev2.npy')
 
+                            if mixData:
+                                new1, new3, new6, new8, new9 = offsetDataSet(new1, new3, new6, new8, new9, mode=1)
+                                new2= np.tile(new2,(3,1))
+                                #new4= np.tile(new4,(3,1,1))
+                                new7= np.tile(new7,(3,1))
+
+                            if NNmode in ["final", "stack"]:
+                                # Skip if for some reason dimensions do not match
+                                try:
+                                    assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InstructionPrev"+str(new1.shape[0])+" != "+str(new2.shape[0])
+                                    assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions LogicalsPrev"+str(new1.shape[0])+" != "+str(new3.shape[0])
+                                    assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InputPrev"+str(new1.shape[0])+" != "+str(new6.shape[0])
+                                    assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Feasible"+str(new1.shape[0])+" != "+str(new7.shape[0])
+                        
+                                    assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions Input2"+str(new1.shape[0])+" != "+str(new8.shape[0])
+                                    assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InputPrev2"+str(new1.shape[0])+" != "+str(new9.shape[0])
+                                except:
+                                    print("skip    env "+str(nenv)+" set "+str(nset).zfill(2)+" as inconsistent")
+                                    listNoSet.append(str(nset).zfill(2))
+                                    continue
+
+                            # Concatenate arrays
+                            old8=np.concatenate((old8,new8), axis=0)
+                            old9=np.concatenate((old9,new9), axis=0)
+                            
+                        old7=np.concatenate((old7,new7), axis=0)
+
+                    #old4=np.concatenate((old4,new4), axis=0)
+                    #old5=np.concatenate((old5,new5), axis=0)
                     old6=np.concatenate((old6,new6), axis=0)
 
                 old1=np.concatenate((old1,new1), axis=0)
@@ -654,7 +751,7 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         print("")
 
 
-    if NNmode in ["final", "stack"]:
+    if NNmode in ["mixed3", "mixed2", "final", "stack"]:
         # Get feasible and infeasible samples
 
         infeasible=np.where(~old7[:,1:2].any(axis=1))[0]
@@ -662,21 +759,24 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
         new1=old1 #input
         new2=old2 #instr
         new3=old3 #log
+        #new4=old4 #instrprev   
+        #new5=old5 #logprev
         new6=old6 #inputprev
         new7=old7 #feas
-
         old1=old1[feasible,:]
         old2=old2[feasible,:]
         old3=old3[feasible,:,:]
+        #old4=old4[feasible,:,:]
+        #old5=old5[feasible,:,:,:]
         old6=old6[feasible,:,:]
         old7=old7[feasible,:]
-
         new1=new1[infeasible,:] #input
         new2=new2[infeasible,:] #instr
         new3=new3[infeasible,:,:] #log
+        #new4=new4[infeasible,:,:] #instrprev
+        #new5=new5[infeasible,:,:,:] #logprev
         new6=new6[infeasible,:,:] #inputprev
         new7=new7[infeasible,:] #infeas
-
         if NNmode in ["final", "stack"]:
             new8=old8
             new9=old9
@@ -689,19 +789,23 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     assert old1.shape[0] == old2.shape[0], "Inconsistent dimensions Instruction: "+str(old1.shape)[0]+" != "+str(old2.shape[0])
     assert old1.shape[0] == old3.shape[0], "Inconsistent dimensions Logicals"+str(old1.shape)[0]+" != "+str(old3.shape[0])
 
-    if NNmode in ["final", "stack"]:
+    if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3", "final", "stack"]:
+        #assert old1.shape[0] == old4.shape[0], "Inconsistent dimensions InstructionPrev"+str(old1.shape)[0]+" != "+str(old4.shape[0])
+        #assert old1.shape[0] == old5.shape[0], "Inconsistent dimensions LogicalsPrev"+str(old1.shape)[0]+" != "+str(old5.shape[0])
         assert old1.shape[0] == old6.shape[0], "Inconsistent dimensions InputPrev"+str(old1.shape)[0]+" != "+str(old6.shape[0])
-        assert old1.shape[0] == old7.shape[0], "Inconsistent dimensions Feasible"+str(old1.shape)[0]+" != "+str(old7.shape[0])
-        
-        assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Infeasible"+str(new1.shape)[0]+" != "+str(old7.shape[0])
-        assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InfeasibleInstr"+str(new1.shape)[0]+" != "+str(new2.shape[0])
-        assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions InfeasibleLog"+str(new1.shape)[0]+" != "+str(new3.shape[0])
-        assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InfeasibleInputPrev"+str(old1.shape)[0]+" != "+str(new6.shape[0])
-        
-        assert old1.shape[0] == old8.shape[0], "Inconsistent dimensions Input2"+str(old1.shape)[0]+" != "+str(old8.shape[0])
-        assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions InfeasibleInput2"+str(new1.shape)[0]+" != "+str(old8.shape[0])
-        assert old1.shape[0] == old9.shape[0], "Inconsistent dimensions InputPrev2"+str(old1.shape)[0]+" != "+str(old9.shape[0])
-        assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InfeasibleInputPrev2"+str(new1.shape)[0]+" != "+str(old9.shape[0])
+        if NNmode in ["mixed3", "mixed2","final", "stack"]:
+            assert old1.shape[0] == old7.shape[0], "Inconsistent dimensions Feasible"+str(old1.shape)[0]+" != "+str(old7.shape[0])
+            assert new1.shape[0] == new7.shape[0], "Inconsistent dimensions Infeasible"+str(new1.shape)[0]+" != "+str(old7.shape[0])
+            assert new1.shape[0] == new2.shape[0], "Inconsistent dimensions InfeasibleInstr"+str(new1.shape)[0]+" != "+str(new2.shape[0])
+            assert new1.shape[0] == new3.shape[0], "Inconsistent dimensions InfeasibleLog"+str(new1.shape)[0]+" != "+str(new3.shape[0])
+            #assert new1.shape[0] == new4.shape[0], "Inconsistent dimensions InfeasibleInstrPrev"+str(old1.shape)[0]+" != "+str(new4.shape[0])
+            #assert new1.shape[0] == new5.shape[0], "Inconsistent dimensions InfeasibleLogPrev"+str(old1.shape)[0]+" != "+str(new5.shape[0])
+            assert new1.shape[0] == new6.shape[0], "Inconsistent dimensions InfeasibleInputPrev"+str(old1.shape)[0]+" != "+str(new6.shape[0])
+            if NNmode in ["final", "stack"]:
+                assert old1.shape[0] == old8.shape[0], "Inconsistent dimensions Input2"+str(old1.shape)[0]+" != "+str(old8.shape[0])
+                assert new1.shape[0] == new8.shape[0], "Inconsistent dimensions InfeasibleInput2"+str(new1.shape)[0]+" != "+str(old8.shape[0])
+                assert old1.shape[0] == old9.shape[0], "Inconsistent dimensions InputPrev2"+str(old1.shape)[0]+" != "+str(old9.shape[0])
+                assert new1.shape[0] == new9.shape[0], "Inconsistent dimensions InfeasibleInputPrev2"+str(new1.shape)[0]+" != "+str(old9.shape[0])
 
     # Create Results directory
     if not(os.path.exists(path_dB+'/'+timestamp+appendName)):
@@ -712,21 +816,27 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
     np.save(path_dB+'/'+timestamp+appendName+'/Instruction', old2)
     np.save(path_dB+'/'+timestamp+appendName+'/Logicals', old3)
 
-    if NNmode in ["final", "stack"]:
-        np.save(path_dB+'/'+timestamp+appendName+'/Feasible', old7)
-        np.save(path_dB+'/'+timestamp+appendName+'/InputInfeasible', new1)
-        np.save(path_dB+'/'+timestamp+appendName+'/InFeasible', new7)
-        np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInstr', new2)
-        np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleLog', new3)
-        np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev', new6)
-
-        np.save(path_dB+'/'+timestamp+appendName+'/Input_feat',old8)
-        np.save(path_dB+'/'+timestamp+appendName+'/InputInfeasible_feat', new8)
-        np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev_feat', new9)
+    if NNmode in ["3d", "dataset", "mixed2", "mixed0", "mixed3","final", "stack"]:
+        if NNmode in ["mixed3", "mixed2","final", "stack"]:
+            np.save(path_dB+'/'+timestamp+appendName+'/Feasible', old7)
+            np.save(path_dB+'/'+timestamp+appendName+'/InputInfeasible', new1)
+            np.save(path_dB+'/'+timestamp+appendName+'/InFeasible', new7)
+            np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInstr', new2)
+            np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleLog', new3)
+            #np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInstrPrev', new4)
+            #np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleLogPrev', new5)
+            np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev', new6)
+            if NNmode in ["final", "stack"]:
+                np.save(path_dB+'/'+timestamp+appendName+'/Input_feat',old8)
+                np.save(path_dB+'/'+timestamp+appendName+'/InputInfeasible_feat', new8)
+                np.save(path_dB+'/'+timestamp+appendName+'/InFeasibleInputPrev_feat', new9)
 
         if old1.shape[0]>80000:
             idxSplit=int(old1.shape[0]/3)
-            
+            #print(old5.shape)
+            #print(old6.shape)
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev1', old5[:idxSplit,:,:,:])
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev2', old5[idxSplit:,:,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1', old6[:idxSplit,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2', old6[idxSplit:2*idxSplit,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev3', old6[2*idxSplit:,:,:])
@@ -737,14 +847,17 @@ def concatData(path_dB,start,stop, skip1=False, rand2=0, NNmode="minimal", mixDa
 
         elif old1.shape[0]>80000:
             idxSplit=int(old1.shape[0]/2)
-
+            #print(old5.shape)
+            #print(old6.shape)
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev1', old5[:idxSplit,:,:,:])
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev2', old5[idxSplit:,:,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1', old6[:idxSplit,:,:])
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2', old6[idxSplit:,:,:])
             if NNmode in ["final", "stack"]:
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev1_feat', old9[:idxSplit,:,:])
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev2_feat', old9[idxSplit:,:,:])
         else:
-
+            #np.save(path_dB+'/'+timestamp+appendName+'/LogicalsPrev', old5)
             np.save(path_dB+'/'+timestamp+appendName+'/InputPrev', old6)
             if NNmode in ["final", "stack"]:
                 np.save(path_dB+'/'+timestamp+appendName+'/InputPrev_feat', old9)
@@ -829,21 +942,22 @@ def main():
     args = parser.parse_args()
     path_rai = args.rai_dir
     verbose=args.verbose
-    start2=args.start2 #first set for 2 goal formulations to simulate
-    stop2=args.stop2 #last set for 2 goal formulations to simulate
-    start1=args.start1 #first set for 1 goal formulation to simulate
-    stop1=args.stop1 #last set for 1 goal formulation to simulate
+    start2=args.start2
+    stop2=args.stop2
+    start1=args.start1
+    stop1=args.stop1
     nenv=args.env
     setup=args.setup
     NNmode=args.NNmode
-    dataMode=args.datasetMode # 1 5(global coord) 2 6(relative coord) 3 7(global coord+encoder) 4 8(relative coord+encoder) # 1-4 initial setup 1-5 modified setup
-    exclude=args.exclude #Excludes hardcoded objectives when assebling data set
+    dataMode=args.datasetMode
+    exclude=args.exclude
 
-    skip1=args.skip1 #skip objectives consisting of 1 goal formulation
-    skip2=args.skip2 #skip objectives consisting of 2 goal formulations
-    rand2=args.rand2 #random number of objectives consisting of 2 goal formulations for data set
+    skip1=args.skip1
+    skip2=args.skip2
+    rand2=args.rand2
     viewConfig=args.viewConfig
-    mixData=args.mixData # does data set expansion
+    mixData=args.mixData
+    model_dir=args.model_dir
 
     #with open(path_rai+'/stack.txt', 'w') as f:
     #    for i in range(201,253):
@@ -860,7 +974,55 @@ def main():
             f.write("python database.py --env="+str(i)+' --stop2=14 --NNmode="final"; python database.py --env='+str(i)+' --start2=15 --stop2=28 --skip1 --NNmode="final"; python database.py --env='+str(i)+' --start2=29 --stop2=38 --skip1 --NNmode="final"; python database.py --env='+str(i)+' --start2=39 --stop2=47 --skip1 --NNmode="final"; python database.py --env='+str(i)+' --start2=48 --stop2=60 --skip1 --NNmode="final"; python database.py --env='+str(i)+' --start2=62 --skip1 --NNmode="final"; ')
     input("test")"""
 
-    if nenv==0:
+    """with open(path_rai+'/mixed3.txt', 'w') as f:
+        for i in list(range(1,numEnv+1)) + EnvAppend:
+            f.write("python database.py --env="+str(i)+' --stop2=40 --NNmode="mixed3"; python database.py --env='+str(i)+' --start2=41 --skip1 --NNmode="mixed3"; ')
+    with open(path_rai+'/minimal.txt', 'w') as f:
+         for i in range(1,100):
+             f.write("python database.py --env="+str(i)+" --stop2=40; python database.py --env="+str(i)+" --start2=41 --skip1;\ \n")
+
+    with open(path_rai+'/full.txt', 'w') as f:
+         for i in range(1,100):
+             f.write("python database.py --env="+str(i)+' --stop2=40 --NNmode="full"; python database.py --env='+str(i)+' --start2=41 --skip1 --NNmode="full";\ \n')
+
+    with open(path_rai+'/dataset.txt', 'w') as f:
+         for i in range(1,100):
+             f.write("python database.py --env="+str(i)+' --stop2=40 --NNmode="dataset"; python database.py --env='+str(i)+' --start2=41 --skip1 --NNmode="dataset";\ \n')
+
+    input("stop")"""
+    if not model_dir=="":
+        Input=np.load(path_rai+'/dataset_new/'+model_dir+'_final/Input.npy')
+        InputPrev=np.load(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev.npy')
+        Input_feat=np.load(path_rai+'/dataset_new/'+model_dir+'_final/Input_feat.npy')
+        InputPrev_feat=np.load(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev_feat.npy')
+
+        print(Input.shape[0], InputPrev.shape[0], Input_feat.shape[0], InputPrev_feat.shape[0])
+
+        if InputPrev.shape[0]>160000:
+            idxSplit=int(InputPrev.shape[0]/3)
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1', InputPrev[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2', InputPrev[idxSplit:2*idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev3', InputPrev[idxSplit*2:,:,:])
+
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1_feat', InputPrev_feat[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2_feat', InputPrev_feat[idxSplit:idxSplit*2,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev3_feat', InputPrev_feat[idxSplit*2:,:,:])
+
+            print(InputPrev[:idxSplit,:,:].shape[0]+InputPrev[idxSplit:2*idxSplit,:,:].shape[0]+InputPrev[idxSplit*2:,:,:].shape[0],
+                   InputPrev_feat[:idxSplit,:,:].shape[0]+InputPrev_feat[idxSplit:2*idxSplit,:,:].shape[0]+InputPrev_feat[idxSplit*2:,:,:].shape[0] )
+        elif InputPrev.shape[0]>80000:
+            idxSplit=int(InputPrev.shape[0]/2)
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1', InputPrev[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2', InputPrev[idxSplit:,:,:])
+
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev1_feat', InputPrev_feat[:idxSplit,:,:])
+            np.save(path_rai+'/dataset_new/'+model_dir+'_final/InputPrev2_feat', InputPrev_feat[idxSplit:,:,:])
+
+            print(InputPrev[:idxSplit,:,:].shape[0]+InputPrev[idxSplit:,:,:].shape[0],
+                   InputPrev_feat[:idxSplit,:,:].shape[0]+InputPrev_feat[idxSplit:,:,:].shape[0])
+
+
+    elif nenv==0:
         # Create data set
         concatData(path_rai+'/dataset',start2,stop2, skip1=skip1,rand2=rand2, NNmode=NNmode, mixData=mixData, exclude=exclude)
     else:

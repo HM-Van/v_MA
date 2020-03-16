@@ -1,4 +1,6 @@
 import numpy as np
+# Expert data for modified setup
+
 # Information for all init configurations: obj on which table
 
 # 0 table, 1 red, 2 green, 3 blue

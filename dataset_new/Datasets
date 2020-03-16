@@ -1,0 +1,7 @@
+20200215-111234 --exclude on red table1
+20200219-073351	40 objectives
+20200220-191432 --mixData 10 objectives
+20200220-202701 --mixData 7 objectives
+
+20200215-111234 --mixData 13 objectives # Corrrupted data set: some env for training were wrong
+20200215-111234 --mixData 13 objectives

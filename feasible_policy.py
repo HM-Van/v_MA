@@ -185,7 +185,7 @@ class ClassifierFeas():
     #----TODO train, adapt input etc
 
     def reshapeInput(self, path_rai, model_dir):
-        if self.mode in [11,12,13,14]:
+        if self.mode in [11,12,13,14] and True:
             Dappend="_new"
         else:
             Dappend=""
@@ -245,21 +245,17 @@ class ClassifierFeas():
 
 
     def train(self, path_rai, model_dir, saveToFile=True):
-        Dappend=""
-        Setappend=""
         if not model_dir=='':
-            if self.mode==1:
-                model_dir=model_dir+'/'
-            elif self.mode==2:
-                model_dir=model_dir+'_mixed2/'
-            elif self.mode==0:
-                model_dir=model_dir+'_mixed0/'
-            elif self.mode==3:
-                model_dir=model_dir+'_mixed3/'
-            elif self.mode in [11,12, 13, 14]:
+            Dappend="_new"
+            Setappend=""
+            if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
+            elif self.mode in [5,6,7,8]:
+                model_dir=model_dir+"_stack/"
+                Setappend="_"+str(self.mode)
+            else:
+                NotImplementedError
 
         dataInput, dataOutput=self.reshapeInput(path_rai, model_dir)
 
@@ -450,7 +446,7 @@ class ClassifierFeasLSTM():
         #path_rai="/home/my/rai-python/v_MA"
         #model_dir="20200122-104545_mixed3/"
 
-        if self.mode in [11,12,13,14]:
+        if self.mode in [11,12,13,14] and True:
             Dappend="_new"
         else:
             Dappend=""
@@ -555,21 +551,17 @@ class ClassifierFeasLSTM():
 
 
     def train(self, path_rai, model_dir, num_batch_it, saveToFile=True):
-        Dappend=""
-        Setappend=""
         if not model_dir=='':
-            if self.mode==1:
-                model_dir=model_dir+'/'
-            elif self.mode==2:
-                model_dir=model_dir+'_mixed2/'
-            elif self.mode==0:
-                model_dir=model_dir+'_mixed0/'
-            elif self.mode==3:
-                model_dir=model_dir+'_mixed3/'
-            elif self.mode in [11,12,13,14]:
+            Dappend="_new"
+            Setappend=""
+            if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
+            elif self.mode in [5,6,7,8]:
+                model_dir=model_dir+"_stack/"
+                Setappend="_"+str(self.mode)
+            else:
+                NotImplementedError
 
         finalList=self.reshapeInput(path_rai, model_dir)
 

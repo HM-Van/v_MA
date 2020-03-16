@@ -102,6 +102,7 @@ def rearrangeGoal(goal):
         return goal
 
 def most_frequent(List): 
+    # Find inedx of most frequent element in list
     counter = 0
     num = List[0] 
     
@@ -245,15 +246,9 @@ class RaiWorld():
 
         self.listLog=[listGr, listObj, listTab]
 
-        if self.NNmode in ["minimal", "dataset", "mixed", "FFchain", "mixed2", "mixed0", "FFnew", "mixed3", "final", "mixed10", "stack"]:
+        if self.NNmode in ["minimal", "FFnew", "mixed10", "stack", "final"]:
             if self.setup=="minimal":
                 return logicalNamesFinal, logicalTypesencoded , grNames, objNames, tabNames
-            else:
-                NotImplementedError
-            
-        elif self.NNmode in ["full", "chain", "3d"]:
-            if self.setup=="minimal":
-                return logicalNamesFinal, logicalTypesencoded , logicalNamesFinal, logicalNamesFinal, logicalNamesFinal
             else:
                 NotImplementedError
         else:
@@ -401,11 +396,11 @@ class RaiWorld():
             return goalString_orig, realGoalString
 
     def preprocessGoals(self, cheat_goalstate=True, check = False):
+        # Find unfullfilled goal formulations
 
         if self.dataMode in [1,2,3,4] or self.tray=="" or check:
             goalString_orig, realGoalString=self.goalString_orig, self.realGoalString
         elif self.dataMode in [5,6,7,8] and not self.tray=="":
-            #print("here")
             goalString_orig, realGoalString=self.expandGoal(self.goalString_orig, self.realGoalString)
         else:
             NotImplementedError
@@ -421,16 +416,14 @@ class RaiWorld():
                 # Find unsatisfied goal formulations
                 if not real in folstate[0]:
                     unfullfilled.append(goal)
-                    ##If stacking mode
-                    #split_str = stringNew.split(" ")
-                    #len(unfullfilled)<2 if "(on "+split_str[-1][:-1] in folstate[0]:
-                        #unfullfilled.append(unfullfilled[0])
+
         #print(unfullfilled)
         #print(goalStep)
         #input(folstate)
         return unfullfilled
 
     def restartLGP(self, init=False):
+        # Reload LGP at current node if no object held
         folstate = self.lgp.nodeState()
         if init or not ("(held" in folstate[0]):
             if self.dataMode in [1,2,3,4]:
@@ -516,6 +509,9 @@ class RaiWorld():
                     self.tabNames.remove(obj)
                     if len(self.objNames)==self.numObj:
                         break
+
+        if not goalString_prev==self.goalString:
+            changed=True
 
         #input(self.logicalNames)
 
@@ -707,7 +703,7 @@ class RaiWorld():
                                 )
 
             modelInstructHist, modelGraspHist, modelPlaceHist=self.rai_net.train(self.path_rai, model_dir)
-            self.model_dir=self.rai_net.timestamp
+            self.model_dir=self.rai_net.timestamp.split("_")[0]
 
             return modelInstructHist, modelGraspHist, modelPlaceHist
 

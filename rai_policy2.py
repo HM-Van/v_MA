@@ -297,7 +297,7 @@ class FeedForwardNN():
 
     def reshapeInput(self, path_rai, model_dir):
         # Preprocess input
-        if self.mode in [1,2,3,4,5,6,7,8]:
+        if self.mode in [1,2,3,4,5,6,7,8] and True:
             Dappend="_new"
         else:
             Dappend=""
@@ -337,15 +337,13 @@ class FeedForwardNN():
 
     def train(self, path_rai, model_dir, saveToFile=True):
         if not model_dir=='':
-            Dappend=""
+            Dappend="_new"
             Setappend=""
             if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
             elif self.mode in [5,6,7,8]:
                 model_dir=model_dir+"_stack/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
             else:
                 NotImplementedError
@@ -659,7 +657,7 @@ class ClassifierMixed():
 
     #------------------Train and save Model---------------
     def reshapeInput(self, path_rai, model_dir):
-        if self.mode in [1,2,3,4,5,6,7,8]:
+        if self.mode in [1,2,3,4,5,6,7,8] and True:
             Dappend="_new"
         else:
             Dappend=""
@@ -753,15 +751,13 @@ class ClassifierMixed():
 
     def train(self, path_rai, model_dir, saveToFile=True):
         if not model_dir=='':
-            Dappend=""
+            Dappend="_new"
             Setappend=""
             if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
             if self.mode in [5,6,7,8]:
                 model_dir=model_dir+"_stack"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
             else:
                 NotImplementedError
@@ -1094,7 +1090,7 @@ class ClassifierChainNew():
 
     def reshapeInput(self, path_rai, model_dir):
 
-        if self.mode in [1,2,3,4,5,6,7,8]:
+        if self.mode in [1,2,3,4,5,6,7,8] and True:
             Dappend="_new"
         else:
             Dappend=""
@@ -1144,15 +1140,13 @@ class ClassifierChainNew():
 
     def train(self, path_rai, model_dir, saveToFile=True):
         if not model_dir=='':
-            Dappend=""
+            Dappend="_new"
             Setappend=""
             if self.mode in [1,2,3,4]:
                 model_dir=model_dir+"_final/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
             elif self.mode in [5,6,7,8]:
                 model_dir=model_dir+"_stack/"
-                Dappend="_new"
                 Setappend="_"+str(self.mode)
             else:
                 NotImplementedError

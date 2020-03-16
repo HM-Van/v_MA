@@ -481,7 +481,7 @@ def main():
 	epochs_inst=args.epochs_inst
 	n_size_inst=args.size_inst
 	n_layers_inst=args.hlayers_inst
-	n_layers_inst2=args.hlayers_inst2
+	n_layers_inst2=args.hlayers_inst2 # LSTM layer
 
 	# Grasp and Place parameters
 	epochs_grasp=args.epochs_grasp
@@ -499,19 +499,19 @@ def main():
 	clipnorm=args.clipnorm
 	val_split=args.val_split
 	reg=args.reg_l2
-	reg0=args.reg0_l2
+	reg0=args.reg0_l2 # LSTM layer
 
 	nenv=args.env
 	goalString=args.goal # objective if not (train_only or exclude)
 	setup=args.setup
 	NNmode=args.NNmode # minimal(impl1) FFnew(impl2) mixed10(impl3)
-	dataMode=args.datasetMode # 1(global coord) 2(relative coord) 3(global coord+encoder) 4(relative coord+encoder)
+	dataMode=args.datasetMode # 1 5(global coord) 2 6(relative coord) 3 7(global coord+encoder) 4 8(relative coord+encoder) # 1-4 initial setup 1-5 modified setup
 	
 	# Testing parameters
 	maxDepth=args.maxDepth # maximum depth before reattempting
 	maxTries=args.maxTries # maximum tries
-	maxTimeOP=args.maxTimeOP
-	tray=args.tray
+	maxTimeOP=args.maxTimeOP # maximum time for final path optimization
+	tray=args.tray # Forces object to be placed on tray, if it is blocking
 
 	cheat_goalstate= args.cheat_goalstate # adapts goal state if one goal formulation is satisfied
 	cheat_tree=args.cheat_tree # always evaluate heuristic for all high-level actions
@@ -522,7 +522,7 @@ def main():
 	viewConfig=args.viewConfig # enable K.view
 	planOnly=args.planOnly # seq used for next config instead if seqPath
 	exclude=args.exclude # Tests only objectives that are excluded in training set. Here: (on red table1)
-	newLGP=args.newLGP
+	newLGP=args.newLGP # new LGP at intermediate node -> faster but objects can get shifted for some reason
 
 	# train_only starts at objective
 	start=args.start
@@ -549,11 +549,12 @@ def main():
 	rai=rai_world.RaiWorld(path_rai, nenv, setup, goalString, verbose, maxDepth=maxDepth, NNmode=NNmode, datasetMode=dataMode, view=viewConfig, tray = tray)
 	goalString=rai.goalString_orig
 	print("\nModel and dataset")
-	if saveModel:
+	if saveModel or train_only:
 		# Train model using data set from model_dir_data
 		rai.saveFit(model_dir_data,epochs_inst, n_layers_inst, n_size_inst, epochs_grasp, n_layers_grasp, n_size_grasp, epochs_place, n_layers_place, n_size_place,
 					lr, lr_drop, epoch_drop, clipnorm, val_split, reg, reg0, batch_size,n_layers_inst2=n_layers_inst2)
 		print("Model trained: "+rai.rai_net.timestamp)
+		model_dir=rai.model_dir
 	else:
 		# Load model from model_dir
 		rai.loadFit(model_dir)
@@ -572,7 +573,6 @@ def main():
 					rangeEnv=range(nenv,104)
 				elif nenv in range(106,109):
 					rangeEnv=range(nenv,109)
-					#rangeEnv=range(nenv,110)
 				elif dataMode in [5,6,7,8]:
 					rangeEnv=[4,8,12,16,20,24,28,32,36,40,44,48,52]
 					rangeEnv=rangeEnv[rangeEnv.index(nenv-200):]
@@ -588,11 +588,6 @@ def main():
 
 
 			for nenv in rangeEnv:
-				## env 109 not used for testing anymore
-				#if nenv ==109:
-				#	rai.maxDepth=rai.maxDepth+2
-				#	maxTries=maxTries+2
-
 				summary=[[],[],[],[],[]] #optimal feasible infeasible-op infeasible no
 
 				start=start0
@@ -603,12 +598,13 @@ def main():
 				rai.nenv=nenv+envadd
 				path=createResults(rai,cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, start=start0, planOnly=planOnly)
 				if 2*(start-1) < len(expert.Sets):
-					# Test objectives consisting of 3 goal formulations twice - once for each sequence
+					# Test objectives consisting of 2 goal formulations twice - once for each sequence
 					numGoal=start-1
 
 					if not startSub==1:
 						numGoal+=1
 					for i in range(2*(start-1)+startSub-1,len(expert.Sets)):
+						# For each objective id
 						if i%2==0:
 							numGoal+=1
 							strgoal=str(numGoal).zfill(3)+"-1"
@@ -618,9 +614,11 @@ def main():
 						if exclude and not numGoal in or1[1]+og2[1]+obg[1]:
 							#print("skip "+str(numGoal))
 							continue
-
+						
+						# Get objective string
 						goal=expert.Sets[i]
 
+						# Init
 						infeasibleSkeletons=[]
 						depthSkeletons=[]
 						skeleton=""
@@ -661,6 +659,7 @@ def main():
 							skeletonPrev=skeleton
 							strgoalPrev=strgoal
 							if successmsg=="Successfully reached goal":
+								# Determine whether optimal/feasible solution is found: 0 optimal, 1 feasible, 2 optimal but infeasible, 3 infeasible, 4 no solution
 								solutions, _, _ = expert.getData(nenv=nenv, nset=numGoal)
 								if not solutions ==[]:
 									if not feasible:
@@ -690,6 +689,7 @@ def main():
 							if successmsg=="Successfully reached goal":
 								solutions, _, _ = expert.getData(nenv=nenv, nset=numGoal)
 								if not solutions ==[]:
+									# Determine whether optimal/feasible solution is found: 0 optimal, 1 feasible, 2 optimal but infeasible, 3 infeasible, 4 no solution
 									if not feasible:
 										if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 											summary[2].append(strgoal)
@@ -711,16 +711,18 @@ def main():
 					start=(start-1)-len(expert.Sets)/2
 
 				for i in range(int(start),len(expert.test)):
-					# Test goal formulation
+					# Test sinlge goal formulation
 					numGoal+=1
 					if exclude and not i+1 in or1[0]+og2[0]+obg[0]:
 						continue
 
 					strgoal=str(numGoal).zfill(3)+"-1"
 
+					# get goal string
 					goal= expert.test[i]+" "+expert.test[i]
 					infeasibleSkeletons=[]
 					depthSkeletons=[]
+
 					# Reload configuration
 					if dataMode in [5,6,7,8]:
 						rai.redefine(goal, nenv=nenv+200)
@@ -752,6 +754,7 @@ def main():
 					if successmsg=="Successfully reached goal":
 						solutions, _, _ = expert.getData1(nenv=nenv, nset=i+1)
 						if not solutions ==[]:
+							# Determine whether optimal/feasible solution is found: 0 optimal, 1 feasible, 2 optimal but infeasible, 3 infeasible, 4 no solution
 							if not feasible:
 								if len(rai_world.splitStringStep(solutions[0], list_old=[])) >= len(rai_world.splitStringStep(skeleton, list_old=[])):
 									summary[2].append(strgoal)
@@ -791,8 +794,9 @@ def main():
 			infeasibleSkeletons=[]
 			depthSkeletons=[]
 			teststep=1
-			input("Press enter to continue")
+			#input("Press enter to continue")
 			time.sleep(1)
+
 			starttime=time.time()
 			for tries in range(maxTries):
 				# Set objective
@@ -812,16 +816,20 @@ def main():
 					break
 				teststep=teststep+1
 			endtime=time.time()
+
 			if not feasible:
 				successmsg="Infeasible solution"
 			print("time: "+str(endtime-starttime)+", tries: "+str(teststep)+", "+successmsg)
+
 			# Print results to console
 			printResult(rai, skeleton)
+
 			if not feasible:
 				print("Infeasible Solution")
-			if saveModel and successmsg=="Successfully reached goal":
-				with open(path_rai+'/logs/toTest.txt', 'a+') as f:
-					f.write(rai.model_dir+'\n')
+				
+			#if saveModel and successmsg=="Successfully reached goal":
+			#	with open(path_rai+'/logs/toTest.txt', 'a+') as f:
+			#		f.write(rai.model_dir+'\n')
 
 	if not completeTesting and not train_only:
 		input("Press Enter to end Program...")

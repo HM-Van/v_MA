@@ -1,4 +1,6 @@
 import numpy as np
+# Expert data for initial setup
+
 # Information for all init configurations: obj on which table
 envInfo=x = np.array([[1, 1, 2], #1
                         [2, 2, 1],#2
