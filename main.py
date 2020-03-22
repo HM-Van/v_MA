@@ -376,9 +376,9 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 				rai_net.K.copy(K0)
 				successmsg="KOMO failed for goal"
 			endtime=time.time()
-			print("\nTime HP", timeHP)
-			print("Time OP next config", timeOP)
-			print("Time OP full path",endtime-starttime)
+			#print("\nTime HP", timeHP)
+			#print("Time OP next config", timeOP)
+			#print("Time OP full path",endtime-starttime)
 
 	if showFinal and feastmp:
 		rai_net.lgp.nodeInfo()

@@ -690,6 +690,9 @@ class ClassifierMixed():
         dataLogicals=dataLogicals[idx,:,:]
         dataInputPrev=dataInputPrev[idx, :,:]
 
+        # Fix error in data set
+        dataInputPrev[:,:,:self.goallength]=dataInput[:,np.newaxis,:self.goallength]
+
         #-------------------------------------------
         idxInstr=[[],[],[],[]]
         for i in range(dataInputPrev.shape[0]):

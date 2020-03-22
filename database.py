@@ -152,11 +152,17 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
         if rai.NNmode in ["final", "stack"]:
             logArray = np.zeros((numLoops,numLogicalType,len(rai.logicalNames)), dtype=int)
 
-            prevInputArray = np.zeros((numLoops,4,input_size), dtype=float)
+            
             feasibleArray = np.zeros((numLoops,2), dtype=int)  # act skeleton
 
             inputArray2 = np.zeros((numLoops,input_size), dtype=float)
-            prevInputArray2 = np.zeros((numLoops,4,input_size), dtype=float)
+
+            if rai.NNmode in ["final"]:
+                prevInputArray = np.zeros((numLoops,4,input_size), dtype=float)
+                prevInputArray2 = np.zeros((numLoops,4,input_size), dtype=float)
+            elif rai.NNmode in ["stack"]:
+                prevInputArray = np.zeros((numLoops,6,input_size), dtype=float)
+                prevInputArray2 = np.zeros((numLoops,6,input_size), dtype=float)
         else:
             NotImplementedError
 
@@ -179,9 +185,14 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
 
             j=0
             #init previous input for this solution
-            prevInput = np.zeros((1,4,input_size), dtype=float)
-            if rai.NNmode in ["final", "stack"]:
+            
+            if rai.NNmode in ["final"]:
+                prevInput = np.zeros((1,4,input_size), dtype=float)
                 prevInput2 = np.zeros((1,4,input_size), dtype=float)
+            elif rai.NNmode in ["stack"]:
+                prevInput = np.zeros((1,6,input_size), dtype=float)
+                prevInput2 = np.zeros((1,6,input_size), dtype=float)
+
             else:
                 NotImplementedError
 
@@ -206,16 +217,23 @@ def dataSet(path_dB, rai, nenv, start,stop,mode=2):
                                 NotImplementedError
 
                             # Add to previous input = Sequence of input
+                            # Note: goalState was not consistent previously!! as prevInput gets overwritten
+                            # previous entries have goalString[-1] as goalstate
+                            # "final" dataset has to be fixed if implementation 3 is used
                             prevInput[0,j,:] = inputArray[i,:]
+                            prevInput[0,:,:goalState.shape[1]]=goalState
+                            #input(goalState.shape[1])
                             prevInputArray[i,:,:]=prevInput[0,:,:]
                             if rai.NNmode in ["final", "stack"]:
                                 prevInput2[0,j,:] = inputArray2[i,:]
+                                prevInput2[0,:,:goalState.shape[1]]=goalState
                                 prevInputArray2[i,:,:]=prevInput2[0,:,:]
 
                             # Encode Output
                             try:
                                 instrArray[i,:], logArray[i,:,:] = encodeAction3D(command,rai.logicalNames)
-                                if j<3 and i%mode==mode-1:
+                                if j<(prevInput.shape[1]-1) and i%mode==mode-1:
+                                    #input(prevInput.shape[1]-1)
                                     j=j+1
 
                             except:
