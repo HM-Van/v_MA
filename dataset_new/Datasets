@@ -4,4 +4,4 @@
 20200220-202701 --mixData 7 objectives
 
 20200215-111234 --mixData 13 objectives # Corrrupted data set: some env for training were wrong
-20200215-111234 --mixData 13 objectives
+20200215-111234 --mixData 13 objectives # Data set has too few entries for InputPrev. Data set is fixed now. So if impl3 is to be used, recreate this training set
