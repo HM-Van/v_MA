@@ -1,0 +1,12 @@
+mixed10, datamode 1, maxDepth 8, maxTries 4
+
+----Optimal Solution (19)----
+011-2	011-1	012-1	012-2	013-2	013-1	014-2	014-1	015-1	015-2	017-2	017-1	018-1	018-2	019-2	019-1	020-1	020-2	074-1	
+----Feasible Solution (2)----
+016-2	016-1	
+----Infeasible-op Solution (0)----
+
+----Infeasible Solution (0)----
+
+----No Solution (0)----
+
