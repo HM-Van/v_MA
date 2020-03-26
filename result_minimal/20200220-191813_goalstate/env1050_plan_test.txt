@@ -6,3 +6,48 @@
 
 -----Result for env 1050-----
 
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+
+----Successfully reached goal : (on red green) (on green blue) (on blue tray) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red green)[ 1 -1 ]
+		  MP: (grasp pr2R blue)[ 1 -1 ]	with prob 0.697 instead of (place pr2R blue tray)
+		  NN: (place pr2R blue tray)[ 1 -1 ]
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.826 instead of (place pr2R green blue)
+		  NN: (place pr2L green blue)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+
+
+
+-----Result for env 1050-----
+

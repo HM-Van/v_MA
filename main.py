@@ -376,9 +376,10 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 				rai_net.K.copy(K0)
 				successmsg="KOMO failed for goal"
 			endtime=time.time()
-			#print("\nTime HP", timeHP)
-			#print("Time OP next config", timeOP)
-			#print("Time OP full path",endtime-starttime)
+			if showFinal:
+				print("\nTime HP", timeHP)
+				print("Time OP next config", timeOP)
+				print("Time OP full path",endtime-starttime)
 
 	if showFinal and feastmp:
 		rai_net.lgp.nodeInfo()
@@ -427,7 +428,7 @@ def main():
 	parser.set_defaults(train_only=False)
 	parser.add_argument('--saveModel', dest='saveModel', action='store_true')
 	parser.set_defaults(saveModel=False)
-	parser.add_argument('--model_dir', type=str, default='')
+	parser.add_argument('--model_dir', type=str, default='20200221-152316')
 	parser.add_argument('--model_dir_data', type=str, default='')
 
 	parser.add_argument('--cheat_tree', dest='cheat_tree', action='store_true')
@@ -453,7 +454,7 @@ def main():
 	parser.add_argument('--goal', type=str, default="(on red green) (on green blue)")
 	parser.add_argument('--env', type=int, default=1)
 	parser.add_argument('--setup', type=str, default="minimal")
-	parser.add_argument('--NNmode', type=str, default="minimal")
+	parser.add_argument('--NNmode', type=str, default="FFnew")
 	parser.add_argument('--datasetMode', type=int, default=1)
 	parser.add_argument('--start', type=int, default=1)
 	parser.add_argument('--startSub', type=int, default=1)
@@ -534,9 +535,9 @@ def main():
 		NotImplementedError
 
 	if dataMode in [5,6,7,8]:
-		print("here")
+		#print("here")
 		import new_experiment0 as expert
-	else:
+	elif dataMode in [1,2,3,4]:
 		import minimal_experiment as expert
 	
 	# Objectives to exclude
@@ -796,7 +797,7 @@ def main():
 			depthSkeletons=[]
 			teststep=1
 			#input("Press enter to continue")
-			time.sleep(1)
+			#time.sleep(1)
 
 			starttime=time.time()
 			for tries in range(maxTries):
