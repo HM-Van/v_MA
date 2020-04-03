@@ -28,3 +28,18 @@
 
 -----Result for env 35-----
 
+
+
+-----Result for env 35-----
+
+----Successfully reached goal : (on red green) (on green blue) feasible 1----
+		  NN: (grasp pr2R red)[ 1 -1 ]
+		  NN: (place pr2R red green)[ 1 -1 ]
+		  MP: (grasp pr2L green)[ 1 -1 ]	with prob 0.788 instead of (place pr2R green blue)
+		  NN: (place pr2L green blue)[ 1 -1 ]
+--------------------
+
+
+
+-----Result for env 35-----
+

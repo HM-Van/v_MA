@@ -272,11 +272,13 @@ def buildSkeleton(rai_net, cheat_terminal = False, cheat_goalstate=False,cheat_t
 				tmpskeleton=""
 
 		# Wait (for vid recording)
-		if not (showFinal or rai_net.view):
+		if not (showFinal or rai_net.view) or True:
 			time.sleep(waitTime)
 		
 		# Stop if terminal
 		if rai_net.lgp.isTerminal() or len(rai_net.preprocessGoals(check=True))==0:
+			if showFinal:
+				input("symbolic search finished")
 			rai_net.K.copy(K0)
 			if newLGP:
 				rai_net.restartLGP()
@@ -405,23 +407,23 @@ def main():
 	parser.add_argument('--epochs_inst', type=int, default=500)
 	parser.add_argument('--hlayers_inst', type=int, default=2)
 	parser.add_argument('--hlayers_inst2', type=int, default=0)
-	parser.add_argument('--size_inst', type=int, default=120)
+	parser.add_argument('--size_inst', type=int, default=80)
 	parser.add_argument('--epochs_grasp', type=int, default=1000)
 	parser.add_argument('--hlayers_grasp', type=int, default=3)
-	parser.add_argument('--size_grasp', type=int, default=64)
+	parser.add_argument('--size_grasp', type=int, default=80)
 	parser.add_argument('--epochs_place', type=int, default=1000)
 	parser.add_argument('--hlayers_place', type=int, default=3)
-	parser.add_argument('--size_place', type=int, default=64)
+	parser.add_argument('--size_place', type=int, default=80)
 	parser.add_argument('--num_batch_it', type=int, default=1)
-	parser.add_argument('--batch_size', type=int, default=32)
+	parser.add_argument('--batch_size', type=int, default=128)
 
 	parser.add_argument('--lr', type=float, default=0.001)
 	parser.add_argument('--lr_drop', type=float, default=1.0)
 	parser.add_argument('--epoch_drop', type=int, default=100)
 	parser.add_argument('--clipnorm', type=float, default=100.0)
-	parser.add_argument('--val_split', type=float, default=0.0)
-	parser.add_argument('--reg_l2', type=float, default=0.0)
-	parser.add_argument('--reg0_l2', type=float, default=0.0)
+	parser.add_argument('--val_split', type=float, default=0.2)
+	parser.add_argument('--reg_l2', type=float, default=0.0001)
+	parser.add_argument('--reg0_l2', type=float, default=0.00001)
 
 
 	parser.add_argument('--train_only', dest='train_only', action='store_true')
@@ -796,14 +798,14 @@ def main():
 			infeasibleSkeletons=[]
 			depthSkeletons=[]
 			teststep=1
-			#input("Press enter to continue")
-			#time.sleep(1)
+			input("Press enter to continue")
+			time.sleep(waitTime+1)
 
 			starttime=time.time()
 			for tries in range(maxTries):
 				# Set objective
 				rai.resetFit(cheatGoalState=cheat_goalstate, goal=goalString)
-				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, planOnly=planOnly,
+				skeleton,typeDecision,successmsg, feasible=buildSkeleton(rai, cheat_tree=cheat_tree, cheat_goalstate=cheat_goalstate, planOnly=planOnly, waitTime=waitTime,
 																			infeasibleSkeletons=infeasibleSkeletons, depthSkeletons=depthSkeletons, verbose=True, showFinal=showFinal, newLGP=newLGP, maxTimeOP=maxTimeOP)
 
 				if successmsg=="Maximum depth of "+str(rai.maxDepth)+" reached for goal":

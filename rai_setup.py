@@ -76,9 +76,9 @@ def softmaxToOnehot(a):
 	a[a<1]=0
 	return a
 
-def runLGP(lgp, bound, verbose=0, view=True, initnoise=0.01): #BT.pose BT.seq BT.path
+def runLGP(lgp, bound, verbose=0, view=True, initnoise=0.01, delay=0.1): #BT.pose BT.seq BT.path
     # Runs LGP and returns komo for bound
-	lgp.optBound(bound, True,view, initnoise)#, initnoise
+	lgp.optBound(bound, True,view, initnoise, delay)#, initnoise
 	if verbose>0:
 		print("Bound", bound, "feasible: ", not lgp.isInfeasible())
 	komo = lgp.getKOMOforBound(bound)
