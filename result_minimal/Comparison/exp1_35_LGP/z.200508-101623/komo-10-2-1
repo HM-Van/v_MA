@@ -1,0 +1,17 @@
+SKELETON:
+  initial (pr2R) from 0 to 2
+  initial (pr2L) from 0 to 2
+  initial (red) from 0 to 2
+  initial (green) from 0 to 2
+  initial (blue) from 0 to 2
+  initial (table1) from 0 to 2
+  initial (table2) from 0 to 2
+  touch (pr2R red) from 1 to 1
+  stable (pr2R red) from 1 to 1
+  above (red blue) from 2 to 2
+  stableOn (blue red) from 2 to 2
+  touch (pr2R red) from 2 to 2
+  touch (red blue) from 2 to 2
+SWITCHES:
+  START  -->  stable (pr2R red) from 1 to 1
+  stable (pr2R red) from 1 to 1  -->  stableOn (blue red) from 2 to 2

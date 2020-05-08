@@ -1,0 +1,43 @@
+SKELETON:
+  initial (pr2R) from 0 to 8
+  initial (pr2L) from 0 to 8
+  initial (red) from 0 to 8
+  initial (green) from 0 to 8
+  initial (blue) from 0 to 8
+  initial (cyan) from 0 to 8
+  initial (tray) from 0 to 8
+  initial (table1) from 0 to 8
+  initial (table2) from 0 to 8
+  touch (pr2R red) from 1 to 2
+  stable (pr2R red) from 1 to 2
+  touch (pr2L green) from 2 to 4
+  stable (pr2L green) from 2 to 4
+  above (red tray) from 3 to 8
+  stableOn (tray red) from 3 to 8
+  touch (pr2R red) from 3 to 3
+  touch (red tray) from 3 to 3
+  touch (pr2R blue) from 4 to 5
+  stable (pr2R blue) from 4 to 5
+  above (green table2) from 5 to 8
+  stableOn (table2 green) from 5 to 8
+  touch (pr2L green) from 5 to 5
+  touch (green table2) from 5 to 5
+  above (blue tray) from 6 to 8
+  stableOn (tray blue) from 6 to 8
+  touch (pr2R blue) from 6 to 6
+  touch (blue tray) from 6 to 6
+  touch (pr2L cyan) from 7 to 7
+  stable (pr2L cyan) from 7 to 7
+  above (cyan tray) from 8 to 8
+  stableOn (tray cyan) from 8 to 8
+  touch (pr2L cyan) from 8 to 8
+  touch (cyan tray) from 8 to 8
+SWITCHES:
+  START  -->  stable (pr2R red) from 1 to 2
+  START  -->  stable (pr2L green) from 2 to 4
+  stable (pr2R red) from 1 to 2  -->  stableOn (tray red) from 3 to 8
+  START  -->  stable (pr2R blue) from 4 to 5
+  stable (pr2L green) from 2 to 4  -->  stableOn (table2 green) from 5 to 8
+  stable (pr2R blue) from 4 to 5  -->  stableOn (tray blue) from 6 to 8
+  START  -->  stable (pr2L cyan) from 7 to 7
+  stable (pr2L cyan) from 7 to 7  -->  stableOn (tray cyan) from 8 to 8

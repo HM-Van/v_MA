@@ -1,0 +1,14 @@
+
+
+-----Result for env 100-----
+
+----Successfully reached goal 001-1: (held red) (held green) feasible 1----
+		  MP: (grasp pr2R green)[ 1 -1 ]	with prob 0.844 instead of 
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.877 instead of 
+--------------------
+
+----Successfully reached goal 001-2: (held green) (held red) feasible 1----
+		  MP: (grasp pr2R green)[ 1 -1 ]	with prob 0.847 instead of 
+		  MP: (grasp pr2L red)[ 1 -1 ]	with prob 0.809 instead of 
+--------------------
+
